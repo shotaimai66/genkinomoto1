@@ -1,0 +1,10 @@
+<h1>お知らせ詳細</h1>
+
+<div>
+  <%= @notification.title %>
+</div>
+<div>
+  <%= @notification.body %>
+</div>
+
+<%= link_to "削除", notification_path(@notification), method: :delete, data:{ confirm: "削除してよろしいですか？" } %>

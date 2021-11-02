@@ -44,4 +44,5 @@ Rails.application.routes.draw do
   resource :orders, only: %i[create destroy]
   resources :payments, only: %i[index show]
   post 'pay', to: 'payments#pay'
+  resources :notifications
 end
