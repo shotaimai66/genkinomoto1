@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta content="text/html; charset=UTF-8" />
+    <style type="text/css">
+      p {
+        margin: 0
+      }
+    </style>
+  </head>
+  <body>
+    <h2><%= @user.name %> 様</h2>
+    <p>この度はゲンキノモトをご利用頂きありがとうございます！</p>
+    <p>下記内容で予約確定させて頂きました。</p>
+    <p>-----------------------------------------------------</p>
+    <p>【予約日】：<%= l @reservation.start_time, format: :dayonly %></p>
+    <p>【時間】：<%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %></p>
+    <p>【コース】：<%= @reservation.course_i18n %></p>
+    <p>【コメント】：<%= @reservation.comment.presence || "未記入"  %></p>
+    <p>-----------------------------------------------------</p>
+    <p>当日ご来店をお待ちしております。</p>
+  </body>
+</html>

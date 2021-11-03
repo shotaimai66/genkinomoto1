@@ -45,7 +45,7 @@ class Reservation < ApplicationRecord
 
   def apply_reserve!
     end_time = start_time + end_time_calculate
-    title_for_staff_comment = "予約確定 #{self.guest.email}様　#{self.course_i18n}"
+    title_for_staff_comment = "予約確定 #{self.guest.name}様　#{self.course_i18n}"
     self.update(
       end_time: end_time,
       status: :on_reserve,
