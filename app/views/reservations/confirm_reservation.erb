@@ -32,42 +32,6 @@
   </tbody>
 </table>
 
-<h2 class="test">予約一覧(確定)</h1>
-<table class="table table-white table-bordered mt-4">
-  <thead class="table-secondary">
-    <tr>
-      <th scope="col">予約番号</th>
-      <th scope="col">名前</th>
-      <th scope="col">予約日</th>
-      <th scope="col">予約時間</th>
-      <th scope="col">コース名</th>
-      <th scope="col">操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @reservations_on_reserve.present? %>
-      <% @reservations_on_reserve.each do |reservation| %>
-        <tr>
-          <th scope="row"><%= reservation.id %></th>
-          <td><%= reservation.guest.email %></td>
-          <td><%= l reservation.start_time, format: :dayonly %></td>
-          <td><%= l reservation.start_time, format: :timeonly %> - <%= l reservation.end_time, format: :timeonly if reservation.end_time.present? %></td>
-          <td><%= reservation.course_i18n %></td>
-          <td>
-            <%= link_to "編集", edit_reserve_reservation_path(reservation.id), remote: true, class: "btn btn-primary" %>
-            <%= link_to "削除", reservation_path(reservation.id), method: :delete, class: "btn btn-danger" %>
-          </td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <th scope="row">#</th>
-        <td colspan="5">予約申込(確定)はありません。</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <div id="calendar"></div>
 <div id="edit_reservation" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <%= javascript_pack_tag 'calendar/confirm_reservation' %>

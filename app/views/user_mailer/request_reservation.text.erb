@@ -1,0 +1,13 @@
+===============================
+<%= @user.name %>様
+===============================
+
+この度はゲンキノモトをご利用頂きありがとうございます！
+下記内容で予約申込みさせて頂きました。
+-----------------------------------------------------
+【予約日】：<%= l @reservation.start_time, format: :dayonly %>
+【時間】：<%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %>
+【コース】：<%= @reservation.course_i18n %>
+【コメント】：<%= @reservation.comment.presence || "未記入"  %>
+-----------------------------------------------------
+※予約は確定ではありません。スタッフが確認次第、ご連絡させて頂きます。
