@@ -1,0 +1,29 @@
+<%= link_to 'ホーム', root_url, class: "link-gray" %>
+
+<div class="container">
+  <table class="table">
+  <thead>
+    <tr class="center">
+      <th>イベント名</th>
+      <th>価格</th>
+      <th colspan="2">開催期間</th>
+      <th colspan="2">時間</th>
+      <th colspan="2">従業員欄</th>
+    </tr>
+  </thead>
+  <% @events.each do |event| %>
+  <tbody>
+  <tr>
+    <td><%= link_to event.title, event_path(event), class: "link-black" %></td>
+    <td><%= event.price %> 円(税抜)</td>
+    <td><%= event.first_date %></td>
+    <td><%= event.last_date %></td>
+    <td><%= event.start_time.strftime("%H:%M") %></td>
+    <td><%= event.end_time.strftime("%H:%M") %></td>
+    <td><%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %></td>
+    <td><%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %></td>
+  </tr>
+  </tbody>
+  <% end %>
+  </table>
+</div>

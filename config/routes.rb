@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   root 'static_pages#top'
   resources :reservations do
     collection do
@@ -44,4 +43,5 @@ Rails.application.routes.draw do
   resource :orders, only: %i[create destroy]
   resources :payments, only: %i[index show]
   post 'pay', to: 'payments#pay'
+  resources :events
 end

@@ -3,6 +3,7 @@ ja:
     models:
       item: 商品
       order: 注文
+      event: イベント
     attributes:
         item:
           id: ID
@@ -16,3 +17,13 @@ ja:
           updated_at: 更新日
         order:
           quantity: 数量
+        event:
+          title: イベント名
+          category: カテゴリー
+          price: 価格
+          description: 詳細
+          ticket_numbers: チケット残数
+          first_date: 開催日
+          last_date: 終了日
+          start_time: 開始時間
+          end_time: 終了時間
