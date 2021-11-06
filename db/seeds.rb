@@ -27,18 +27,26 @@
     )
 end
 
+Store.create!(
+  name: "厚木店",
+  address: "神奈川県 七沢温泉郷 七沢荘"
+)
+
+
 User.create!(
   name: "Sample User1",
   email: "sample-1@email.com",
   password: "password",
-  password_confirmation: "password"
+  password_confirmation: "password",
+  store_id: 1
 )
 
 Staff.create!(
   name: "Sample Staff1",
   email: "staff-1@email.com",
   password: "password",
-  password_confirmation: "password"
+  password_confirmation: "password",
+  store_id: 1
 )
 
 20.times do |n|

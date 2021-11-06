@@ -3,7 +3,7 @@
 <%= link_to '戻る', :back, class: "link-gray" %>
 
 <div class="container">
-  <div class="cart-wrapper">
+  <div class="container-wrapper">
     <div class="cart-content-left">
       <h1>ショッピングカート 【 <%= current_user.name %> 様 】</h1>
       <% if !@orders.present? %>
@@ -21,9 +21,9 @@
             <td rowspan="3">
               <% item = Item.find(order.item_id) %>
               <% if item.image? %>
-                <%= link_to image_tag(item.image.url, width: 200, class: "item-image-border"), item_path(item) %>
+                <%= link_to image_tag(item.image.url, width: 200, class: "image-border"), item_path(item) %>
               <% else %>
-                <%= link_to image_tag("/no_image2.png", width: 200, class: "item-image-border"), item_path(item) %>
+                <%= link_to image_tag("/no_image2.png", width: 200, class: "image-border"), item_path(item) %>
               <% end %>
             </td>
             <td colspan="3"><%= link_to item.name, item_path(item), class: "link-black" %></td>
@@ -43,18 +43,18 @@
       <% end %>
     </div>
     <div class="cart-content-right">
-<div class="right">
-  <%= link_to image_tag('/payment_history.png', width: 30), payments_path(current_user) %>
-  <%= link_to '注文履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
-  <% unpaid_orders = current_user.cart.orders.where(paid_at: nil) %>
-  <% if unpaid_orders.present? %>
-    <%= link_to image_tag('/cart_items.png', width: 30), carts_path(current_user) %>
-  <% else %>
-    <%= link_to image_tag('/cart_empty.png', width: 30), carts_path(current_user) %>
-  <% end %>
-  <%= link_to 'カート', carts_path(current_user), class: "btn btn-md btn-warning" %>
-</div>
-  <p></p>
+      <div class="right">
+        <%= link_to image_tag('/payment_history.png', width: 30), payments_path(current_user) %>
+        <%= link_to '注文履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
+        <% unpaid_orders = current_user.cart.orders.where(paid_at: nil) %>
+        <% if unpaid_orders.present? %>
+          <%= link_to image_tag('/cart_items.png', width: 30), carts_path(current_user) %>
+        <% else %>
+          <%= link_to image_tag('/cart_empty.png', width: 30), carts_path(current_user) %>
+        <% end %>
+        <%= link_to 'カート', carts_path(current_user), class: "btn btn-md btn-warning" %>
+      </div>
+        <p></p>
       <table class="table cart-table-right">
         <tr><td>小計</td><td class="right"> <%= @subtotal %> 円</td></tr>
         <tr><td>消費税 (10%)</td><td class="right"> <%= @tax %> 円</td></tr>

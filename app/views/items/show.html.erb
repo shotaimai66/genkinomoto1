@@ -19,9 +19,9 @@
     <tr>
       <td rowspan="4" class="center">
         <% if @item.image? %>
-          <%= image_tag(@item.image.url, width: 500, class: "item-image-border") %>
+          <%= image_tag(@item.image.url, width: 500, class: "image-border") %>
         <% else %>
-          <%= image_tag("/no_image2.png", width: 500, class: "item-image-border") %>
+          <%= image_tag("/no_image2.png", width: 500, class: "image-border") %>
         <% end %>
       </td>
       <td colspan="2" class="center">

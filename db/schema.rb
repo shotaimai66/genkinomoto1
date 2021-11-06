@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
     t.string "title"
     t.string "category"
     t.integer "price"
-    t.string "image"
     t.string "description"
     t.string "location"
     t.date "first_date"
@@ -38,13 +37,14 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
     t.integer "ticket_numbers"
     t.boolean "status", default: false, null: false
     t.integer "owner_id"
-    t.integer "store_id"
+    t.integer "store_id", default: 1
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "store_id"
+    t.integer "store_id", default: 1
     t.string "name"
     t.string "description"
     t.integer "price"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "store_id"
+    t.integer "store_id", default: 1
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "title_for_guest"

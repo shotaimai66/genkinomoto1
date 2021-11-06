@@ -27,9 +27,9 @@ class ReservationsController < ApplicationController
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
-      UserMailer.request_reservation(user, @reservation).deliver_now
+      # UserMailer.request_reservation(user, @reservation).deliver_now
       #スタッフへのメール
-      UserMailer.request_reservation_staff(user, @reservation).deliver_now
+      # UserMailer.request_reservation_staff(user, @reservation).deliver_now
       redirect_to reservations_path, notice: "予約しました"
     end
   end
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
     @reservation.update(status: :on_reserve, title_for_guest: "予約確定", title_for_staff: title_for_staff_comment)
     user = User.find(@reservation.guest_id)
     #ゲストへの予約確定メール
-    UserMailer.reservation_confirm(user, @reservation).deliver_now
+    # UserMailer.reservation_confirm(user, @reservation).deliver_now
     redirect_to confirm_reservation_reservations_url, notice: "予約確定をしました。"
   end
 

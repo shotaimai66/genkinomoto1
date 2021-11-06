@@ -1,2 +1,27 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
+<%= link_to 'イベント一覧', events_path, class: "link-gray" %> ＞ 
+<%= link_to '戻る', :back, class: "link-gray" %>
+<p></p>
+
+<div class="container">
+  <div class="container-wrapper">
+    <div class="event-content-left">
+      <table class="table">
+        <tr><td><%= @event.title %></td></tr>
+        <tr><td>開催期間: <%= @event.first_date %> から <%= @event.last_date %> まで</td></tr>
+        <tr><td>参加費: <%= @event.price %> 円(税抜)</td></tr>
+        <tr><td>開場: <%= @event.start_time.strftime("%H:%M") %> / 終了時間: <%= @event.end_time.strftime("%H:%M") %></td></tr>
+        <tr><td><%= @event.description %></td></tr>
+      </table>
+      <%= render 'notification' %>
+    </div>
+
+    <div class="event-content-right">
+      <% if @event.image? %>
+        <%= image_tag(@event.image.url, width: "100%", class: "image-border") %>
+      <% else %>
+        <%= image_tag("/no_image2.png", width: "100%", class: "image-border") %>
+      <% end %>
+    </div>
+  </div>
+</div>

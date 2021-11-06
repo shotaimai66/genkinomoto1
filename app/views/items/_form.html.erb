@@ -9,9 +9,9 @@
             <%= f.file_field :image, id: :item_img %>
 
             <% if @item.image.present? %>
-              <%= image_tag @item.image.url, size: "300", class: "item-image-border", id: :img_prev %>
+              <%= image_tag @item.image.url, size: "300", class: "image-border", id: :img_prev %>
             <% else %>
-              <%= image_tag "/no_image2.png", size: "300", class: "item-image-border", id: :img_prev %>
+              <%= image_tag "/no_image2.png", size: "300", class: "image-border", id: :img_prev %>
             <% end %>
 
             <script type="text/javascript">

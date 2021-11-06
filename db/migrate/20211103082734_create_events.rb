@@ -4,7 +4,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :category
       t.integer :price
-      t.string :image
       t.string :description
       t.string :location
       t.date :first_date
@@ -16,7 +15,8 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.integer :ticket_numbers
       t.boolean :status, default: false, null: false
       t.integer :owner_id
-      t.integer :store_id
+      t.integer :store_id, default: 1
+      t.string :image # image 必ず一番下にしないと画像が読めない
       
       t.timestamps
     end
