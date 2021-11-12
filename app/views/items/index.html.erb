@@ -1,0 +1,56 @@
+<%= link_to 'ホーム', root_url, class: "link-gray" %>
+
+<div class="container">
+  <div class="center">
+    <%= search_form_for @q, url: search_items_path do |f| %>
+      <%= f.search_field :name_cont, class: "search-container" %>
+      <%= f.submit '商品検索' %>
+    <% end %>
+  </div>
+  <div class="right">
+    <%= link_to "新規商品登録", new_item_path, class: "btn btn-md btn-info"%>
+  </div>
+  <p></p>
+  <div class="right">
+    <%= link_to image_tag('/payment_history.png', width: 30), payments_path(current_user) %>
+    <%= link_to '注文履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
+    <% unpaid_orders = current_user.cart.orders.where(paid_at: nil) %>
+    <% if unpaid_orders.present? %>
+      <%= link_to image_tag('/cart_items.png', width: 30), carts_path(current_user) %>
+    <% else %>
+      <%= link_to image_tag('/cart_empty.png', width: 30), carts_path(current_user) %>
+    <% end %>
+    <%= link_to 'カート', carts_path(current_user), class: "btn btn-md btn-warning" %>
+  </div>
+  <%= paginate @items %>
+  <table class="table">
+    <thead>
+      <tr class="center">
+        <th></th>
+        <th><%= sort_link(@q, :name, "↑↓") %></th>
+        <th><%= sort_link(@q, :price, "↑↓") %></th>
+        <th><%= sort_link(@q, :stock, "↑↓") %></th>
+        <th colspan="2">従業員欄</th>
+      </tr>
+    </thead>
+    <% @items.each do |item| %>
+    <tbody>
+      <tr>
+        <td>
+        <% if item.image? %>
+          <%= link_to image_tag(item.image.url, width: 200, class: "item-image-border"), item_path(item) %>
+        <% else %>
+          <%= link_to image_tag("/no_image2.png", width: 200, class: "item-image-border"), item_path(item) %>
+        <% end %>
+        </td>
+        <td><%= link_to item.name, item_path(item), class: "link-black" %></td>
+        <td><%= item.price %> 円 (税抜)</td>
+        <td>在庫数: <%= item.stock %></td>
+        <td><%= link_to '編集', edit_item_path(item), class: 'btn btn-sm btn-primary' %></td>
+        <td><%= link_to '削除', item_path(item), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <%= paginate @items %>
+</div>

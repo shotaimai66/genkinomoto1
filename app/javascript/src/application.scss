@@ -1,1 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
+
+// CSSの記述をこちらに移しました
+@import 'app/javascript/src/custom.scss';
+
+// https://lingtalfi.com/bootstrap4-color-generator#
+@import 'app/javascript/src/bootstrap_primary.scss';
+
+

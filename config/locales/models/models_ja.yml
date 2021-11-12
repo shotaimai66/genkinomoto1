@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      item: 商品
+      order: 注文
+    attributes:
+        item:
+          id: ID
+          name: 商品名
+          price: 価格
+          quantity: 数量
+          stock: 在庫数
+          description: 詳細
+          image: 画像
+          created_at: 作成日
+          updated_at: 更新日
+        order:
+          quantity: 数量

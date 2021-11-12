@@ -1,0 +1,22 @@
+<header class='header navbar nabvar-fixed-top'>
+  <div>
+    <%= link_to image_tag("logo1.jpg"), root_path, id: 'logo' %>
+    <div class='header-list'>
+      <ul class="nav header-list-items">
+        <li><%= link_to 'ホーム', root_path, class: 'nav' %></li>
+        <% if staff_signed_in? %>
+          <li><%= link_to 'スタッフページ', staffs_path, class: 'nav' %></li>
+          <li><%= link_to 'ログアウト', destroy_staff_session_path, method: :delete, class: 'nav' %></li>
+        <% elsif user_signed_in? %>
+          <li><%= link_to 'マイページ', users_index_path, class: 'nav' %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav' %></li>
+        <% else %>
+          <li><%= link_to 'ユーザーログイン', new_user_session_path, class: 'nav' %></li>
+          <li><%= link_to 'スタッフログイン', new_staff_session_path, class: 'nav' %></li>
+        <% end %>
+        <li><%= link_to '商品ページ', items_path, class: 'nav' %></li>
+      </ul>
+    </div>
+  </div>
+</header>
+

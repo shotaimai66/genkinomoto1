@@ -1,0 +1,29 @@
+<% now = Time.zone.now %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">予約内容画面</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <h6>予約者</h6>
+        <p class="ms-1"><%= @reservation.guest.email %></p>
+        <h6>予約日</h6>
+        <p><%= l @reservation.start_time, format: :dayonly %></p>
+        <h6>予約時間</h6>
+        <p><%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %></p>
+        <h6>コメント</h6>
+        <p><%= @reservation.comment.presence || "未記入"  %></p>
+      </div>
+      <div class="center mt-3">
+        <%= link_to "予約確定", reservation_path(@reservation), method: :patch, class: "btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          キャンセル
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

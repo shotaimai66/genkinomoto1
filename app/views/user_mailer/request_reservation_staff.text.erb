@@ -1,0 +1,11 @@
+===============================
+スタッフ様
+===============================
+
+<%= @user.name %> 様から下記内容で予約申込みがありました。
+-----------------------------------------------------
+【予約日】：<%= l @reservation.start_time, format: :dayonly %>
+【時間】：<%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %>
+【コース】：<%= @reservation.course_i18n %>
+【コメント】：<%= @reservation.comment.presence || "未記入"  %>
+-----------------------------------------------------

@@ -15,3 +15,6 @@ require("jquery")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// モーダルが開かないので追記
+window.jQuery = window.$ = require('jquery')

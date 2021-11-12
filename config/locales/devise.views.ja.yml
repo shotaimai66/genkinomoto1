@@ -2,6 +2,26 @@ ja:
   activerecord:
     attributes:
       user:
+        name: "お名前"
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        kana: "ふりがな"
+        Sex: "性別"
+        male: "男性"
+        female: "女性"
+        no_select: "選択しない"
+        birthday: "生年月日"
+        postal_code: "郵便番号"
+        prefecture_code: "都道府県"
+        city: "市区町村"
+        street: "番地等"
+        other_address: "それ以降住所"
+        enter_date: "入会日"
+        exit_date: "退会日"
+      staff:
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
@@ -9,6 +29,7 @@ ja:
         remember_me: "ログインを記憶"
     models:
       user: "ユーザ"
+      staff: "スタッフ"
   devise:
     confirmations:
       new:
@@ -49,7 +70,7 @@ ja:
         update: "更新"
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
-        sign_up: "アカウント登録"
+        sign_up: "新規登録"
     sessions:
       new:
         sign_in: "ログイン"
@@ -61,7 +82,7 @@ ja:
         forgot_your_password: "パスワードを忘れましたか?"
         sign_in: "ログイン"
         sign_in_with_provider: "%{provider}でログイン"
-        sign_up: "アカウント登録"
+        sign_up: "新規登録"
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"

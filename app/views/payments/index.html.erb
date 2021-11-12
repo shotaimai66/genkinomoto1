@@ -1,0 +1,58 @@
+<%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
+<%= link_to '商品一覧', items_path, class: "link-gray" %> ＞ 
+<%= link_to '戻る', :back, class: "link-gray" %>
+
+<div class="container">
+  <div class="right">
+  <%= link_to image_tag('/payment_history.png', width: 30), payments_path(current_user) %>
+  <%= link_to '注文履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
+  <% unpaid_orders = current_user.cart.orders.where(paid_at: nil) %>
+  <% if unpaid_orders.present? %>
+    <%= link_to image_tag('/cart_items.png', width: 30), carts_path(current_user) %>
+  <% else %>
+    <%= link_to image_tag('/cart_empty.png', width: 30), carts_path(current_user) %>
+  <% end %>
+  <%= link_to 'カート', carts_path(current_user), class: "btn btn-md btn-warning" %>
+</div>
+  <p></p>
+  <% if current_user.cart.payments.present? %>
+    <%= paginate @payments %>
+    <h1>注文履歴 【 <%= current_user.name %> 様 】</h1>
+    <table class="table">
+      <% @payments.each do |payment| %>
+      <thead>
+        <tr>
+          <th style="width: 20%">注文日時:<br><%= l payment.created_at, format: :custom1 %></th>
+          <th style="width: 40%">合計:<br><%= payment.total %> 円(税込)</th>
+          <th style="width: 15%">注文番号: <%= payment.id %></th>
+          <th colspan="2"  class="center"  style="width: 25%"><%= link_to "注文内容", payment_path(payment), class: "btn btn-sm btn-primary" %></th>
+        </tr>
+      </thead>
+        <% orders = Order.where(payment_id: payment.id) %>
+          <% orders.each do |order| %>
+          <tr>
+            <td class="center">
+              <% item = Item.find(order.item_id) %>
+              <% if item.image? %>
+                <%= link_to image_tag(item.image.url, width: 70, class: "item-image-border"), item_path(item) %>
+              <% else %>
+                <%= link_to image_tag("/no_image2.png", width: 70, class: "item-image-border"), item_path(item) %>
+              <% end %>
+            </td>
+            <td><%= link_to item.name, item_path(item), class: "link-black" %></td>
+            <td><%= item.price %> 円(税抜)</td>
+            <td>数量: <%= order.quantity %></td>
+            <td><%= item.price*order.quantity %> 円(税抜)</td>
+          </tr>
+          <% end %>
+        <tr>
+          <td colspan="5"></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @payments %>
+  <% else %>
+    <h1>注文履歴 【 <%= current_user.name %> 様 】</h1>
+    <p>お客様の注文履歴はありません。</p>
+  <% end %>
+</div>
