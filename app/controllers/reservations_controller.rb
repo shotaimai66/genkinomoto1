@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
       # UserMailer.request_reservation(user, @reservation).deliver_now
       #スタッフへのメール
       # UserMailer.request_reservation_staff(user, @reservation).deliver_now
-      redirect_to reservations_path, notice: "予約しました"
+      redirect_to reservations_path, notice: "お客様の仮予約が完了しました。承認されるまでお待ちください。"
     end
   end
 
@@ -40,7 +40,7 @@ class ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    title_for_staff_comment = "予約確定 #{@reservation.guest.name}様　#{@reservation.course_i18n}"
+    title_for_staff_comment = "予約確定 #{@reservation.guest.name}様 #{@reservation.course_i18n}"
     @reservation.update(status: :on_reserve, title_for_guest: "予約確定", title_for_staff: title_for_staff_comment)
     user = User.find(@reservation.guest_id)
     #ゲストへの予約確定メール

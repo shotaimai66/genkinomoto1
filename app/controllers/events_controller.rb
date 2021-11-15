@@ -12,17 +12,31 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
   end
 
   def create
-    
+    if @event = Event.create(event_params)
+      flash[:success] = "#{@event.title}の登録に成功しました"
+      redirect_to events_path(current_user)
+    else
+      flash[:danger] = "新規イベントの登録に問題がありました"
+      render :new
+    end
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
-    
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      flash[:success] = "#{@event.title}の情報を更新しました"
+      redirect_to events_path(current_user)
+    else
+      render :edit
+    end
   end
 
   def destroy
