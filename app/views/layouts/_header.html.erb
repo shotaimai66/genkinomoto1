@@ -1,32 +1,32 @@
-<header class='header navbar nabvar-fixed-top'>
+<header class='header'>
   <div>
     <%= link_to image_tag("logo1.jpg"), root_path, id: 'logo' %>
     <%#= link_to 'ゲンキノモト。', root_path, class: 'link-black ', id: 'logo' %>
     <div class='header-list'>
       <ul class="nav header-list-items">
-        <li><%= link_to 'ホーム', root_path, class: 'nav' %></li>
+        <li><%= link_to 'ホーム', root_path, class: 'link-black' %></li>
         <% if staff_signed_in? %>
-          <li><%= link_to '(staff)スタッフページ', staffs_path, class: 'nav' %></li>
-          <li><%= link_to '(staff)ログアウト', destroy_staff_session_path, method: :delete, class: 'nav' %></li>
+          <li><%= link_to '(staff)スタッフページ', staffs_path, class: 'link-black' %></li>
+          <li><%= link_to '(staff)ログアウト', destroy_staff_session_path, method: :delete, class: 'link-black' %></li>
           <li class="link-red"><%= current_staff.name %>がログイン中</li>
         <% end %>
         <% if !staff_signed_in? %>
-          <li><%= link_to '(staff)スタッフログイン', new_staff_session_path, class: 'nav' %></li>
+          <li><%= link_to '(staff)スタッフログイン', new_staff_session_path, class: 'link-black' %></li>
         <% end %>
       </ul><br>
       <ul class="nav header-list-items">
         <% if user_signed_in? %>
-          <li><%= link_to '(user)マイページ', users_index_path, class: 'nav' %></li>
-          <li><%= link_to '(user)ログアウト', destroy_user_session_path, method: :delete, class: 'nav' %></li>
+          <li><%= link_to '(user)マイページ', users_index_path, class: 'link-black' %></li>
+          <li><%= link_to '(user)ログアウト', destroy_user_session_path, method: :delete, class: 'link-black' %></li>
           <li class="link-red"><%= current_user.name %>がログイン中</li>
         <% end %>
         <% if !user_signed_in? %>
-          <li><%= link_to '(user)ユーザーログイン', new_user_session_path, class: 'nav' %></li>
+          <li><%= link_to '(user)ユーザーログイン', new_user_session_path, class: 'link-black' %></li>
         <% end %>
       </ul>
       <ul class="nav header-list-items">
-        <li><%= link_to '商品ページ', items_path, class: 'nav' %></li>
-        <li><%= link_to 'イベントページ', events_path, class: 'nav' %></li>
+        <li><%= link_to '商品ページ', items_path, class: 'link-black' %></li>
+        <li><%= link_to 'イベントページ', events_path, class: 'link-black' %></li>
       </ul>
     </div>
   </div>
