@@ -54,7 +54,7 @@ Staff.create!(
   category = "屋外イベント"
   price = (n+1)*1000
   description = "これは イベント-#{n+1} です。これは イベント-#{n+1} です。これは イベント-#{n+1} です。これは イベント-#{n+1} です。これは イベント-#{n+1} です。"
-  ticket_numbers = (n+1)
+  remaining_ticket_numbers = (n+1)
   location = "神奈川県厚木市"
   first_date = Date.current + 28
   last_date = Date.current + 48
@@ -65,7 +65,7 @@ Staff.create!(
       category: category,
       price: price,
       description: description,
-      ticket_numbers: ticket_numbers,
+      remaining_ticket_numbers: remaining_ticket_numbers,
       location: location,
       first_date: first_date,
       last_date: last_date,

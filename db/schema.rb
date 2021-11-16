@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
     t.time "end_time"
     t.time "start_time_alt"
     t.time "end_time_alt"
-    t.integer "ticket_numbers"
+    t.integer "remaining_ticket_numbers"
     t.boolean "status", default: false, null: false
     t.integer "owner_id"
     t.integer "store_id", default: 1
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
     t.integer "quantity"
     t.datetime "paid_at"
     t.integer "payment_id"
+    t.integer "adult_number"
+    t.integer "child_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"

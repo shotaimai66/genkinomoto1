@@ -6,6 +6,8 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.integer :quantity
       t.datetime :paid_at
       t.integer :payment_id
+      t.integer :adult_number
+      t.integer :child_number
 
       t.timestamps
     end

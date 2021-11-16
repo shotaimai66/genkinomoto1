@@ -12,7 +12,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.time :end_time
       t.time :start_time_alt
       t.time :end_time_alt
-      t.integer :ticket_numbers
+      t.integer :remaining_ticket_numbers
       t.boolean :status, default: false, null: false
       t.integer :owner_id
       t.integer :store_id, default: 1
