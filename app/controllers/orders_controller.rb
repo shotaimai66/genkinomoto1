@@ -19,9 +19,9 @@ class OrdersController < ApplicationController
   end
 
   def destroy_item_order
-    @order = Order.find(params[:format])
-    @order.destroy
-    flash[:success] = "#{@order.item.name} がカートから削除されました。"
+    order = Order.find(params[:format])
+    order.destroy
+    flash[:success] = "#{order.item.name} がカートから削除されました。"
     redirect_to carts_path(current_user)
   end
 
