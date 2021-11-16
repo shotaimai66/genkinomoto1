@@ -40,7 +40,10 @@ Rails.application.routes.draw do
     end
   end
   resource :carts, only: %i[show]
-  resource :orders, only: %i[create destroy]
+  post 'create_item_order', to: 'orders#create_item_order'
+  delete 'destroy_item_order', to: 'orders#destroy_item_order'
+  post 'create_event_order', to: 'orders#create_event_order'
+  delete 'destroy_event_order', to: 'orders#destroy_event_order'
   resources :payments, only: %i[index show]
   post 'pay', to: 'payments#pay'
   resources :events

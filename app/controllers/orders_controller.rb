@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   # カートが無い場合はカートを作成
   # User has_one Cart なので ".build_cart"を使う
-  def create
+  def create_item_order
     if !current_user.cart.present?
       cart = current_user.build_cart
       cart.save
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     redirect_to carts_path(current_user)
   end
 
-  def destroy
+  def destroy_item_order
     @order = Order.find(params[:format])
     @order.destroy
     flash[:success] = "#{@order.item.name} がカートから削除されました。"
