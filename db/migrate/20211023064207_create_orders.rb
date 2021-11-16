@@ -3,7 +3,6 @@ class CreateOrders < ActiveRecord::Migration[6.1]
     create_table :orders do |t|
       t.references :cart, foreign_key: true
       t.references :item, foreign_key: true
-      t.references :event, foreign_key: true
       t.integer :quantity
       t.datetime :paid_at
       t.integer :payment_id

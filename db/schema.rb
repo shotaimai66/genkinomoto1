@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
     t.string "title"
     t.string "category"
     t.integer "price"
+    t.integer "adult_price"
+    t.integer "child_price"
     t.string "description"
     t.string "location"
     t.date "first_date"
@@ -56,13 +58,13 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "item_id"
     t.bigint "cart_id"
+    t.bigint "item_id"
     t.integer "quantity"
     t.datetime "paid_at"
     t.integer "payment_id"
-    t.integer "adult_number"
-    t.integer "child_number"
+    t.integer "adult_count"
+    t.integer "child_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
