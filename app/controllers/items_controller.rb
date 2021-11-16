@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
-  #skip_before_action :authenticate_user!
-  skip_before_action :authenticate_staff!
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
+  skip_before_action :authenticate_staff!, only: [:index, :show, :search]
   before_action :set_q, only: [:index, :search]
 
   def index
     #  初めてページを訪問したログインユーザーにはカートが作られます
-    if !current_user.cart.present?
+    if current_user && !current_user.cart.present?
       cart = current_user.build_cart
       cart.save
     end

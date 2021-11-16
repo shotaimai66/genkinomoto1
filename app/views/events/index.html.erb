@@ -1,8 +1,11 @@
 <%= link_to 'ホーム', root_url, class: "link-gray" %>
 
 <div class="right">
+  <% if staff_signed_in? %>
+    <p>スタッフ専用</p>
     <%= link_to "新規イベント登録", new_event_path, class: "btn btn-md btn-info"%>
-  </div>
+  <% end %>
+</div>
 
 <%= paginate @events %>
   <div class="event-card-container">
@@ -16,8 +19,11 @@
           <p class="event-card-title">
             <%= link_to event.title, event_path(event), class: "link-black" %><br>
             <br>
-            <%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %>
-            <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
+            <% if staff_signed_in? %>
+              スタッフ専用
+              <%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %>
+              <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
+            <% end %>
           </p>
         </div>
     <% end %>

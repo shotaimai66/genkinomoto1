@@ -12,8 +12,18 @@
         <tr>
           <td>参加費: <%= @event.price %> 円(税抜)</td>
           <td>
-            <%= form_with model: @event, url: '#', method: :post do |f| %>
-              <%= link_to "チケットを購入する(フェイクボタン)", '#', class: "btn btn-md btn-warning" %>
+            <% if user_signed_in? %>
+              <%= form_with model: @order, url: '#', method: :post do |f| %>
+                <%= f.label "枚数:" %>
+                <% range = (1..10) %>
+                <%= f.select :quantity, range %>
+                <%= f.fields_for @event do |e| %>
+                  <%= e.hidden_field :event_id, value: @event.id %>
+                <% end %>
+                <%= f.submit "チケットを購入する", class: "btn btn-md btn-warning" %>
+              <% end %>
+            <% else %>
+              <%= link_to "ログインして購入する", new_user_session_path, class: "btn btn-md btn-secondary" %>
             <% end %>
           </td>
         </tr>

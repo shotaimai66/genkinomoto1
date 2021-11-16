@@ -1,20 +1,8 @@
 <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
 <%= link_to '商品一覧', items_path, class: "link-gray" %> ＞ 
 <%= link_to '戻る', :back, class: "link-gray" %>
-
+<p></p>
 <div class="container">
-  <div class="right">
-  <%= link_to image_tag('/payment_history.png', width: 30), payments_path(current_user) %>
-  <%= link_to '注文履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
-  <% unpaid_orders = current_user.cart.orders.where(paid_at: nil) %>
-  <% if unpaid_orders.present? %>
-    <%= link_to image_tag('/cart_items.png', width: 30), carts_path(current_user) %>
-  <% else %>
-    <%= link_to image_tag('/cart_empty.png', width: 30), carts_path(current_user) %>
-  <% end %>
-  <%= link_to 'カート', carts_path(current_user), class: "btn btn-md btn-warning" %>
-</div>
-  <p></p>
   <% if current_user.cart.payments.present? %>
     <%= paginate @payments %>
     <h1>注文履歴 【 <%= current_user.name %> 様 】</h1>
