@@ -7,11 +7,18 @@
   <div class="container-wrapper">
     <div class="event-content-left">
       <table class="table">
-        <tr><td><%= @event.title %></td></tr>
-        <tr><td>開催期間: <%= @event.first_date %> から <%= @event.last_date %> まで</td></tr>
-        <tr><td>参加費: <%= @event.price %> 円(税抜)</td></tr>
-        <tr><td>開場: <%= @event.start_time.strftime("%H:%M") %> / 終了時間: <%= @event.end_time.strftime("%H:%M") %></td></tr>
-        <tr><td><%= @event.description %></td></tr>
+        <tr><td colspan="2"><%= @event.title %></td></tr>
+        <tr><td colspan="2">開催期間: <%= @event.first_date %> から <%= @event.last_date %> まで</td></tr>
+        <tr>
+          <td>参加費: <%= @event.price %> 円(税抜)</td>
+          <td>
+            <%= form_with model: @event, url: '#', method: :post do |f| %>
+              <%= link_to "チケットを購入する(フェイクボタン)", '#', class: "btn btn-md btn-warning" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr><td colspan="2">開場: <%= @event.start_time.strftime("%H:%M") %> / 終了時間: <%= @event.end_time.strftime("%H:%M") %></td></tr>
+        <tr><td colspan="2"><%= @event.description %></td></tr>
       </table>
       <%= render 'notification' %>
     </div>
