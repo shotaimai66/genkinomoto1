@@ -3,32 +3,23 @@
 <div class="right">
     <%= link_to "新規イベント登録", new_event_path, class: "btn btn-md btn-info"%>
   </div>
-<p></p>
 
-<div class="container">
-  <table class="table">
-  <thead>
-    <tr class="center">
-      <th colspan="2"></th>
-      <th colspan="2">従業員欄</th>
-    </tr>
-  </thead>
-  <% @events.each do |event| %>
-  <tbody>
-  <tr>
-    <td>
-      <% if event.image? %>
-        <%= link_to image_tag(event.image.url, width: 200, class: "image-border"), event_path(event) %>
-      <% else %>
-        <%= link_to image_tag("/no_image2.png", width: 200, class: "image-border"), event_path(event) %>
-      <% end %>
-    </td>
-    <td><%= link_to event.title, event_path(event), class: "link-black" %></td>
-    
-    <td class="center"><%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %></td>
-    <td class="center"><%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %></td>
-  </tr>
-  </tbody>
-  <% end %>
-  </table>
-</div>
+<%= paginate @events %>
+  <div class="event-card-container">
+    <% @events.each do |event| %>
+        <div class="event-card-item">
+          <% if event.image? %>
+            <%= link_to image_tag(event.image.url, width: '100%', class: "image-border border-radius-top"), event_path(event) %>
+          <% else %>
+            <%= link_to image_tag("/no_image2.png", width: '100%', class: "image-border border-radius-top"), event_path(event) %>
+          <% end %>
+          <p class="event-card-title">
+            <%= link_to event.title, event_path(event), class: "link-black" %><br>
+            <br>
+            <%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %>
+            <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
+          </p>
+        </div>
+    <% end %>
+  </div>
+  <%= paginate @events %>

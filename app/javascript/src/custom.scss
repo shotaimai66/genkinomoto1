@@ -317,13 +317,41 @@ h1 {
 }
 
 .event-content-left {
-  width: 60%;
+  width: 50%;
   margin-right: 10%;
 }
 
 .event-content-right {
-  width: 30%;
+  width: 40%;
   align-self: baseline; // position stickyに必要
   position: sticky;
   top: 100px; // position stickyに必要 スクロールのときに上で止まる位置
+}
+
+
+
+.event-card-container {
+  display: grid; /* カードの横並び */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* gridの設定 */
+  gap: 40px 10px; /* カード同士の隙間 縦方向 横方向 */
+  margin: 40px auto 0;
+  text-align: start; /* カード内の中央寄せ解除 */
+}
+
+.event-card-item {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: #e9e9e9;
+  border-radius: 10px; /* 角丸指定 */
+}
+
+.event-card-title {
+  padding: 16px;
+  margin-top: 20px;
+  line-height: 1.2;
+}
+
+.border-radius-top {
+  border-radius: 10px 10px 0px 0px;
 }

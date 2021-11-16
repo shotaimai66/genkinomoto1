@@ -4,14 +4,13 @@ class ItemsController < ApplicationController
   before_action :set_q, only: [:index, :search]
 
   def index
-    #  初めて商品ページを訪問したログインユーザーにはカートが作られます
+    #  初めてページを訪問したログインユーザーにはカートが作られます
     if !current_user.cart.present?
       cart = current_user.build_cart
       cart.save
     end
-
-    # @items = Item.page(params[:page]).per(5).order(id: "ASC")
-    @items = @q.result.page(params[:page]).per(5).order(id: "DESC")
+    # @items = Item.page(params[:page]).per(6).order(updated_at: "DESC")
+    @items = @q.result.page(params[:page]).per(6).order(updated_at: "DESC")
   end
 
   def search

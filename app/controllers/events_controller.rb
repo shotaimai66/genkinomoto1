@@ -3,7 +3,12 @@ class EventsController < ApplicationController
     skip_before_action :authenticate_staff!
 
   def index
-    @events = Event.all
+    #  初めてページを訪問したログインユーザーにはカートが作られます
+    if !current_user.cart.present?
+      cart = current_user.build_cart
+      cart.save
+    end
+    @events = Event.page(params[:page]).per(6).order(updated_at: "DESC")
   end
 
   def show
