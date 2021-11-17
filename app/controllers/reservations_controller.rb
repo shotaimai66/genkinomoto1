@@ -4,6 +4,7 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all.includes(:guest)
   end
 
+
   def confirm_reservation
     @reservations_on_request = Reservation.on_request.from_today.includes(:guest)
     @reservations_on_reserve = Reservation.on_reserve.from_today.includes(:guest)

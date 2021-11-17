@@ -1,0 +1,80 @@
+<div class="container">
+  <%= form_with(model: @event, local: true) do |f| %>
+  <div class="container-wrapper">
+
+    <div class="event-content-left">
+      <table class="table">
+        <tr>
+          <td><%= f.label :title %></td>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :category %></td>
+          <td><%= f.text_field :category %></td>
+        </tr>
+        <tr>
+        <td><%= f.label :price %></td>
+        <td><%= f.number_field :price %> 円</td>
+        </tr>
+        <tr>
+          <td><%= f.label :description %></td>
+          <td><%= f.text_area :description %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :location %></td>
+          <td><%= f.text_field :location %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :first_date %></td>
+          <td><%= f.date_select :first_date %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :last_date %></td>
+          <td><%= f.date_select :last_date %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :start_time %></td>
+          <td><%= f.time_select :start_time %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :end_time %></td>
+          <td><%= f.time_select :end_time %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="event-content-right">
+     <table class="table">
+      <td>
+        <%= f.label :image %>
+        <%= f.file_field :image, id: :event_img %>
+        <% if @event.image.present? %>
+          <%= image_tag @event.image.url, width: "100%", class: "image-border", id: :event_img_prev %>
+        <% else %>
+          <%= image_tag "/no_image2.png", width: "100%", class: "image-border", id: :event_img_prev %>
+        <% end %>
+        <script type="text/javascript">
+          $(function() {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+            $('#event_img_prev').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#event_img").change(function(){
+                readURL(this);
+            });
+          });
+        </script>
+      </td>
+     </table>
+    </div>
+  </div>
+    <%= f.submit "登録", class: "btn btn-sm btn-primary" %>
+    <%= link_to 'キャンセル', events_path, class: "link-gray" %>
+  <% end %>
+</div>
+
