@@ -48,6 +48,7 @@ class ItemsController < ApplicationController
       flash[:success] = "#{@item.name} の情報を更新しました。"
       redirect_to items_path(current_user)
     else
+      flash[:danger] = "商品情報の編集に問題がありました"
       render :edit
     end
   end

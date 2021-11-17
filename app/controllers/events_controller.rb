@@ -44,6 +44,7 @@ class EventsController < ApplicationController
       flash[:success] = "#{@event.title}の情報を更新しました"
       redirect_to events_path(current_user)
     else
+      flash[:danger] = "新規イベントの編集に問題がありました"
       render :edit
     end
   end
