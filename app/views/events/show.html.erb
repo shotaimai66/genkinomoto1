@@ -13,7 +13,7 @@
           <td>参加費: <%= @event.price %> 円(税抜)</td>
           <td>
             <% if user_signed_in? %>
-              <%= form_with model: @order, url: '#', method: :post do |f| %>
+              <%= form_with model: @event_order, url: create_event_order_path(@event_order), method: :post do |f| %>
                 <%= f.label "枚数:" %>
                 <% range = (1..10) %>
                 <%= f.select :quantity, range %>

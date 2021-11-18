@@ -33,12 +33,12 @@
     <div class="header-cart">
       <% if !user_signed_in? %>
         <%= link_to image_tag('/payment_history.png', width: 30), new_user_session_path %>
-        <%= link_to '注文履歴', new_user_session_path, class: "btn btn-md btn-secondary" %>
+        <%= link_to '購入履歴', new_user_session_path, class: "btn btn-md btn-secondary" %>
         <%= link_to image_tag('/cart_empty.png', width: 30), new_user_session_path %>
         <%= link_to 'カート', new_user_session_path, class: "btn btn-md btn-warning" %>
       <% else %>
         <%= link_to image_tag('/payment_history.png', width: 30), payments_path(current_user) %>
-        <%= link_to '注文履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
+        <%= link_to '購入履歴', payments_path(current_user), class: "btn btn-md btn-secondary" %>
         <% unpaid_orders = current_user.cart.orders.where(paid_at: nil) %>
         <% if unpaid_orders.present? %>
           <%= link_to image_tag('/cart_items.png', width: 30), carts_path(current_user) %>

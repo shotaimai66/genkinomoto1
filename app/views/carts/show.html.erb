@@ -6,7 +6,7 @@
   <div class="container-wrapper">
     <div class="cart-content-left">
       <h1>ショッピングカート 【 <%= current_user.name %> 様 】</h1>
-      <% if !@orders.present? %>
+      <% if !@orders.present? && !@event_orders.present? %>
         <table class="table cart-table-left">
           <tr>
             <td>
@@ -40,6 +40,33 @@
           </tr>
           <% end %>
         </table>
+
+        <table class="table cart-table-left">
+          <% @event_orders.each do |event_order| %>
+          <tr>
+            <td rowspan="3">
+              <% event = Event.find(event_order.event_id) %>
+              <% if event.image? %>
+                <%= link_to image_tag(event.image.url, width: 200, class: "image-border"), event_path(event) %>
+              <% else %>
+                <%= link_to image_tag("/no_image2.png", width: 200, class: "image-border"), event_path(event) %>
+              <% end %>
+            </td>
+            <td colspan="3"><%= link_to event.title, event_path(event), class: "link-black" %></td>
+          </tr>
+          <tr>
+            <td colspan="3"><%= event.price %> 円 (税別)</td>
+          </tr>
+          <tr>
+            <td>数量: <%= event_order.quantity %></td>
+            <td><%= event_order.quantity*event.price %> 円(税別)</td>
+            <td>
+              <%= link_to "削除", destroy_event_order_path(event_order), method: :delete, class: "btn btn-sm btn-secondary" %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+
       <% end %>
     </div>
     <div class="cart-content-right">
@@ -60,6 +87,7 @@
                   class="payjp-button"
                   data-key="<%= ENV["PAYJP_TEST_PUBLIC_KEY"] %>"
                   data-name-placeholder="SHOHEI OHTANI"
+                  data-submit-text="カードで支払う"
                   >
                 </script>
               <% end %>

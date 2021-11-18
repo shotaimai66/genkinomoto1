@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.permit(:quantity, :item_id, :sub_total, :shipping_fee, :handling_fee, :tax, :grand_total)
+      params.permit(:item_id, :quantity, :paid_at, :payment_id, :adult_count, :child_count)
     end
 
 end

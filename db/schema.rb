@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_082734) do
+ActiveRecord::Schema.define(version: 2021_11_18_053006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "event_orders", force: :cascade do |t|
+    t.bigint "cart_id"
+    t.bigint "event_id"
+    t.integer "quantity"
+    t.datetime "paid_at"
+    t.integer "payment_id"
+    t.integer "adult_count"
+    t.integer "child_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_event_orders_on_cart_id"
+    t.index ["event_id"], name: "index_event_orders_on_event_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -158,6 +172,8 @@ ActiveRecord::Schema.define(version: 2021_11_03_082734) do
   end
 
   add_foreign_key "carts", "users"
+  add_foreign_key "event_orders", "carts"
+  add_foreign_key "event_orders", "events"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "items"
   add_foreign_key "payments", "carts"

@@ -5,11 +5,14 @@ class PaymentsController < ApplicationController
 
   def pay
     orders = current_user.cart.orders.where(paid_at: nil)
-    
+    event_orders = current_user.cart.event_orders.where(paid_at: nil)
     subtotal = 0
-    # @sumに合計金額を代入する
+    
     orders.each do |order|
       subtotal += order.item.price*order.quantity
+    end
+    event_orders.each do |event_order|
+      subtotal += event_order.event.price*event_order.quantity
     end
 
     tax = (subtotal*0.10).round
@@ -39,6 +42,12 @@ class PaymentsController < ApplicationController
       order.paid_at = Time.current
       order.payment_id = payment.id
       order.save
+    end
+
+    event_orders.each do |event_order|
+      event_order.paid_at = Time.current
+      event_order.payment_id = payment.id
+      event_order.save
     end
     
     flash[:success] = "決済が完了しました。お買い上げ誠にありがとうございます。"
