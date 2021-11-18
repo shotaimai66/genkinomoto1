@@ -62,6 +62,7 @@ class PaymentsController < ApplicationController
   def show
     @payment = Payment.find(params[:id])
     @orders = Order.where(payment_id: @payment.id)
+    @event_orders = EventOrder.where(payment_id: @payment.id)
   end
 
   private

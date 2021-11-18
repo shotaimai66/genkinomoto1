@@ -59,5 +59,25 @@
         <td><%= item.price*order.quantity %> 円(税抜)</td>
       </tr>
     <% end %>
+
+    <% @event_orders.each do |event_order| %>
+      <tr>
+        <td rowspan="2">
+          <% event = Event.find(event_order.event_id) %>
+          <% if event.image? %>
+            <%= link_to image_tag(event.image.url, width: 100, class: "image-border"), event_path(event) %>
+          <% else %>
+            <%= link_to image_tag("/no_image2.png", width: 100, class: "image-border"), event_path(event) %>
+          <% end %>
+        </td>
+        <td colspan="3"><%= link_to event.title, event_path(event), class: "link-black" %></td>
+      </tr>
+      <tr>
+        <td><%= event.price %> 円(税抜)</td>
+        <td>数量: <%= event_order.quantity %></td>
+        <td><%= event.price*event_order.quantity %> 円(税抜)</td>
+      </tr>
+    <% end %>
+
   </table>
 </div>
