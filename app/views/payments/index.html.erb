@@ -1,6 +1,13 @@
-<%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
-<%= link_to '商品一覧', items_path, class: "link-gray" %> ＞ 
-<%= link_to '戻る', :back, class: "link-gray" %>
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
+  <%= link_to '商品一覧', items_path, class: "link-gray" %> ＞ 
+  <%= link_to '戻る', :back, class: "link-gray" %>
+</p>
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
+  <%= link_to 'イベント一覧', events_path, class: "link-gray" %> ＞ 
+  <%= link_to '戻る', :back, class: "link-gray" %>
+</p>
 <p></p>
 <div class="container">
   <% if current_user.cart.payments.present? %>
