@@ -18,29 +18,48 @@
       </thead>
 
         <% orders = Order.where(payment_id: payment.id) %>
-          <% orders.each do |order| %>
-          <tr>
-            <td class="center">
-              <% item = Item.find(order.item_id) %>
-              <% if item.image? %>
-                <%= link_to image_tag(item.image.url, width: 70, class: "image-border"), item_path(item) %>
-              <% else %>
-                <%= link_to image_tag("/no_image2.png", width: 70, class: "image-border"), item_path(item) %>
-              <% end %>
-            </td>
-            <td><%= link_to item.name, item_path(item), class: "link-black" %></td>
-            <td><%= item.price %> 円(税抜)</td>
-            <td>数量: <%= order.quantity %></td>
-            <td><%= item.price*order.quantity %> 円(税抜)</td>
-          </tr>
-          <% end %>
+        <% orders.each do |order| %>
+        <tr>
+          <td class="center">
+            <% item = Item.find(order.item_id) %>
+            <% if item.image? %>
+              <%= link_to image_tag(item.image.url, width: 70, class: "image-border"), item_path(item) %>
+            <% else %>
+              <%= link_to image_tag("/no_image2.png", width: 70, class: "image-border"), item_path(item) %>
+            <% end %>
+          </td>
+          <td><%= link_to item.name, item_path(item), class: "link-black" %></td>
+          <td><%= item.price %> 円(税抜)</td>
+          <td>数量: <%= order.quantity %></td>
+          <td><%= item.price*order.quantity %> 円(税抜)</td>
+        </tr>
+        <% end %>
+        <tr>
+          <td colspan="5"></td>
+        </tr>
+      
+
+        <% event_orders = EventOrder.where(payment_id: payment.id) %>
+        <% event_orders.each do |event_order| %>
+        <tr>
+          <td class="center">
+            <% event = Event.find(event_order.event_id) %>
+            <% if event.image? %>
+              <%= link_to image_tag(event.image.url, width: 70, class: "image-border"), event_path(event) %>
+            <% else %>
+              <%= link_to image_tag("/no_image2.png", width: 70, class: "image-border"), event_path(event) %>
+            <% end %>
+          </td>
+          <td><%= link_to event.title, event_path(event), class: "link-black" %></td>
+          <td><%= event.price %> 円(税抜)</td>
+          <td>数量: <%= event_order.quantity %></td>
+          <td><%= event.price*event_order.quantity %> 円(税抜)</td>
+        </tr>
+        <% end %>
         <tr>
           <td colspan="5"></td>
         </tr>
       <% end %>
-
-
-      
     </table>
     <%= paginate @payments %>
   <% else %>
