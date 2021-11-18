@@ -28,14 +28,14 @@
       <td>クレジットカード決済(PAY.JP)</td>
       <td>
         商品の小計:<br>
-        消費税:<br>
         送料:<br>
+        消費税:<br>
         ご請求額(合計):<br>
       </td>
       <td class="right">
         <%= @payment.subtotal %> 円<br>
-        <%= @payment.tax %> 円<br>
         <%= @payment.shipping_fee %> 円<br>
+        <%= @payment.tax %> 円<br>
         <%= @payment.total %> 円<br>
       </td>
     </tr>

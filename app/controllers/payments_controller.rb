@@ -15,19 +15,19 @@ class PaymentsController < ApplicationController
       subtotal += event_order.event.price*event_order.quantity
     end
 
-    tax = (subtotal*0.10).round
     # 5000円以上のお買い上げで送料無料
     if subtotal >= 5000 || subtotal == 0
       shipping_fee = 0
     else
       shipping_fee = 500
     end
-    total = subtotal+tax+shipping_fee
+    tax = ((subtotal+shipping_fee)*0.10).round
+    total = subtotal+shipping_fee+tax
 
     payment = current_user.cart.payments.new
     payment.subtotal = subtotal
-    payment.tax = tax
     payment.shipping_fee = shipping_fee
+    payment.tax = tax
     payment.total = total
     payment.save
 
