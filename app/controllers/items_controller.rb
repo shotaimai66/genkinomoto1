@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
       cart.save
     end
     # @items = Item.page(params[:page]).per(6).order(updated_at: "DESC")
+    # @q.resultはソート機能です
     @items = @q.result.page(params[:page]).per(6).order(updated_at: "DESC")
   end
 
