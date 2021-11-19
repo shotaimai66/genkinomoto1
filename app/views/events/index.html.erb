@@ -1,5 +1,12 @@
 <%= link_to 'ホーム', root_url, class: "link-gray" %>
 
+<div class="center">
+  <%= search_form_for @q, url: search_events_path do |f| %>
+    <%= f.search_field :title_cont, class: "search-container" %>
+    <%= f.submit 'イベント名検索' %>
+  <% end %>
+</div>
+
 <div class="right">
   <% if staff_signed_in? %>
     <p>スタッフ専用</p>

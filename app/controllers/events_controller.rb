@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
     skip_before_action :authenticate_user!
     skip_before_action :authenticate_staff!, only: [:index, :show, :search]
-
+    before_action :set_q, only: [:index, :search]
+    
   def index
     #  初めてページを訪問したログインユーザーにはカートが作られます
     if current_user && !current_user.cart.present?
@@ -12,7 +13,7 @@ class EventsController < ApplicationController
   end
 
   def search
-    
+    @results = @q.result
   end
 
   def show

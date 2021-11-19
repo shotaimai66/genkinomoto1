@@ -39,6 +39,11 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  resources :events do
+    collection do
+      get 'search'
+    end
+  end
   resource :carts, only: %i[show]
   post 'create_item_order', to: 'orders#create_item_order'
   delete 'destroy_item_order', to: 'orders#destroy_item_order'
@@ -46,5 +51,4 @@ Rails.application.routes.draw do
   delete 'destroy_event_order', to: 'event_orders#destroy_event_order'
   resources :payments, only: %i[index show]
   post 'pay', to: 'payments#pay'
-  resources :events
 end
