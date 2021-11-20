@@ -1,27 +1,42 @@
-<div class="container">
   <h1 class="center">ゲンキノモト。トップページ(仮)</h1>
   <p></p>
   <p class="center">只今製作中です!!!</p>
   <p class="center">仮のレイアウトなので変更していただいてOKです。</p>
 
-  <table>
+<div>
+  <table class="table center">
     <tbody>
       <th>
         <tr>
           <td class="round-square-top">
-            <%= link_to '予約ページ(仮)', reservations_path %>
+            <%= link_to '予約ページ(仮)', reservations_path, class: "link-black" %>
+            <p>お客様の予約はこちらから</p>
           </td>
           <td class="round-square-top">
-            <%= link_to '従業員専用ページ(仮)', '#' %>
+            <%= link_to '従業員専用ページ(仮)', '#', class: "link-black" %>
+            <p>従業員はこちらから</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="round-square-top">
+            <%= link_to '商品販売ページ(仮)', items_path, class: "link-black" %>
           </td>
           <td class="round-square-top">
-            <%= link_to '商品販売ページ(仮)', items_path %>
+            <%= link_to 'イベント販売ページ(仮)', events_path, class: "link-black" %>
           </td>
+        </tr>
+          <td class="round-square-top">
+            <%= link_to 'お客様へのお知らせ(仮)', '#', class: "link-black" %>
+            <p>販促告知はこちらから</p>
+          </td>
+          <td class="round-square-top">
+            <%= link_to '(仮)', '#', class: "link-black" %>
+            <p>その他はこちらから</p>
+          </td>
+        <tr>
+
         </tr>
       </th>
     </tbody>
   </table>
 </div>
-
-
-
