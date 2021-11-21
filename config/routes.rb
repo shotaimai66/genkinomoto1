@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     registrations: 'staffs/registrations'
   }
   resources :staffs, only: %i[index]
+  resources :notifications
   resources :reservations
   resources :stores
   resources :items do

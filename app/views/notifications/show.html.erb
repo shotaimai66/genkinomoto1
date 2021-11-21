@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>お知らせ詳細</h1><hr>
+
+  <div>  
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <h2>記事タイトル</h2>
+        <%= @notification.title %>
+      </thead>
+      <tbody>
+        <h2>記事内容</h2>
+        <%= @notification.body %>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <%= link_to "編集", edit_notification_path(@notification), class: "btn btn-success" %>&nbsp;
+    <%= link_to "削除", notification_path(@notification), method: :delete, data:{ confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>&nbsp;
+    <%= link_to "トップへ", staffs_path, class: "btn btn-primary" %>
+  </div>
+</div>

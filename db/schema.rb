@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_053006) do
+ActiveRecord::Schema.define(version: 2021_11_21_014016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(version: 2021_11_18_053006) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.boolean "display_flag", default: true
+    t.bigint "staff_id"
+    t.bigint "store_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_notifications_on_staff_id"
+    t.index ["store_id"], name: "index_notifications_on_store_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -174,6 +186,8 @@ ActiveRecord::Schema.define(version: 2021_11_18_053006) do
   add_foreign_key "carts", "users"
   add_foreign_key "event_orders", "carts"
   add_foreign_key "event_orders", "events"
+  add_foreign_key "notifications", "staffs"
+  add_foreign_key "notifications", "stores"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "items"
   add_foreign_key "payments", "carts"
