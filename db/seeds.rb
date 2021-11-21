@@ -74,3 +74,17 @@ Staff.create!(
       image: File.open("app/assets/images/event1.jpg")
     )
 end
+
+Menu.create!(
+  treatment_detail: "フットケア40分",
+  charge: 4000,
+  treatment_time: 40,
+  store_id: 1
+)
+
+Menu.create!(
+  treatment_detail: "フットケア60分",
+  charge: 6000,
+  treatment_time: 60,
+  store_id: 1
+)

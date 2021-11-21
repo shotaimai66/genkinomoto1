@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  resources :menus
   resources :reservations do
     collection do
       get :confirm_reservation

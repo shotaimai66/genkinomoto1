@@ -1,0 +1,36 @@
+<%= link_to 'ホーム', root_url, class: "link-gray" %>
+
+<div class="container">
+  <h1 class="center">
+    施術メニュー一覧
+  </h1>
+  <div class="right menu-new-page-btn">
+    <p>スタッフ専用</p>
+    <%= link_to "施術メニュー新規登録", new_menu_path, class: "btn btn-md btn-info"%>
+  </div>
+  <%= paginate @menus %>
+  <table class="table">
+    <thead>
+      <tr class="center">
+        <th>施術メニュー</th>
+        <th>料金</th>
+        <th>施術時間</th>
+        <th>編集／削除</th>
+      </tr>
+    </thead>
+    <% @menus.each do |menu| %>
+    <tbody>
+      <tr class="center">
+        <td><%= link_to menu.treatment_detail, menu_path(menu) %></td>
+        <td><%= menu.charge %>円</td>
+        <td><%= menu.treatment_time %>分</td>
+        <td>
+          <%= link_to '編集', edit_menu_path(menu), class: 'btn btn-sm btn-primary' %>
+          <%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "#{menu.treatment_detail}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <%= paginate @menus %>
+</div>
