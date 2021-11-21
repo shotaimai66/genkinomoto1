@@ -1,31 +1,31 @@
 import { Controller } from 'stimulus'
 
-// summernote用JavaScript（Bootstrap 4バージョン用）
+// summernote용 자바스크립트 (Bootstrap 4 버전용)
 require('summernote/dist/summernote-bs4.js');
-// summernote用スタイルシート（Bootstrap 4バージョン用）
+// summernote용 스타일시트 (Boostrap 4 버전용)
 require('summernote/dist/summernote-bs4.css');
-// summernote用韓国語ロケール
+// summernote용 한국어 로케일
 require('summernote/dist/lang/summernote-ko-KR.min.js');
-// codemirror用JavaScript
+// codemirror용 자바스크립트
 require('codemirror/lib/codemirror.js');
-// codemirror用スタイルシート
+// codemirror용 스타일시트
 require('codemirror/lib/codemirror.css');
-// codemirrorの言語モードをxmlにする
+// codemirror용 language 모드를 xml로 지정
 require('codemirror/mode/xml/xml.js');
-// codemirrorで使用されるテーマスタイルシート（monokai）
+// codemirror에서 사용하는 테마 스타일시트(monokai)
 require('codemirror/theme/monokai.css');
 
 export default class extends Controller {
   static targets = []
 
   initialize(){
-    // summernoteエディタで絵文字を入力できるように一度だけajaxを呼び出す
+    // summernote 에디터에서 이모지를 입력할 수 있도록 한번만 ajax 호출
     $.ajax({
       url: 'https://api.github.com/emojis'
     }).then(function(data) {
       window.emojis = Object.keys(data);
-      window.emojiUrls = data; 
-    })     
+      window.emojiUrls = data;
+    })
   }
 
   connect(){
@@ -54,8 +54,8 @@ export default class extends Controller {
           }
           return '';
       }
-      },      
-      codemirror: { 
+      },
+      codemirror: {
         theme: 'monokai',
         mode: "text/html",
         lineNumbers: true,
@@ -66,7 +66,7 @@ export default class extends Controller {
       callbacks: {
         onImageUpload: function(files){
           console.log('called onImageUpload.')
-          <!-- multiple files uploading... -->
+          // <!-- multiple files uploading... -->
           for(let i = 0; i < files.length; i++){
             console.log(files[i])
             sendFile(files[i], $(this))
