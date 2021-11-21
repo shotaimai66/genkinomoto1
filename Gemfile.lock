@@ -317,6 +317,7 @@ DEPENDENCIES
   dotenv-rails
   enum_help
   faker
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jp_prefecture
   kaminari!

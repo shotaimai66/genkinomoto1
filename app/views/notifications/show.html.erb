@@ -9,7 +9,8 @@
       </thead>
       <tbody>
         <h2>記事内容</h2>
-        <%= @notification.body %>
+        <%= @notification.body.html_safe %>
+        <%#= @notification.body %>
       </tbody>
     </table>
   </div>
