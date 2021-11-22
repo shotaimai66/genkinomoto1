@@ -27,9 +27,6 @@
       <ul class="nav header-list-items nav">
         <li><%= link_to '商品ページ', items_path, class: 'link-black nav' %></li>
         <li><%= link_to 'イベントページ', events_path, class: 'link-black nav' %></li>
-        <% if staff_signed_in? %>
-          <li><%= link_to '施術メニューページ', menus_path, class: 'link-black nav' %></li>
-        <% end %>
       </ul>
     </div>
 
@@ -57,7 +54,7 @@
   <div class="row">
     <ul class="top-menu">
       <li><%= link_to '店舗のご案内', "#", class: "link-black" %></li>
-      <li><%= link_to 'メニューと料金', "#", class: "link-black" %></li>
+      <li><%= link_to 'メニューと料金', menus_path, class: "link-black" %></li>
       <li><%= link_to '初めての方', "#", class: "link-black" %></li>
       <li><%= link_to 'FAQ', "#", class: "link-black" %></li>
     </ul>

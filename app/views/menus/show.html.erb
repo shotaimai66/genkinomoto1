@@ -6,27 +6,32 @@
   <h1 class="center">
     施術メニュー詳細
   </h1>
-  <div class="right menu-new-page-btn">
-    <p>スタッフ専用</p>
-  </div>
   <table class="table">
     <thead>
       <tr class="center">
         <th>施術メニュー</th>
         <th>料金</th>
         <th>施術時間</th>
-        <th>編集／削除</th>
+        <th>施術内容</th>
+        <% if staff_signed_in? %>
+          <th>コース番号</th>
+          <th>編集／削除</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <tr class="center">
-        <td><%= @menu.treatment_detail %></td>
+        <td><%= @menu.title %></td>
         <td><%= @menu.charge %>円</td>
         <td><%= @menu.treatment_time %>分</td>
-        <td>
-          <%= link_to '編集', edit_menu_path(@menu), class: 'btn btn-sm btn-primary' %>
-          <%= link_to '削除', menu_path(@menu), method: :delete, data: { confirm: "#{@menu.treatment_detail}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
-        </td>
+        <td><%= @menu.description %></td>
+        <% if staff_signed_in? %>
+          <td><%= @menu.course_number %></td>
+          <td>
+            <%= link_to '編集', edit_menu_path(@menu), class: 'btn btn-sm btn-primary' %>
+            <%= link_to '削除', menu_path(@menu), method: :delete, data: { confirm: "#{@menu.title}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
+          </td>
+        <% end %>
       </tr>
     </tbody>
   </table>

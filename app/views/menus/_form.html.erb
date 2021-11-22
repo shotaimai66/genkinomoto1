@@ -4,8 +4,16 @@
     <tr>
       <td>
         <div class="form-group">
-          <%= f.label :treatment_detail %>
-          <%= f.text_field :treatment_detail, class: "form-control" %>
+          <%= f.label :course_number %>
+          <%= f.number_field :course_number, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
         </div>
       </td>
     </tr>
@@ -22,6 +30,14 @@
         <div class="form-group">
           <%= f.label :treatment_time %>
           <%= f.number_field :treatment_time, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control" %>
         </div>
       </td>
     </tr>

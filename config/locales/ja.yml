@@ -231,15 +231,15 @@ ja:
         truncate: "..."
   enums:
     reservation:
-      course:
-        course_default: 未設定
-        course_foot_40: フットケア40分
-        course_foot_60: フットケア60分
-        course_massage_30: マッサージ30分
-        course_massage_60: マッサージ60分
-        course_massage_80: マッサージ80分
-        course_acupoint_30: 足つぼ30分
-        course_acupoint_45: 足つぼ45分
+      # course:
+        # course_default: 未設定
+        # course_foot_40: フットケア40分
+        # course_foot_60: フットケア60分
+        # course_massage_30: マッサージ30分
+        # course_massage_60: マッサージ60分
+        # course_massage_80: マッサージ80分
+        # course_acupoint_30: 足つぼ30分
+        # course_acupoint_45: 足つぼ45分
       status:
         status_default: 未設定
         on_request: 申込中

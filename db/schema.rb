@@ -72,9 +72,11 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.string "treatment_detail"
+    t.string "title"
+    t.string "description"
     t.integer "charge"
     t.integer "treatment_time"
+    t.integer "course_number", default: 0
     t.integer "store_id", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -16,16 +16,17 @@ class Reservation < ApplicationRecord
     errors.add(:start_time, 'は、10時以降の日時を入力して下さい。') if start_time.hour < 10
   end
 
-  enum course: {
-    course_default: 0, #未設定
-    course_foot_40: 1, #フットケア40分
-    course_foot_60: 2, #フットケア60分
-    course_massage_30: 3, #マッサージ30分
-    course_massage_60: 4, #マッサージ60分
-    course_massage_80: 5, #マッサージ80分
-    course_acupoint_30: 6, #足つぼ30分
-    course_acupoint_45: 7 #足つぼ45分
-  }
+  #施術メニューはMenuテーブルでの管理に変更
+  # enum course: {
+  #   course_default: 0, #未設定
+  #   course_foot_40: 1, #フットケア40分
+  #   course_foot_60: 2, #フットケア60分
+  #   course_massage_30: 3, #マッサージ30分
+  #   course_massage_60: 4, #マッサージ60分
+  #   course_massage_80: 5, #マッサージ80分
+  #   course_acupoint_30: 6, #足つぼ30分
+  #   course_acupoint_45: 7 #足つぼ45分
+  # }
 
   enum status: {
     status_default: 0, #未設定
@@ -33,8 +34,9 @@ class Reservation < ApplicationRecord
     on_reserve: 2, #予約確定
   }
 
-  def apply!
-    end_time = start_time + end_time_calculate
+  #reservations_controller.rbのcreateアクションで使用
+  def apply!(menu_time)
+    end_time = start_time + menu_time
     self.assign_attributes(
       end_time: end_time,
       status: :on_request,
@@ -54,27 +56,28 @@ class Reservation < ApplicationRecord
     )
   end
 
-  def end_time_calculate
-    if self.course_default?
-      60 * 60
-    elsif self.course_foot_40?
-      60 * 60
-    elsif self.course_foot_60?
-      60 * 80
-    elsif self.course_massage_30?
-      60 * 40
-    elsif self.course_massage_60?
-      60 * 80
-    elsif self.course_massage_80?
-      60 * 100
-    elsif self.course_acupoint_30?
-      60 * 40
-    elsif self.course_acupoint_45?
-      60 * 65
-    else
-      60 * 60
-    end
-  end
+  #施術終了時間の計算処理はreservations_helper.rbへ移動
+  # def end_time_calculate
+  #   if self.course_default?
+  #     60 * 60
+  #   elsif self.course_foot_40?
+  #     60 * 60
+  #   elsif self.course_foot_60?
+  #     60 * 80
+  #   elsif self.course_massage_30?
+  #     60 * 40
+  #   elsif self.course_massage_60?
+  #     60 * 80
+  #   elsif self.course_massage_80?
+  #     60 * 100
+  #   elsif self.course_acupoint_30?
+  #     60 * 40
+  #   elsif self.course_acupoint_45?
+  #     60 * 65
+  #   else
+  #     60 * 60
+  #   end
+  # end
 
   scope :from_today, -> () {
     where('start_time >= ?', Time.zone.now)
