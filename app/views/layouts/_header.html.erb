@@ -3,34 +3,48 @@
   <div class='row'>
     <%= link_to image_tag("logo1.jpg"), root_path, id: 'logo' %>
     <%#= link_to 'ゲンキノモト。', root_path, class: 'link-black ', id: 'logo' %>
-    <div class='header-list'>
-      <ul class="header-list-items nav">
-        <% if user_signed_in? %>
-          <li><%= link_to '(user)マイページ', users_index_path, class: 'link-black nav' %></li>
-          <li><%= link_to '(user)ログアウト', destroy_user_session_path, method: :delete, class: 'link-black nav' %></li>
-          <li class="link-red">[ <%= current_user.name %> さんがログイン中 ]</li>
-        <% end %>
-        <% if !user_signed_in? %>
-          <li><%= link_to '(user)ユーザーログイン', new_user_session_path, class: 'link-black nav' %></li>
-        <% end %>
-      </ul><br>
-      <ul class="nav header-list-items">
-        <% if staff_signed_in? %>
-          <li><%= link_to '(staff)スタッフページ', staffs_path, class: 'link-black nav' %></li>
-          <li><%= link_to '(staff)ログアウト', destroy_staff_session_path, method: :delete, class: 'link-black nav' %></li>
-          <li class="link-red">[ スタッフ <%= current_staff.name %> さんがログイン中 ]</li>
-        <% end %>
-        <% if !staff_signed_in? %>
-          <li><%= link_to '(staff)スタッフログイン', new_staff_session_path, class: 'link-black nav' %></li>
-        <% end %>
-      </ul><br>
-      <ul class="nav header-list-items nav">
-        <li><%= link_to '商品ページ', items_path, class: 'link-black nav' %></li>
-        <li><%= link_to 'イベントページ', events_path, class: 'link-black nav' %></li>
-      </ul>
+    <div class='header-staff'>
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if staff_signed_in? %>
+            スタッフ【ログイン中】
+          <% else %>
+            スタッフ専用
+          <% end %>
+        </button>
+          <ul class="dropdown-menu">
+            <% if staff_signed_in? %>
+              <li class="dropdown-item"><%= link_to 'スタッフ専用ページ', staffs_path, class: 'link-black' %></li>
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><%= link_to 'ログアウト', destroy_staff_session_path, method: :delete, class: 'link-black' %></li>
+            <% else %>
+              <li class="dropdown-item"><%= link_to 'ログイン', new_staff_session_path, class: 'link-black' %></li>
+            <% end %>
+          </ul>
+      </div>
     </div>
 
-    <div class="header-cart">
+    <div class="header-right">
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if user_signed_in? %>
+            お客様【ログイン中】
+          <% else %>
+            お客様アカウント
+          <% end %>
+        </button>
+          <ul class="dropdown-menu">
+            <% if user_signed_in? %>
+              <li class="dropdown-item"><%= link_to 'お客様マイページ', users_index_path, class: 'link-black' %></li>
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'link-black' %></li>
+            <% else %>
+              <li class="dropdown-item"><%= link_to 'ログイン', new_user_session_path, class: 'link-black' %></li>
+            <% end %>
+          </ul>
+      </div>
       <% if !user_signed_in? %>
         <%= link_to image_tag('/payment_history.png', width: 30), new_user_session_path %>
         <%= link_to '購入履歴', new_user_session_path, class: "btn btn-md btn-secondary" %>
@@ -49,14 +63,17 @@
         <%= link_to 'カート', carts_path(current_user), class: "btn btn-md btn-warning" %>
       <% end %>
     </div>
+
+
   </div>
 
   <div class="row">
     <ul class="top-menu">
-      <li><%= link_to '店舗のご案内', "#", class: "link-black" %></li>
+      <li><%= link_to '店舗のご案内', stores_path, class: "link-black" %></li>
       <li><%= link_to 'メニューと料金', "#", class: "link-black" %></li>
       <li><%= link_to '初めての方', "#", class: "link-black" %></li>
       <li><%= link_to 'FAQ', "#", class: "link-black" %></li>
     </ul>
   </div>
+
 </header>

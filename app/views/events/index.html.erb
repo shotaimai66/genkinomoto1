@@ -1,4 +1,7 @@
-<%= link_to 'ホーム', root_url, class: "link-gray" %>
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %>
+  ＞ イベント一覧
+</p>
 
 <div class="center">
   <%= search_form_for @q, url: search_events_path do |f| %>
@@ -17,22 +20,27 @@
 <%= paginate @events %>
   <div class="event-card-container">
     <% @events.each do |event| %>
-        <div class="event-card-item">
-          <% if event.image? %>
-            <%= link_to image_tag(event.image.url, width: '100%', class: "image-border border-radius-top"), event_path(event) %>
-          <% else %>
-            <%= link_to image_tag("/no_image2.png", width: '100%', class: "image-border border-radius-top"), event_path(event) %>
-          <% end %>
-          <p class="event-card-title">
-            <%= link_to event.title, event_path(event), class: "link-black" %><br>
-            <br>
+      <div class="event-card-item">
+        <% if event.image? %>
+          <%= link_to image_tag(event.image.url, width: '100%', class: "image-border border-radius-top"), event_path(event) %>
+        <% else %>
+          <%= link_to image_tag("/no_image2.png", width: '100%', class: "image-border border-radius-top"), event_path(event) %>
+        <% end %>
+        <p class="event-card-title">
+          <ul>
+            <li><%= link_to event.title, event_path(event), class: "link-black" %></li>
             <% if staff_signed_in? %>
-              スタッフ専用
-              <%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %>
-              <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
+              <li>
+                <p></p>
+                スタッフ専用
+                <%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %>
+                <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
+              </li>
             <% end %>
-          </p>
-        </div>
+          </ul>
+        </p>
+      </div>
     <% end %>
   </div>
+  <p></p>
   <%= paginate @events %>

@@ -1,15 +1,53 @@
 class StoresController < ApplicationController
-  skip_before_action :authenticate_staff!
+  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_staff!, only: [:index, :show]
 
   def index
+    @stores = Store.all
   end
 
   def show
+    @store = Store.find(params[:id])
   end
 
   def new
+    @store = Store.new
+  end
+
+  def create
+    if @store = Store.create(store_params)
+      flash[:success] = "#{@store.name} の登録に成功しました"
+      redirect_to stores_path(current_staff)
+    else
+      flash[:danger] = "新規店舗の登録に問題がありました"
+      render :new
+    end
   end
 
   def edit
+    @store = Store.find(params[:id])
   end
+
+  def update
+    @store = Store.find(params[:id])
+    if @store.update(store_params)
+      flash[:success] = "#{@store.name} の情報を更新しました。"
+      redirect_to stores_path(current_staff)
+    else
+      flash[:danger] = "商品情報の編集に問題がありました"
+      render :edit
+    end
+  end
+
+  def destroy
+    @store = Store.find(params[:id])
+    @store.destroy
+    flash[:success] = "#{@store.name} を削除しました。"
+    redirect_to stores_path(current_staff)
+  end
+    
+  private
+    def store_params
+      params.permit(:name, :phone, :email, :line_id, :address, :description, :image)
+    end
 end

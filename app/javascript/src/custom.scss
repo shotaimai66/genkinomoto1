@@ -71,6 +71,11 @@ body {
   background-color: yellow;
 }
 
+.link-white {
+  text-decoration: none;
+  color: #fff;
+}
+
 .header {
   position: fixed;
   background-color: rgb(199, 234, 255);
@@ -80,7 +85,12 @@ body {
   height: 6em;
   top: 0em;
   width: 100%;
-  z-index: 99; //一番上にくる
+  float: left;
+  // z-index: 99; //一番上にくる
+}
+
+.header-button{
+  margin: 2px;
 }
 
 #logo {
@@ -124,16 +134,23 @@ body {
   color: #000;
 }
 
-.header-list {
-  float: left;
-  margin-left: 150px;
+.header-staff {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 200px;
+  z-index: 99; //一番上にくる
 }
 
-.header-list-items {
-  float: left;
-  vertical-align: middle;
-  font-size: 1.3em;
-  background-color: rgb(199, 234, 255);
+.dropdown-menu {
+  z-index: 99; //一番上にくる
+}
+
+.header-right {
+  text-align: right;
+  position:fixed;
+  top: 10px;
+  right:10px;
+  z-index: 99; //一番上にくる
 }
 
 .footer {
@@ -281,12 +298,7 @@ h1 {
   align-items: baseline; // position stickyに必要
 }
 
-.header-cart {
-  text-align: right;
-  position:fixed;
-  top: 10px;
-  right:10px;
-}
+
 
 
 .cart-content-left {
@@ -334,8 +346,6 @@ h1 {
   top: 100px; // position stickyに必要 スクロールのときに上で止まる位置
 }
 
-
-
 .event-card-container {
   display: grid; /* カードの横並び */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* gridの設定 */
@@ -354,10 +364,30 @@ h1 {
 
 .event-card-title {
   padding: 16px;
-  margin-top: 20px;
   line-height: 1.2;
 }
 
 .border-radius-top {
   border-radius: 10px 10px 0px 0px;
+}
+
+.store-card-container {
+  display: grid; /* カードの横並び */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* gridの設定 */
+  gap: 40px 10px; /* カード同士の隙間 縦方向 横方向 */
+  margin: 40px auto 0;
+  text-align: start; /* カード内の中央寄せ解除 */
+}
+
+.store-card-item {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  background-color: #ffe8b6;
+  border-radius: 10px; /* 角丸指定 */
+}
+
+.store-card-title {
+  padding: 16px;
+  line-height: 1.2;
 }
