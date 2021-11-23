@@ -16,7 +16,8 @@
           <ul class="dropdown-menu">
             <% if staff_signed_in? %>
               <li class="dropdown-item"><%= link_to 'スタッフ専用ページ', staffs_path, class: 'link-black' %></li>
-              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><%= link_to 'ご予約内容確認', confirm_reservation_reservations_path, 'data-turbolinks': false, class: 'link-black' %></li>
+              <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'ログアウト', destroy_staff_session_path, method: :delete, class: 'link-black' %></li>
             <% else %>
               <li class="dropdown-item"><%= link_to 'ログイン', new_staff_session_path, class: 'link-black' %></li>
@@ -26,25 +27,28 @@
     </div>
 
     <div class="header-right">
+
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <% if user_signed_in? %>
             お客様【ログイン中】
           <% else %>
-            お客様アカウント
+            お客様ログインはこちら
           <% end %>
         </button>
-          <ul class="dropdown-menu">
+          <div class="dropdown-menu">
             <% if user_signed_in? %>
-              <li class="dropdown-item"><%= link_to 'お客様マイページ', users_index_path, class: 'link-black' %></li>
+              <%= link_to 'マイページ', users_index_path, class: 'dropdown-item' %>
+              <%= link_to 'ご予約ページ', reservations_path, class: 'dropdown-item', 'data-turbolinks': false %>
               <div class="dropdown-divider"></div>
-              <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'link-black' %></li>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             <% else %>
-              <li class="dropdown-item"><%= link_to 'ログイン', new_user_session_path, class: 'link-black' %></li>
+              <%= link_to 'ログイン', new_user_session_path, class: 'dropdown-item' %>
             <% end %>
-          </ul>
+          </div>
       </div>
+
       <% if !user_signed_in? %>
         <%= link_to image_tag('/payment_history.png', width: 30), new_user_session_path %>
         <%= link_to '購入履歴', new_user_session_path, class: "btn btn-md btn-secondary" %>

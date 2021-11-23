@@ -7,6 +7,7 @@ class StoresController < ApplicationController
   end
 
   def show
+    
     @store = Store.find(params[:id])
   end
 
@@ -48,6 +49,6 @@ class StoresController < ApplicationController
     
   private
     def store_params
-      params.permit(:name, :phone, :email, :line_id, :address, :description, :image)
+      params.require(:store).permit(:name, :phone, :email, :line_id, :address, :description, :opening_time, :closing_time, :last_order_time, :non_business_day, :image)
     end
 end

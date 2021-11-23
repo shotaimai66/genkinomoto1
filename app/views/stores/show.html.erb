@@ -9,6 +9,7 @@
   <div class="container-wrapper">
     <div class="event-content-left">
       <table class="table">
+      
         <tr>
           <td>店舗名</td>
           <td colspan="2"><%= @store.name %></td>
@@ -27,16 +28,29 @@
         </tr>
         <tr>
           <td>営業時間</td>
-          <td><%= @store.opening_time.strftime("%H:%M") %> から <%= @store.closing_time.strftime("%H:%M") %> まで</td>
+          <td>
+          <% if @store.opening_time.present? && @store.closing_time.present? %>
+            <%= @store.opening_time.strftime("%H:%M") %> から <%= @store.closing_time.strftime("%H:%M") %> まで
+          <% end %>
+          </td>
         </tr>
         <tr>
           <td>ラストオーダー</td>
-          <td><%= @store.last_order_time.strftime("%H:%M") %> まで受付</td>
+          <td>
+            <% if @store.last_order_time.present? %>
+              <%= @store.last_order_time.strftime("%H:%M") %> まで受付
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>定休日</td>
+          <td><%= @store.non_business_day %></td>
         </tr>
         <tr>
           <td>店舗詳細</td>
           <td><%= @store.description %></td>
         </tr>
+      
       </table>
     </div>
 

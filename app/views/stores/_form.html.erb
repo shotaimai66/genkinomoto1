@@ -1,0 +1,84 @@
+<div class="container">
+  <%= form_with(model: @store, local: true) do |f| %>
+  <div class="container-wrapper">
+
+    <div class="event-content-left">
+      <table class="table">
+        <tr>
+          <td><%= f.label :name %></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :phone %></td>
+          <td><%= f.text_field :phone %></td>
+        </tr>
+        <tr>
+        <td><%= f.label :email %></td>
+        <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :line_id %></td>
+          <td><%= f.text_field :line_id %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :address %></td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :opening_time %></td>
+          <td><%= f.time_select :opening_time, {minute_step: 10} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :closing_time %></td>
+          <td><%= f.time_select :closing_time, {minute_step: 10} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :last_order_time %></td>
+          <td><%= f.time_select :last_order_time, {minute_step: 10} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :non_business_day %></td>
+          <td><%= f.text_field :non_business_day %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :description %></td>
+          <td><%= f.text_area :description %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="event-content-right">
+     <table class="table">
+      <td>
+        <%= f.label :image %>
+        <%= f.file_field :image, id: :store_img %>
+        <% if @store.image.present? %>
+          <%= image_tag @store.image.url, width: "100%", class: "image-border", id: :store_img_prev %>
+        <% else %>
+          <%= image_tag "/no_image2.png", width: "100%", class: "image-border", id: :store_img_prev %>
+        <% end %>
+        <script type="text/javascript">
+          $(function() {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+            $('#store_img_prev').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#store_img").change(function(){
+                readURL(this);
+            });
+          });
+        </script>
+      </td>
+     </table>
+    </div>
+  </div>
+    <%= f.submit "登録", class: "btn btn-sm btn-primary" %>
+    <%= link_to 'キャンセル', stores_path, class: "link-gray" %>
+  <% end %>
+</div>
+

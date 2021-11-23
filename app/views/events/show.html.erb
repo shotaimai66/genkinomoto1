@@ -27,7 +27,13 @@
             <% end %>
           </td>
         </tr>
-        <tr><td colspan="2">開場: <%= @event.start_time.strftime("%H:%M") %> / 終了時間: <%= @event.end_time.strftime("%H:%M") %></td></tr>
+        <tr>
+          <td colspan="2">
+          <% if @event.start_time.present? && @event.end_time.present? %>
+            開場: <%= @event.start_time.strftime("%H:%M") %> / 終了時間: <%= @event.end_time.strftime("%H:%M") %>
+          <% end %>
+          </td>
+        </tr>
         <tr><td colspan="2"><%= @event.description %></td></tr>
       </table>
       <%= render 'notification' %>
