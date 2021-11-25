@@ -1,3 +1,5 @@
+/* universal */
+
 html {
   min-height: 100%; //背景色の高さを画面サイズに合わせる
 }
@@ -24,7 +26,6 @@ table {
   margin-right: auto;
 }
 
-
 ul,
 li {
   list-style: none;
@@ -32,12 +33,10 @@ li {
 }
 
 body {
-  // font-family: "Hiragino-Maru";
   color: #000;
   background: #fff;
   padding-top: 6rem;
   padding-bottom: 4rem;
-
   // background-image: image-url('orange_bg1.png');
   // background-color:rgba(255,255,255,0.4); //背景画像の色を薄くする場合① ①②の両方が必要
   // background-blend-mode:lighten; //背景画像の色を薄くする場合② ①②の両方が必要
@@ -68,7 +67,6 @@ body {
 .link-red {
   text-decoration: none;
   color: red;
-  background-color: yellow;
 }
 
 .link-white {
@@ -77,96 +75,104 @@ body {
 }
 
 .header {
-  position: fixed;
-  background-color: rgb(199, 234, 255);
-  border-bottom-color: #000;
-  border-bottom-width: 5px;
+  background-color: #fff;
+  border-bottom: 5px solid gray;
   opacity: 0.85;
-  height: 6em;
+  // height: 6em;
   top: 0em;
   width: 100%;
-  float: left;
-  // z-index: 99; //一番上にくる
+  position: fixed;
+  z-index: 90;
 }
 
-.header-button{
-  margin: 2px;
+.logo {
+  margin-left: 20px;
 }
 
-#logo {
-  // font-family: '';
-  // font-size: 1.5em;
-  // color: #fff;
-  // background-color: #010047a8;
-  // text-transform: uppercase;
-  // margin-left: 15px;
-  float: left;
-  letter-spacing: 0px;
-  vertical-align: middle;
-  font-weight: bold;
-  width: 5rem;
-}
-
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.top-menu {
+.header-menu {
   list-style: none;
   overflow: hidden;
-  position: fixed;
-  width: 100%;
+  margin: 0 0 0 auto;
+  width: 90%;
 }
- 
-.top-menu li {
+
+.header-menu li {
   width: 25%;
-  height: 25px;
+  height: 30px;
   text-align: center;
-  vertical-align: middle;
-  background-color: rgb(199, 234, 255);
+  background-color: #fff;
   float: left;
-  font-weight: bold;
+  border-right: 1px solid gray;
+  // position: relative;
 }
- 
+
 .nav {
   margin-right: 20px;
   color: #000;
-}
-
-.header-staff {
-  text-align: center;
-  margin-top: 10px;
-  margin-left: 200px;
-  z-index: 99; //一番上にくる
 }
 
 .dropdown-menu {
   z-index: 99; //一番上にくる
 }
 
-.header-right {
+.header-customer {
   text-align: right;
-  position:fixed;
+  position: fixed;
   top: 10px;
-  right:10px;
-  z-index: 99; //一番上にくる
+  right: 10px;
+  z-index: 90;
 }
+
+.header-staff {
+  text-align: left;
+  position: fixed;
+  left: 10px;
+  float: left;
+  vertical-align: middle;
+}
+
+
 
 .footer {
   position: fixed;
-  bottom: 0em; /*下に固定*/
+  height: 2rem;
+  bottom: 0; /*下に固定*/
   width: 100%;
-  font-size: 1.3em;
+  font-size: 1em;
   color: #fff;
   background-color: #000;
-  opacity: 0.85;
-  line-height: 1.5em;
+  opacity: 0.8;
   z-index: 99; //一番上にくる
 }
 
 h1 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.top-main-image {
+  margin-bottom: 20px;
+}
+
+.top-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 200px;
+  border: 1px solid gray;
+}
+
+.top-split-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.top-split-content-left,
+.top-split-content-right {
+  border: 1px solid gray;
+  padding: 20px;
+  height: 200px;
+  width: 50%;
+  float: left;
 }
 
 // devise設定
@@ -221,13 +227,13 @@ h1 {
 }
 /* 表示しているページ番号のデザイン */
 .pagination > .active > a {
-  background: #4077b1 !important; /*背景の色を変える*/
+  background: gray !important; /*背景の色を変える*/
   border-radius: 20px !important; /*角を丸くする*/
   line-height: 1.25 !important;
   padding: 0.5rem 0.75rem !important;
 }
 .pagination > .active > a:hover {
-  background: #93c9ff !important; /*背景の色を変える*/
+  background: lightgray !important; /*背景の色を変える*/
   border-radius: 20px !important; /*角を丸くする*/
 }
 
@@ -235,16 +241,15 @@ h1 {
   border: 1px solid #ccc;
 }
 
-.item-price-show {
-  font-size: 30px;
-  font-weight: bold;
-  color: crimson;
+.item-show-name,
+.event-show-title {
+  font-size: 25px;
 }
 
-.item-name-show {
-  font-size: 30px;
-  font-weight: bold;
-  color: #000;
+.item-show-price,
+.event-show-price {
+  font-size: 25px;
+  color: crimson;
 }
 
 .search-container {
@@ -293,13 +298,10 @@ h1 {
   background-color: #fff;
 }
 
-.container-wrapper {
+.cart-content-wrapper {
   display: flex;
   align-items: baseline; // position stickyに必要
 }
-
-
-
 
 .cart-content-left {
   width: 60%;
@@ -308,9 +310,9 @@ h1 {
 
 .cart-content-right {
   width: 30%;
-  align-self: baseline; // position stickyに必要
   position: sticky;
-  top: 100px; // position stickyに必要 スクロールのときに上で止まる位置
+  align-self: baseline; // position stickyに必要
+  top: 6rem; // position stickyに必要 スクロールのときに上で止まる位置
 }
 
 .cart-table-left {
@@ -334,23 +336,35 @@ h1 {
   margin-left: 0.3em;
 }
 
-.event-content-left {
-  width: 50%;
-  margin-right: 10%;
+.event-content-wrapper {
 }
 
-.event-content-right {
+.split-content-left {
+  width: 50%;
+  margin-right: 10%;
+  float: left;
+}
+
+.split-content-right {
   width: 40%;
-  align-self: baseline; // position stickyに必要
-  position: sticky;
-  top: 100px; // position stickyに必要 スクロールのときに上で止まる位置
+  float: left;
+}
+
+.covid_precaution {
+  float: left;
+  padding-bottom: 4rem;
+}
+
+.covid_precaution div {
+  padding: 50px;
+  background-color: lightgray;
 }
 
 .event-card-container {
   display: grid; /* カードの横並び */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* gridの設定 */
   gap: 40px 10px; /* カード同士の隙間 縦方向 横方向 */
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   text-align: start; /* カード内の中央寄せ解除 */
 }
 
@@ -358,7 +372,8 @@ h1 {
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
-  background-color: #e9e9e9;
+  background-color: #f1f1f1;
+  border: 1px solid #dadada;
   border-radius: 10px; /* 角丸指定 */
 }
 
@@ -383,11 +398,13 @@ h1 {
   width: 100%;
   max-width: 350px;
   margin: 0 auto;
-  background-color: #ffe8b6;
+  background-color: #f1f1f1;
+  border: 1px solid #dadada;
   border-radius: 10px; /* 角丸指定 */
 }
 
 .store-card-title {
   padding: 16px;
   line-height: 1.2;
+  
 }

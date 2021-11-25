@@ -4,7 +4,7 @@
       <tr>
         <td rowspan="3" class="center">
           <div class="form-group">
-            <%= f.label :image %>
+            <%= f.label :image %><br>
             <%= f.file_field :image, id: :item_img %>
 
             <% if @item.image.present? %>
@@ -63,7 +63,7 @@
       </tr>
   </table>
   <div class="form-group">
-    <%= f.submit "商品登録", class: "btn btn-md btn-primary" %>
+    <%= f.submit "商品登録", class: "btn btn-sm btn-outline-dark" %>
     <%= link_to 'キャンセル', items_path, class: "link-gray" %>
   </div>
 

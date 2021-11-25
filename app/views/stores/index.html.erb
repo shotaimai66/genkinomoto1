@@ -3,40 +3,42 @@
   ＞ 店舗のご案内
 </p>
 
-<div class="right">
-  <% if staff_signed_in? %>
-    <p>スタッフ専用</p>
-    <%= link_to "新規店舗の登録", new_store_path, class: "btn btn-md btn-info"%>
-  <% end %>
-</div>
-
-<div class="center">
-  <div class="store-card-container">
-    <% @stores.each do |store| %>
-      <div class="store-card-item">
-        <% if store.image? %>
-          <%= link_to image_tag(store.image.url, width: '100%', class: "image-border border-radius-top"), store_path(store) %>
-        <% else %>
-          <%= link_to image_tag("/no_image2.png", width: '100%', class: "image-border border-radius-top"), store_path(store) %>
-        <% end %>
-        <p class="store-card-title">
-          <ul>
-            <li><%= link_to store.name, store_path(store), class: "btn btn-md btn-info"  %></li>
-            <li><%= store.address %></li>
-            <li><%= store.phone %></li>
-            <li><%= store.email %></li>
-            <% if staff_signed_in? %>
-            <li>
-              <p></p>
-              スタッフ専用
-              <%= link_to '編集', edit_store_path(store), class: 'btn btn-sm btn-primary' %>
-              <%= link_to '削除', store_path(store), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
-            </li>
-      <% end %>
-          </ul>
-        </p>
-
-      </div>
+<div class="container">
+  <div class="right">
+    <% if staff_signed_in? %>
+      <p>スタッフ専用</p>
+      <%= link_to "新規店舗の登録", new_store_path, class: "btn btn-sm btn-outline-dark" %>
     <% end %>
+  </div>
+
+  <div class="center">
+    <div class="store-card-container">
+      <% @stores.each do |store| %>
+        <div class="store-card-item">
+          <% if store.image? %>
+            <%= link_to image_tag(store.image.url, width: '100%', class: "image-border border-radius-top"), store_path(store) %>
+          <% else %>
+            <%= link_to image_tag("/no_image2.png", width: '100%', class: "image-border border-radius-top"), store_path(store) %>
+          <% end %>
+          <p class="store-card-title">
+            <ul>
+              <li><h1><%= link_to store.name, store_path(store), class: "link-black" %></h1></li>
+              <li><%= store.address %></li>
+              <li><%= store.phone %></li>
+              <li><%= store.email %></li>
+              <% if staff_signed_in? %>
+              <li>
+                <p></p>
+                スタッフ専用
+                <%= link_to '編集', edit_store_path(store), class: "btn btn-sm btn-outline-dark" %>
+                <%= link_to '削除', store_path(store), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
+              </li>
+        <% end %>
+            </ul>
+          </p>
+
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
