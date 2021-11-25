@@ -1,81 +1,56 @@
-<h1 class='mb-4'>スタッフページ</h1>
-<div class='row justify-content-between'>
-  <div class='card col-sm-2'>
-    <div class='card-body'>
-      <h5 class='card-title'>今月の予約数</h5>
-      <p class='card-text'>50件</p>
+<div class="container">
+  <h1 class='center'>スタッフページ</h1>
+  <div class='row justify-content-between'>
+    <div class='card col-sm-2'>
+      <div class='card-body'>
+        <h5 class='card-title'>今月の予約数</h5>
+        <p class='card-text'>50件</p>
+      </div>
+    </div>
+    <div class='card col-sm-2'>
+      <div class='card-body'>
+        <h5 class='card-title'>今月の顧客</h5>
+        <p class='card-text'>40人</p>
+      </div>
+    </div>
+    <div class='card col-sm-2'>
+      <div class='card-body'>
+        <h5 class='card-title'>今月の問合せ</h5>
+        <p class='card-text'>5件</p>
+      </div>
+    </div>
+    <div class='card col-sm-2'>
+      <div class='card-body'>
+        <h5 class='card-title'>今月の売上</h5>
+        <p class='card-text'>500,000円</p>
+      </div>
+    </div>
+    <div class='card col-sm-2'>
+      <div class='card-body'>
+        <h5 class='card-title'>商品の売上</h5>
+        <p class='card-text'>100,000件</p>
+      </div>
     </div>
   </div>
-  <div class='card col-sm-2'>
-    <div class='card-body'>
-      <h5 class='card-title'>今月の顧客</h5>
-      <p class='card-text'>40人</p>
+
+  <div class='row pt-4 justify-content-between'>
+    
+    <div class='card col-sm-5'>
+      <div class='card-body center'>
+        <%= link_to 'お客様一覧', '#', class: "link-black" %>
+      </div>
     </div>
-  </div>
-  <div class='card col-sm-2'>
-    <div class='card-body'>
-      <h5 class='card-title'>今月の問合せ</h5>
-      <p class='card-text'>5件</p>
+
+    <div class='card col-sm-5'>
+      <div class='card-body center'>
+        <%= link_to 'スタッフ一覧', '#', class: "link-black" %>
+      </div>
     </div>
-  </div>
-  <div class='card col-sm-2'>
-    <div class='card-body'>
-      <h5 class='card-title'>今月の売上</h5>
-      <p class='card-text'>500,000円</p>
-    </div>
-  </div>
-  <div class='card col-sm-2'>
-    <div class='card-body'>
-      <h5 class='card-title'>商品の売上</h5>
-      <p class='card-text'>100,000件</p>
-    </div>
-  </div>
-</div>
-<div class='row pt-4 justify-content-between'>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', confirm_reservation_reservations_path, 'data-turbolinks': false %>
-    </div>
-  </div>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
-    </div>
-  </div>
-</div>
-<div class='row pt-3 justify-content-between'>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
-    </div>
-  </div>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
-    </div>
-  </div>
-</div>
-<div class='row pt-3 justify-content-between'>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
-    </div>
-  </div>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
-    </div>
-  </div>
-</div>
-<div class='row pt-3 justify-content-between'>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
-    </div>
-  </div>
-  <div class='card col-sm-5'>
-    <div class='card-body'>
-      <%= link_to '予約内容確認', '#'%>
+
+    <div class='card col-sm-5'>
+      <div class='card-body center'>
+        <%= link_to '予約内容確認', confirm_reservation_reservations_path, 'data-turbolinks': false, class: "link-black" %>
+      </div>
     </div>
   </div>
 </div>
