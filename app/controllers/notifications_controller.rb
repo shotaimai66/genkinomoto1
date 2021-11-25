@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   # skip_before_action :authenticate_staff!, only: [:index, :show, :new]
 
   def index
-    @notifications = Notification.all
+    @notifications = Notification.page(params[:page]).per(5)
   end
 
   def show
@@ -18,6 +18,7 @@ class NotificationsController < ApplicationController
 
   def create
     @notification = Notification.new(notification_params)
+    @notification.staff_id = current_staff.id
     if @notification.save
       flash[:success] = '新規お知らせを投稿しました。'
       redirect_to @notification
