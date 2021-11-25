@@ -10,11 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resources :stores
-  resources :users do
-    collection do
-      get 'account', to: 'users#account'
-    end
-  end
+  get 'users/account', to: 'users#account'
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
@@ -29,11 +25,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :staffs do
-    collection do
-      get 'account', to: 'staffs#account'
-    end
-  end
+  get 'staffs/account', to: 'staffs#account'
   devise_for :staffs, controllers: {
     sessions:      'staffs/sessions',
     passwords:     'staffs/passwords',

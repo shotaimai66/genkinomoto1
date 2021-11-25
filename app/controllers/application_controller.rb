@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     when User
       root_path
     when Staff
-      staffs_path
+      staffs_account_path
     end
   end
 
