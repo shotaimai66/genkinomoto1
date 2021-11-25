@@ -154,29 +154,47 @@ h1 {
 }
 
 .top-main-image {
+  width: 100%;
   margin-bottom: 20px;
 }
 
-.top-content {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  height: 200px;
-  border: 1px solid gray;
-}
-
-.top-split-content {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.top-split-content-left,
-.top-split-content-right {
+.top-content1 {
   border: 1px solid gray;
   padding: 20px;
   height: 200px;
-  width: 50%;
+  margin-bottom: 20px;
+}
+
+.top-split-content1 {
+  width: 100%;
+  margin-bottom: 20px;
   float: left;
+}
+
+.top-split-content1-left {
+  border: 1px solid gray;
+  padding: 20px;
+  height: 200px;
+  width: 49%;
+  margin-right: 2%;
+  float: left;
+}
+
+.top-split-content1-right {
+  border: 1px solid gray;
+  padding: 20px;
+  height: 200px;
+  width: 49%;
+  float: left;
+}
+
+.top-content2 {
+  border: 1px solid gray;
+  width: 100%;
+  height: 200px;
+  padding: 20px;
+  float: left;
+  margin-bottom: 6rem;
 }
 
 // devise設定

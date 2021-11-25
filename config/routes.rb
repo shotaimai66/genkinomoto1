@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     end
   end
   resources :stores
-  get 'users/index'
+  resources :users do
+    collection do
+      get 'account', to: 'users#account'
+    end
+  end
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
@@ -25,13 +29,16 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  resources :staffs do
+    collection do
+      get 'account', to: 'staffs#account'
+    end
+  end
   devise_for :staffs, controllers: {
     sessions:      'staffs/sessions',
     passwords:     'staffs/passwords',
     registrations: 'staffs/registrations'
   }
-  resources :staffs, only: %i[index]
   resources :reservations
   resources :stores
   resources :items do
