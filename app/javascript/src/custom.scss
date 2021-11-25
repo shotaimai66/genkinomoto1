@@ -227,18 +227,18 @@ h1 {
 }
 .pagination > li > a:hover {
   /*ホバー時のデザイン*/
-  border-radius: 20px; /*角を丸くする*/
+  border-radius: 3px; /*角を丸くする*/
 }
 /* 表示しているページ番号のデザイン */
 .pagination > .active > a {
   background: gray !important; /*背景の色を変える*/
-  border-radius: 20px !important; /*角を丸くする*/
+  border-radius: 3px !important; /*角を丸くする*/
   line-height: 1.25 !important;
   padding: 0.5rem 0.75rem !important;
 }
 .pagination > .active > a:hover {
   background: lightgray !important; /*背景の色を変える*/
-  border-radius: 20px !important; /*角を丸くする*/
+  border-radius: 3px !important; /*角を丸くする*/
 }
 
 .image-border {
