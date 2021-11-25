@@ -30,7 +30,7 @@
         <td><%= menu.charge %>円</td>
         <td><%= menu.treatment_time %>分</td>
         <% if staff_signed_in? %>
-        <td><%= menu.course_number %></td>
+          <td><%= menu.course_number %></td>
           <td>
             <%= link_to '編集', edit_menu_path(menu), class: 'btn btn-sm btn-primary' %>
             <%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "#{menu.title}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>

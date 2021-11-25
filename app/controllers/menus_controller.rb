@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   #スタッフは全てのアクションにアクセスできる
   skip_before_action :authenticate_user!
-  #ゲストは施術メニュー一覧、施術メニュー詳細のみアクセスできる
+  #ログイン済/未に関係無くゲストは{index,show}アクションのみアクセスできる
   skip_before_action :authenticate_staff!, only: [:index, :show]
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
     
