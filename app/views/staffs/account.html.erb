@@ -1,3 +1,8 @@
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %>
+   ＞ スタッフページ
+</p>
+
 <div class="container">
   <h1 class='center'>スタッフページ</h1>
   <div class='row justify-content-between'>
@@ -37,13 +42,13 @@
     
     <div class='card col-sm-5'>
       <div class='card-body center'>
-        <%= link_to 'お客様一覧', users_account_path, class: "link-black" %>
+        <%= link_to 'お客様一覧', users_index_path, class: "link-black" %>
       </div>
     </div>
 
     <div class='card col-sm-5'>
       <div class='card-body center'>
-        <%= link_to 'スタッフ一覧', staffs_account_path, class: "link-black" %>
+        <%= link_to 'スタッフ一覧', staffs_index_path, class: "link-black" %>
       </div>
     </div>
 

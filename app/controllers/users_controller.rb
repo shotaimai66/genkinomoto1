@@ -7,15 +7,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def account
     @users = User.where(id: current_user.id)
     # @reservations = Reservation.find_by(guest_id: current_user.id)
