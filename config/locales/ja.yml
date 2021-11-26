@@ -244,4 +244,5 @@ ja:
         status_default: 未設定
         on_request: 申込中
         on_reserve: 予約確定
+        completed: 施術完了
 

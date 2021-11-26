@@ -1,20 +1,18 @@
 class ReservationsController < ApplicationController
-  #未ログインユーザーはindexアクションのみアクセスできる
   #ログイン済みユーザーは{index,show,new,edit}アクションのみアクセスできる
-  skip_before_action :authenticate_user!, only: [:index, :edit, :update, :confirm_reservation, :edit_reserve, :update_reserve, :destroy]
-  #スタッフは{show,new,create}アクションにはアクセスできない
+  skip_before_action :authenticate_user!
+  #スタッフは全てのアクションにアクセスできる
   skip_before_action :authenticate_staff!, only: [:index, :show, :new, :create]
-  before_action :set_reservation, only: [:edit, :update, :edit_reserve, :update_reserve, :destroy]
+  before_action :set_reservations, only: [:index, :confirm_reservation]
+  before_action :set_reservation, only: [:show, :edit, :update, :edit_reserve, :update_reserve, :destroy]
   before_action :set_menus, only: [:new, :edit_reserve]
 
   def index
-    @reservations = Reservation.all.includes(:guest)
   end
 
   def confirm_reservation
     @reservations_on_request = Reservation.on_request.from_today.includes(:guest)
     @reservations_on_reserve = Reservation.on_reserve.from_today.includes(:guest)
-    @reservations = Reservation.all.includes(:guest)
     respond_to do |format|
       format.html
       format.json { @reservations }
@@ -22,6 +20,8 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    menu = Menu.find_by(title: @reservation.treatment_menu)
+    @menu_charge = menu.charge
   end
 
   def new
@@ -37,6 +37,8 @@ class ReservationsController < ApplicationController
       menu_time = 60 * (menu.treatment_time + 20)
     end
     @reservation.treatment_menu = menu.title
+    @reservation.treatment_time_menu = menu.treatment_time
+    @reservation.charge_menu = menu.charge
     @reservation.apply!(menu_time)
     if @reservation.save
       user = User.find(@reservation.guest_id)
@@ -72,12 +74,15 @@ class ReservationsController < ApplicationController
         menu_time = 60 * (menu.treatment_time + 20)
       end
       @reservation.treatment_menu = menu.title
+      @reservation.treatment_time_menu = menu.treatment_time
+      @reservation.charge_menu = menu.charge
       @reservation.apply_reserve!(menu_time)
       redirect_to confirm_reservation_reservations_url, notice: "予約を編集しました。"
     end
   end
 
   def destroy
+    # @reservation.destroy
     @reservation.destroy
     redirect_to confirm_reservation_reservations_url, notice: "予約を削除しました。"
   end
@@ -86,6 +91,10 @@ class ReservationsController < ApplicationController
 
     def reservation_params
       params.require(:reservation).permit(:start_time, :course, :comment, :reservation_time, :guest_id)
+    end
+
+    def set_reservations
+      @reservations = Reservation.all.includes(:guest)
     end
 
     def set_reservation

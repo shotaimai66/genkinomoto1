@@ -41,6 +41,14 @@ User.create!(
   store_id: 1
 )
 
+User.create!(
+  name: "Sample User2",
+  email: "sample-2@email.com",
+  password: "password",
+  password_confirmation: "password",
+  store_id: 1
+)
+
 Staff.create!(
   name: "Sample Staff1",
   email: "staff-1@email.com",

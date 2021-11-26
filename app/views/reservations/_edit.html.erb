@@ -10,7 +10,7 @@
     <div class="modal-body">
       <div class="col-md-12">
         <h6>予約者</h6>
-        <p class="ms-1"><%= @reservation.guest.email %></p>
+        <p class="ms-1"><%= @reservation.guest.name %>　<%= @reservation.guest.email %></p>
         <h6>予約日</h6>
         <p><%= l @reservation.start_time, format: :dayonly %></p>
         <h6>予約コース</h6>

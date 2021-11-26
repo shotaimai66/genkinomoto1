@@ -15,6 +15,8 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.boolean :holiday_flag, default: false
       t.boolean :cancel_flag, default: false
       t.string :treatment_menu
+      t.string :treatment_time_menu
+      t.integer :charge_menu
 
       t.timestamps
     end
