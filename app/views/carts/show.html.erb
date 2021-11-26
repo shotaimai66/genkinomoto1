@@ -10,7 +10,7 @@
 </p>
 
 <div class="container">
-  <div class="container-wrapper">
+  <div class="cart-content-wrapper">
     <div class="cart-content-left">
       <h1>ショッピングカート 【 <%= current_user.name %> 様 】</h1>
       <% if !@orders.present? && !@event_orders.present? %>
@@ -68,7 +68,7 @@
             <td>数量: <%= event_order.quantity %></td>
             <td><%= event_order.quantity*event.price %> 円(税別)</td>
             <td>
-              <%= link_to "削除", destroy_event_order_path(event_order), method: :delete, class: "btn btn-sm btn-secondary" %>
+              <%= link_to "削除", destroy_event_order_path(event_order), method: :delete, class: "btn btn-sm btn-outline-dark" %>
             </td>
           </tr>
           <% end %>

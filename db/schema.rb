@@ -153,7 +153,16 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
 
   create_table "stores", force: :cascade do |t|
     t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "line_id"
     t.string "address"
+    t.string "description"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.time "last_order_time"
+    t.string "non_business_day"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

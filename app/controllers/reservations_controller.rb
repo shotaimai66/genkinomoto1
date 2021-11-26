@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  #ログイン済みユーザーは{index,show,new,edit}アクションのみアクセスできる
+  #ログイン済みユーザーは{index,show,new,create}アクションのみアクセスできる
   skip_before_action :authenticate_user!
   #スタッフは全てのアクションにアクセスできる
   skip_before_action :authenticate_staff!, only: [:index, :show, :new, :create]

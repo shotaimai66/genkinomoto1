@@ -28,8 +28,59 @@
 end
 
 Store.create!(
-  name: "厚木店",
-  address: "神奈川県 七沢温泉郷 七沢荘"
+  name: "ゲンキノモト。厚木店",
+  phone: "046-000-0001",
+  email: "genkinomoto-atsugi@email.com",
+  line_id: "genkinomoto_line_dummy",
+  address: "神奈川県 厚木市 中央",
+  description: "ゲンキノモト。本店です。お客様のご来店を心よりお待ちしております。",
+  opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
+  closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
+  last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
+  non_business_day: "水曜日",
+  image: File.open("app/assets/images/store1.jpg")
+)
+
+Store.create!(
+  name: "ゲンキノモト。平塚店",
+  address: "神奈川県 平塚市 某所",
+  phone: "046-000-0002",
+  email: "genkinomoto-hiratsuka@email.com",
+  line_id: "genkinomoto_line_dummy",
+  description: "ゲンキノモト。平塚店です。お客様のご来店を心よりお待ちしております。",
+  opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
+  closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
+  last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
+  non_business_day: "水曜日",
+  image: File.open("app/assets/images/store1.jpg")
+)
+
+Store.create!(
+  name: "ゲンキノモト。小田原店",
+  address: "神奈川県 小田原市 某所",
+  phone: "046-000-0003",
+  email: "genkinomoto-odawara@email.com",
+  line_id: "genkinomoto_line_dummy",
+  description: "ゲンキノモト。小田原店です。お客様のご来店を心よりお待ちしております。",
+  opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
+  closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
+  last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
+  non_business_day: "水曜日",
+  image: File.open("app/assets/images/store1.jpg")
+)
+
+Store.create!(
+  name: "ゲンキノモト。イベント開場A",
+  address: "神奈川県 海老名市 某所",
+  phone: "046-000-0004",
+  email: "genkinomoto-event@email.com",
+  line_id: "genkinomoto_line_dummy",
+  description: "ゲンキノモト。イベント開場です。お客様のご来店を心よりお待ちしております。",
+  opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
+  closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
+  last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
+  non_business_day: "水曜日",
+  image: File.open("app/assets/images/event_site1.jpg")
 )
 
 

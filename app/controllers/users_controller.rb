@@ -2,19 +2,16 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_staff!
 
   def index
-    @users = User.where(id: current_user.id)
-    # @reservations = Reservation.find_by(guest_id: current_user.id)
-    @reservations = Reservation.all.includes(:guest)
-    @staffs = Staff.all
   end
 
   def show
   end
 
-  def edit
-  end
-
-  def update
+  def account
+    @users = User.where(id: current_user.id)
+    # @reservations = Reservation.find_by(guest_id: current_user.id)
+    @reservations = Reservation.all.includes(:guest)
+    @staffs = Staff.all
   end
 
   def out

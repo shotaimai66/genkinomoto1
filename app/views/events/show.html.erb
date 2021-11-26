@@ -1,44 +1,56 @@
 <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
 <%= link_to 'イベント一覧', events_path, class: "link-gray" %> ＞ 
-<%= link_to '戻る', :back, class: "link-gray" %>
+<%= @event.title %>
 <p></p>
 
 <div class="container">
-  <div class="container-wrapper">
-    <div class="event-content-left">
+  <div class="event-content-wrapper">
+    <div class="split-content-left">
       <table class="table">
-        <tr><td colspan="2"><%= @event.title %></td></tr>
-        <tr><td colspan="2">開催期間: <%= @event.first_date %> から <%= @event.last_date %> まで</td></tr>
-        <tr>
-          <td>参加費: <%= @event.price %> 円(税抜)</td>
-          <td>
-            <% if user_signed_in? %>
-              <%= form_with model: @event_order, url: create_event_order_path(@event_order), method: :post do |f| %>
-                <%= f.label "枚数:" %>
-                <% range = (1..10) %>
-                <%= f.select :quantity, range %>
-                <%= f.fields_for @event do |e| %>
-                  <%= e.hidden_field :event_id, value: @event.id %>
+        <tbody>
+          <tr><td colspan="2" class="event-show-title"><%= @event.title %></td></tr>
+          <tr><td colspan="2">期間: <%= l(@event.first_date, format: :long) %> - <%= l(@event.last_date, format: :long) %></td></tr>
+          <tr><td colspan="2">場所: <%= @event.location %></td></tr>
+          <tr>
+            <td class="event-show-price"><%= @event.price %> 円(税別)</td>
+            <td class="center">
+              <% if user_signed_in? %>
+                <%= form_with model: @event_order, url: create_event_order_path(@event_order), method: :post do |f| %>
+                  <%= f.label "枚数:" %>
+                  <% range = (1..10) %>
+                  <%= f.select :quantity, range %><br>
+                  <%= f.fields_for @event do |e| %>
+                    <%= e.hidden_field :event_id, value: @event.id %>
+                  <% end %>
+                  <%= f.submit "カートに入れる", class: "btn btn-sm btn-warning" %>
                 <% end %>
-                <%= f.submit "チケットを購入する", class: "btn btn-md btn-warning" %>
+              <% else %>
+                <%= link_to "ログインしてカートに入れる", new_user_session_path, class: "btn btn-sm btn-outline-dark" %>
               <% end %>
-            <% else %>
-              <%= link_to "ログインして購入する", new_user_session_path, class: "btn btn-md btn-secondary" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+            <% if @event.start_time.present? && @event.end_time.present? %>
+              開場: <%= @event.start_time.strftime("%H:%M") %> - 終了: <%= @event.end_time.strftime("%H:%M") %>
             <% end %>
-          </td>
-        </tr>
-        <tr><td colspan="2">開場: <%= @event.start_time.strftime("%H:%M") %> / 終了時間: <%= @event.end_time.strftime("%H:%M") %></td></tr>
-        <tr><td colspan="2"><%= @event.description %></td></tr>
+            </td>
+          </tr>
+          <tr><td colspan="2"><%= @event.description %></td></tr>
+        </tbody>
       </table>
-      <%= render 'notification' %>
     </div>
+      
 
-    <div class="event-content-right">
+    <div class="split-content-right">
       <% if @event.image? %>
         <%= image_tag(@event.image.url, width: "100%", class: "image-border") %>
       <% else %>
         <%= image_tag("/no_image2.png", width: "100%", class: "image-border") %>
       <% end %>
+    </div>
+    <div class="covid_precaution">
+      <%= render 'covid_precaution' %>
     </div>
   </div>
 </div>

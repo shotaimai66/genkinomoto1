@@ -20,7 +20,7 @@
           <th style="width: 20%">注文日時:<br><%= l payment.created_at, format: :custom1 %></th>
           <th style="width: 40%">合計:<br><%= payment.total %> 円(税込)</th>
           <th style="width: 15%">注文番号: <%= payment.id %></th>
-          <th colspan="2"  class="center"  style="width: 25%"><%= link_to "注文内容", payment_path(payment), class: "btn btn-sm btn-primary" %></th>
+          <th colspan="2"  class="center"  style="width: 25%"><%= link_to "注文内容", payment_path(payment), class: "btn btn-sm btn-outline-dark" %></th>
         </tr>
       </thead>
 

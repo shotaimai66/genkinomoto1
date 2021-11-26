@@ -2,7 +2,7 @@
   <%= form_with(model: @event, local: true) do |f| %>
   <div class="container-wrapper">
 
-    <div class="event-content-left">
+    <div class="split-content-left">
       <table class="table">
         <tr>
           <td><%= f.label :title %></td>
@@ -43,10 +43,10 @@
       </table>
     </div>
 
-    <div class="event-content-right">
+    <div class="split-content-right">
      <table class="table">
       <td>
-        <%= f.label :image %>
+        <%= f.label :image %><br>
         <%= f.file_field :image, id: :event_img %>
         <% if @event.image.present? %>
           <%= image_tag @event.image.url, width: "100%", class: "image-border", id: :event_img_prev %>
@@ -73,7 +73,7 @@
      </table>
     </div>
   </div>
-    <%= f.submit "登録", class: "btn btn-sm btn-primary" %>
+    <%= f.submit "登録", class: "btn btn-sm btn-outline-dark" %>
     <%= link_to 'キャンセル', events_path, class: "link-gray" %>
   <% end %>
 </div>
