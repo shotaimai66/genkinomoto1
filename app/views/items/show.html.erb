@@ -1,7 +1,7 @@
 <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 
 <%= link_to '商品一覧', items_path, class: "link-gray" %> ＞ 
-<%= link_to '戻る', :back, class: "link-gray" %>
-
+<%= @item.name %>
+<p></p>
 <div class="container">
   <table class="table">
     <tr>
@@ -21,18 +21,18 @@
             <%= f.fields_for @item do |i| %>
               <%= i.hidden_field :item_id, value: @item.id %>
             <% end %>
-            <%= f.submit "カートにいれる", class: "btn btn-sm btn-warning" %>
+            <%= f.submit "カートに入れる", class: "btn btn-sm btn-warning" %>
           <% end %>
         <% else %>
-          <%= link_to "ログインして購入する", new_user_session_path, class: "btn btn-md btn-secondary" %>
+          <%= link_to "ログインしてカートに入れる", new_user_session_path, class: "btn btn-sm btn-outline-dark" %>
         <% end %>
       </td>
     </tr>
     <tr>
-      <td colspan="2" class="item-name-show"><%= @item.name %></td>
+      <td colspan="2" class="item-show-name"><%= @item.name %></td>
     </tr>
     <tr>
-      <td class="center item-price-show"><%= @item.price %> 円 (税別)</td>
+      <td class="center item-show-price"><%= @item.price %> 円 (税別)</td>
       <td class="center">在庫数: <%= @item.stock %></td>
     </tr>
     <tr>

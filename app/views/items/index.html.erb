@@ -1,16 +1,19 @@
-<%= link_to 'ホーム', root_url, class: "link-gray" %>
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %>
+  ＞ 商品一覧
+</p>
 
 <div class="container">
   <div class="center">
     <%= search_form_for @q, url: search_items_path do |f| %>
       <%= f.search_field :name_cont, class: "search-container" %>
-      <%= f.submit '商品検索' %>
+      <%= f.submit '商品検索', class: "btn btn-sm btn-outline-dark" %>
     <% end %>
   </div>
   <div class="right">
     <% if staff_signed_in? %>
       <p>スタッフ専用</p>
-      <%= link_to "新規商品登録", new_item_path, class: "btn btn-md btn-info"%>
+      <%= link_to "新規商品登録", new_item_path, class: "btn btn-sm btn-outline-dark"%>
     <% end %>
   </div>
   <%= paginate @items %>
@@ -22,7 +25,7 @@
         <th><%= sort_link(@q, :price, "↑↓") %></th>
         <th><%= sort_link(@q, :stock, "↑↓") %></th>
         <% if staff_signed_in? %>
-          <th colspan="2">スタッフ専用</th>
+          <th>スタッフ専用</th>
         <% end %>
       </tr>
     </thead>
@@ -40,8 +43,11 @@
         <td><%= item.price %> 円 (税抜)</td>
         <td>在庫数: <%= item.stock %></td>
         <% if staff_signed_in? %>
-          <td><%= link_to '編集', edit_item_path(item), class: 'btn btn-sm btn-primary' %></td>
-          <td><%= link_to '削除', item_path(item), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %></td>
+          <td class="center">
+            <%= link_to '編集', edit_item_path(item), class: "btn btn-sm btn-outline-dark" %><br>
+            <br>
+            <%= link_to '削除', item_path(item), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
+          </td>
         <% end %>
       </tr>
     </tbody>

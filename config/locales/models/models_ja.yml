@@ -4,6 +4,7 @@ ja:
       item: 商品
       order: 注文
       event: イベント
+      store: 店舗
     attributes:
       item:
         id: ID
@@ -28,3 +29,16 @@ ja:
         start_time: 開始時間
         end_time: 終了時間
         location: 開催場所
+        image: 画像
+      store:
+        name: 店舗名
+        address: 住所
+        phone: 電話
+        email: メール
+        line_id: Line ID
+        description: 詳細
+        opening_time: 始業時間
+        closing_time: 終業時間
+        last_order_time: ラストオーダー
+        non_business_day: 定休日
+        image: 画像

@@ -1,4 +1,5 @@
-<%= link_to 'ホーム', root_url, class: "link-gray" %>
+<%= link_to 'ホーム', root_url, class: "link-gray" %> ＞
+<%= link_to 'イベント一覧', events_path, class: "link-gray" %>
 
 <div class="center">
   <%= search_form_for @q, url: search_events_path do |f| %>
@@ -10,7 +11,7 @@
 <div class="right">
   <% if staff_signed_in? %>
     <p>スタッフ専用</p>
-    <%= link_to "新規イベント登録", new_event_path, class: "btn btn-md btn-info"%>
+    <%= link_to "新規イベント登録", new_event_path, class: "btn btn-sm btn-outline-dark"%>
   <% end %>
 </div>
 
@@ -27,8 +28,8 @@
             <br>
             <% if staff_signed_in? %>
               スタッフ専用
-              <%= link_to '編集', edit_event_path(event), class: 'btn btn-sm btn-primary' %>
-              <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-danger" %>
+              <%= link_to '編集', edit_event_path(event), class: "btn btn-sm btn-outline-dark" %>
+              <%= link_to '削除', event_path(event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
             <% end %>
           </p>
         </div>

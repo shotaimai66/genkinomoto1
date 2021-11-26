@@ -1,42 +1,28 @@
-  <h1 class="center">ゲンキノモト。トップページ(仮)</h1>
-  <p></p>
-  <p class="center">只今製作中です!!!</p>
-  <p class="center">仮のレイアウトなので変更していただいてOKです。</p>
+<div class="container">
 
-<div>
-  <table class="table center">
-    <tbody>
-      <th>
-        <tr>
-          <td class="round-square-top">
-            <%= link_to '予約ページ(仮)', reservations_path, class: "link-black" %>
-            <p>お客様の予約はこちらから</p>
-          </td>
-          <td class="round-square-top">
-            <%= link_to '従業員専用ページ(仮)', '#', class: "link-black" %>
-            <p>従業員はこちらから</p>
-          </td>
-        </tr>
-        <tr>
-          <td class="round-square-top">
-            <%= link_to '商品販売ページ(仮)', items_path, class: "link-black" %>
-          </td>
-          <td class="round-square-top">
-            <%= link_to 'イベント販売ページ(仮)', events_path, class: "link-black" %>
-          </td>
-        </tr>
-          <td class="round-square-top">
-            <%= link_to 'お客様へのお知らせ(仮)', '#', class: "link-black" %>
-            <p>販促告知はこちらから</p>
-          </td>
-          <td class="round-square-top">
-            <%= link_to '(仮)', '#', class: "link-black" %>
-            <p>その他はこちらから</p>
-          </td>
-        <tr>
+  <div class="top-main-image">
+    <%= image_tag("/body_care1.jpg", width: '100%') %>
+  </div>
 
-        </tr>
-      </th>
-    </tbody>
-  </table>
+  <div class="top-content1">
+    <h1>[NEW] ゲンキノモト。からのお知らせ</h1>
+    <p>仮で作成しています。適宜変更をお願いします。</p>
+  </div>
+
+  <div class="top-split-content1">
+    <div class="top-split-content1-left">
+      <h1>ご予約 <%= link_to "ご予約はこちらから", reservations_path, 'data-turbolinks': false, class: "btn btn-sm btn-outline-dark" %></h1>
+      <p>仮で作成しています。適宜変更をお願いします。</p>
+    </div>
+    <div class="top-split-content1-right">
+      <h1>[NEW] 商品ピックアップ情報</h1>
+      <p>仮で作成しています。適宜変更をお願いします。</p>
+    </div>
+  </div>
+
+  <div class="top-content2">
+    <h1>[NEW] イベント情報</h1>
+    <p>仮で作成しています。適宜変更をお願いします。</p>
+  </div>
+
 </div>
