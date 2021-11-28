@@ -5,7 +5,6 @@ class NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.page(params[:page]).per(10)
-    @staff = Staff.joins(:notifications).pluck(:name)
   end
 
   def show
