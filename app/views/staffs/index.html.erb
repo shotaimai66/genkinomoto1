@@ -5,4 +5,11 @@
 </p>
 <div class="container">
 <h1 class="center">スタッフ一覧</h1>
+  <% @staffs.each do |staff| %>
+    <table class="table">
+      <tbody>
+        <tr><td><%= staff.name %></td></tr>
+      </tbody>
+    </table>
+    <% end %>
 </div>

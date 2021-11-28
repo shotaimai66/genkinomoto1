@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   # indexとshowはスタッフのみのログインで可能
   skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_staff!, only: [:account] # 抜けていたので追記しました
 
   def index
+    @users = User.all
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def account
@@ -23,4 +26,10 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
+  private
+    def set_q
+      @q = User.ransack(params[:q])
+    end
+
 end

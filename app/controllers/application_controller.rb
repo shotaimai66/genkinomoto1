@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource
     when User
-      root_path
+      users_account_path
     when Staff
       staffs_account_path
     end

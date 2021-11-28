@@ -3,9 +3,11 @@ class StaffsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
+    @staffs = Staff.all
   end
 
   def show
+    @staff = Staff.find(params[:id])
   end
   
   def account
