@@ -3,21 +3,6 @@
     <h1>新規お知らせ投稿</h1>
     <p class="text-right">ログイン中のスタッフ：<%= current_staff.name %>さん</p>
   </div>
-
-  <%= form_with model: @notification, local: true do |f| %>
-    <div class="form-group">
-      <%= f.label :title %><br />
-      <%= f.text_field :title, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :body %><br />
-      <%= f.text_area :body, class:"form-control" %>
-    </div> 
-
-    <div class="form-group">
-      <%= f.submit "投稿", class: "btn btn-primary btn-lg" %>&nbsp;
-      <%= link_to "戻る", staffs_path, class: "btn btn-secondary btn-lg" %>
-    </div>
-  <% end %>
+  
+  <%= render 'form' %>
 </div>

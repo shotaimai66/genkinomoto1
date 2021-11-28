@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/abhinavmathur/quilljs-rails.git
+  revision: bd877441a4c48333104744e9b482c940ab9815e7
+  specs:
+    quilljs-rails (0.0.3)
+
+GIT
   remote: https://github.com/kaminari/kaminari
   revision: 73b93405b95615b5ad3f53c3dffe419a59890cad
   specs:
@@ -326,6 +332,7 @@ DEPENDENCIES
   payjp
   pg (~> 1.1)
   puma (~> 5.0)
+  quilljs-rails!
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   ransack

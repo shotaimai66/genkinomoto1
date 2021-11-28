@@ -1,15 +1,14 @@
 class NotificationsController < ApplicationController
   skip_before_action :authenticate_user!
-  # skip_before_action :authenticate_user!, only: [:index, :show]
-  skip_before_action :authenticate_staff!
-  # skip_before_action :authenticate_staff!, only: [:index, :show, :new]
+  # skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notifications = Notification.page(params[:page]).per(5)
+    @notifications = Notification.page(params[:page]).per(10)
+    @staff = Staff.joins(:notifications).pluck(:name)
   end
 
   def show
-    @notification = Notification.find(params[:id])
   end
 
   def new
@@ -29,11 +28,9 @@ class NotificationsController < ApplicationController
   end
 
   def edit
-    @notification = Notification.find(params[:id])
   end
 
   def update
-    @notification = Notification.find(params[:id])
     if @notification.update(notification_params)
       flash[:success] = 'お知らせの内容を更新しました。'
       redirect_to notifications_url
@@ -43,7 +40,6 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    @notification = Notification.find(params[:id])
     @notification.destroy
     flash[:success] = 'お知らせを削除しました。'
     redirect_to notifications_url
@@ -52,5 +48,9 @@ class NotificationsController < ApplicationController
   private
     def notification_params
       params.require(:notification).permit(:title, :body, :display_flag, :staff_id, :store_id)
+    end
+
+    def set_notification
+      @notification = Notification.find(params[:id])
     end
 end

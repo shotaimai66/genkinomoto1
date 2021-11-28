@@ -1,21 +1,15 @@
 <div class="container">
-  <h1>お知らせ詳細</h1><hr>
+  <div class="text-center">
+    <h1>お知らせ</h1>
+  </div>
 
-  <div>  
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <h2>記事タイトル</h2>
-        <div>
-          <%= @notification.title %>
-        </div>
-      </thead>
-      <tbody>
-        <h2>記事内容</h2>
-        <div>
-          <%= @notification.body %>
-        </div>
-      </tbody>
-    </table>
+  <div class="notification-wrraper">  
+    <div>
+      <h2><%= @notification.title %></h2><hr id="design-hr">
+    </div><br />
+    <div>
+      <p><%= @notification.body.html_safe %></p>
+    </div>
   </div>
 
   <div>
