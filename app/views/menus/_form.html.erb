@@ -1,0 +1,49 @@
+<%= form_with(model: @menu, local: true) do |f| %>
+<%#= render partial: 'shared/error_messages', locals: { object: @menu } %>
+  <table class="table">
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :course_number %>
+          <%= f.number_field :course_number, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :charge %>
+          <%= f.number_field :charge, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :treatment_time %>
+          <%= f.number_field :treatment_time, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="form-group">
+    <%= f.submit yield(:button_text), class: "btn btn-md btn-primary" %>
+    <%= link_to 'キャンセル', menus_path, class: "link-gray" %>
+  </div>
+<% end %>

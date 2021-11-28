@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  resources :menus do
+    collection do
+      get :treatment_menu
+    end
+  end
   resources :reservations do
     collection do
       get :confirm_reservation
+      get :staff_new_reservation
+      get :staff_create_reservation
     end
     member do
       get :edit_reserve

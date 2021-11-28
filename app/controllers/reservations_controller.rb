@@ -1,16 +1,18 @@
 class ReservationsController < ApplicationController
+  #ログイン済みユーザーは{index,show,new,create}アクションのみアクセスできる
   skip_before_action :authenticate_user!
-  # only: [:index, :new, :create, :show] ←ユーザーは閲覧可能
-  skip_before_action :authenticate_staff!, only: [:index, :new, :create, :show]
-  def index
-    @reservations = Reservation.all.includes(:guest)
-  end
+  #スタッフは全てのアクションにアクセスできる
+  skip_before_action :authenticate_staff!, only: [:index, :show, :new, :create]
+  before_action :set_reservations, only: [:index, :confirm_reservation]
+  before_action :set_reservation, only: [:show, :edit, :update, :edit_reserve, :update_reserve, :destroy]
+  before_action :set_menus, only: [:new, :edit_reserve]
 
+  def index
+  end
 
   def confirm_reservation
     @reservations_on_request = Reservation.on_request.from_today.includes(:guest)
     @reservations_on_reserve = Reservation.on_reserve.from_today.includes(:guest)
-    @reservations = Reservation.all.includes(:guest)
     respond_to do |format|
       format.html
       format.json { @reservations }
@@ -18,6 +20,8 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    menu = Menu.find_by(title: @reservation.treatment_menu)
+    @menu_charge = menu.charge
   end
 
   def new
@@ -26,7 +30,16 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservation.apply!
+    menu = Menu.find_by(course_number: reservation_params[:course])
+    if menu.treatment_time <= 30
+      menu_time = 60 * (menu.treatment_time + 10)
+    else
+      menu_time = 60 * (menu.treatment_time + 20)
+    end
+    @reservation.treatment_menu = menu.title
+    @reservation.treatment_time_menu = menu.treatment_time
+    @reservation.charge_menu = menu.charge
+    @reservation.apply!(menu_time)
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
@@ -38,12 +51,10 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservation = Reservation.find(params[:id])
   end
 
   def update
-    @reservation = Reservation.find(params[:id])
-    title_for_staff_comment = "予約確定 #{@reservation.guest.name}様 #{@reservation.course_i18n}"
+    title_for_staff_comment = "予約確定 #{@reservation.guest.name}様 #{@reservation.treatment_menu}"
     @reservation.update(status: :on_reserve, title_for_guest: "予約確定", title_for_staff: title_for_staff_comment)
     user = User.find(@reservation.guest_id)
     #ゲストへの予約確定メール
@@ -52,25 +63,46 @@ class ReservationsController < ApplicationController
   end
 
   def edit_reserve
-    @reservation = Reservation.find(params[:id])
   end
 
   def update_reserve
-    @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
-      @reservation.apply_reserve!
+      menu = Menu.find_by(course_number: reservation_params[:course])
+      if menu.treatment_time <= 30
+        menu_time = 60 * (menu.treatment_time + 10)
+      else
+        menu_time = 60 * (menu.treatment_time + 20)
+      end
+      @reservation.treatment_menu = menu.title
+      @reservation.treatment_time_menu = menu.treatment_time
+      @reservation.charge_menu = menu.charge
+      @reservation.apply_reserve!(menu_time)
       redirect_to confirm_reservation_reservations_url, notice: "予約を編集しました。"
     end
   end
 
   def destroy
-    @reservation = Reservation.find(params[:id])
+    # @reservation.destroy
     @reservation.destroy
     redirect_to confirm_reservation_reservations_url, notice: "予約を削除しました。"
   end
 
   private
-  def reservation_params
-    params.require(:reservation).permit(:start_time, :course, :comment, :reservation_time, :guest_id)
-  end
+
+    def reservation_params
+      params.require(:reservation).permit(:start_time, :course, :comment, :reservation_time, :guest_id)
+    end
+
+    def set_reservations
+      @reservations = Reservation.all.includes(:guest)
+    end
+
+    def set_reservation
+      @reservation = Reservation.find(params[:id])
+    end
+
+    def set_menus
+      @menus = Menu.all
+    end
+
 end

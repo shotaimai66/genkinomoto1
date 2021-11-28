@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_053006) do
+ActiveRecord::Schema.define(version: 2021_11_20_123508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 2021_11_18_053006) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "menus", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "charge"
+    t.integer "treatment_time"
+    t.integer "course_number", default: 0
+    t.integer "store_id", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "item_id"
@@ -109,6 +120,10 @@ ActiveRecord::Schema.define(version: 2021_11_18_053006) do
     t.integer "guest_id"
     t.datetime "reservation_time"
     t.boolean "holiday_flag", default: false
+    t.boolean "cancel_flag", default: false
+    t.string "treatment_menu"
+    t.string "treatment_time_menu"
+    t.integer "charge_menu"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

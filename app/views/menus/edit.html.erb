@@ -1,0 +1,12 @@
+<% provide(:button_text, '更新') %>
+<%= link_to 'ホーム', root_url, class: "link-gray" %>
+＞
+<%= link_to '施術メニュー一覧', menus_path, class: "link-gray" %>
+
+<div class="container">
+  <div class="center col-md-8 offset-md-2">
+  <h1>施術メニューの編集</h1>
+    <%= render 'form' %>
+  </div>
+</div>
+
