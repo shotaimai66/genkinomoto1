@@ -1,2 +1,23 @@
-<h1>Reservations#show</h1>
-<p>Find me in app/views/reservations/show.html.erb</p>
+<h1 class="test">予約情報詳細</h1>
+<table class="table table-white table-bordered mt-4">
+  <thead class="table-secondary">
+    <tr>
+      <th scope="col">お名前</th>
+      <th scope="col">予約日</th>
+      <th scope="col">予約時間</th>
+      <th scope="col">コース名</th>
+      <th scope="col">料金</th>
+      <th scope="col">現在の予約状態</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @reservation.guest.name %>　<%= @reservation.guest.email %></td>
+      <td><%= l @reservation.start_time, format: :dayonly %></td>
+      <td><%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %></td>
+      <td><%= @reservation.treatment_menu %></td>
+      <td><%= @menu_charge %></td>
+      <td><%= @reservation.status_i18n %></td>
+    </tr>
+  </tbody>
+</table>

@@ -92,6 +92,14 @@ User.create!(
   store_id: 1
 )
 
+User.create!(
+  name: "Sample User2",
+  email: "sample-2@email.com",
+  password: "password",
+  password_confirmation: "password",
+  store_id: 1
+)
+
 Staff.create!(
   name: "Sample Staff1",
   email: "staff-1@email.com",
@@ -125,3 +133,66 @@ Staff.create!(
       image: File.open("app/assets/images/event1.jpg")
     )
 end
+
+Menu.create!(
+  title: "フットケア40分",
+  description: "フットケア40分",
+  charge: 4000,
+  treatment_time: 40,
+  course_number: 1,
+  store_id: 1
+)
+
+Menu.create!(
+  title: "フットケア60分",
+  description: "フットケア60分",
+  charge: 6000,
+  treatment_time: 60,
+  course_number: 2,
+  store_id: 1
+)
+
+Menu.create!(
+  title: "マッサージ30分",
+  description: "マッサージ30分",
+  charge: 3000,
+  treatment_time: 30,
+  course_number: 3,
+  store_id: 1
+)
+
+Menu.create!(
+  title: "マッサージ60分",
+  description: "マッサージ60分",
+  charge: 6000,
+  treatment_time: 60,
+  course_number: 4,
+  store_id: 1
+)
+
+Menu.create!(
+  title: "マッサージ80分",
+  description: "マッサージ80分",
+  charge: 8000,
+  treatment_time: 80,
+  course_number: 5,
+  store_id: 1
+)
+
+Menu.create!(
+  title: "足つぼ30分",
+  description: "足つぼ30分足つぼ30分",
+  charge: 3000,
+  treatment_time: 30,
+  course_number: 6,
+  store_id: 1
+)
+
+Menu.create!(
+  title: "足つぼ45分",
+  description: "足つぼ45分足つぼ45分",
+  charge: 4500,
+  treatment_time: 45,
+  course_number: 7,
+  store_id: 1
+)

@@ -96,6 +96,7 @@ body {
   width: 90%;
 }
 
+
 .header-menu li {
   width: 25%;
   height: 30px;
@@ -408,6 +409,10 @@ h1 {
   border-radius: 10px 10px 0px 0px;
 }
 
+.menu-new-page-btn {
+  margin-bottom:  10px;
+}
+
 .store-card-container {
   display: grid; /* カードの横並び */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* gridの設定 */
@@ -428,5 +433,4 @@ h1 {
 .store-card-title {
   padding: 16px;
   line-height: 1.2;
-  
 }
