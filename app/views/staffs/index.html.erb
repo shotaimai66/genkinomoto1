@@ -19,8 +19,8 @@
         <td><%= staff.name %></td>
           <td><%= staff.email %></td>
           <td>
-            <%= link_to '編集', edit_staff_registration_path, class: "btn btn-sm btn-outline-dark" %>
-            <%= link_to '削除', staff_registration_path, method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
+            <%= link_to '編集', edit_staff_registration_path(staff), class: "btn btn-sm btn-outline-dark" %>
+            <%= link_to '削除', staff_registration_path(staff), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
           </td>
         </tr>
       </tbody>

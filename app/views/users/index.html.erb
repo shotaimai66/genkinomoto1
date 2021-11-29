@@ -21,8 +21,8 @@
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td>
-            <%= link_to '編集', edit_user_registration_path, class: "btn btn-sm btn-outline-dark" %>
-            <%= link_to '削除', user_registration_path, method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
+            <%= link_to '編集', edit_user_registration_path(user), class: "btn btn-sm btn-outline-dark" %>
+            <%= link_to '削除', user_registration_path(user), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
           </td>
         </tr>
       </tbody>
