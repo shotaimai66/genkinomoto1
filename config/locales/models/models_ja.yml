@@ -3,16 +3,48 @@ ja:
     models:
       item: 商品
       order: 注文
+      event: イベント
+      store: 店舗
     attributes:
-        item:
-          id: ID
-          name: 商品名
-          price: 価格
-          quantity: 数量
-          stock: 在庫数
-          description: 詳細
-          image: 画像
-          created_at: 作成日
-          updated_at: 更新日
-        order:
-          quantity: 数量
+      item:
+        id: ID
+        name: 商品名
+        price: 価格
+        quantity: 数量
+        stock: 在庫数
+        description: 詳細
+        image: 画像
+        created_at: 作成日
+        updated_at: 更新日
+      order:
+        quantity: 数量
+      event:
+        title: イベント名
+        category: カテゴリー
+        price: 価格
+        description: 詳細
+        remaining_ticket_numbers: チケット残数
+        first_date: 開催日
+        last_date: 終了日
+        start_time: 開始時間
+        end_time: 終了時間
+        location: 開催場所
+        image: 画像
+      menu:
+        title: 施術メニュー
+        description: 施術内容
+        charge: 料金
+        treatment_time: 施術時間
+        course_number: コース番号
+      store:
+        name: 店舗名
+        address: 住所
+        phone: 電話
+        email: メール
+        line_id: Line ID
+        description: 詳細
+        opening_time: 始業時間
+        closing_time: 終業時間
+        last_order_time: ラストオーダー
+        non_business_day: 定休日
+        image: 画像

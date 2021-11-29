@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # belongs_to :store
+  belongs_to :store
   has_many :reservations
   # A user has only one cart. User > Cart > Orders (join table) > Items
   # dependent: :destroyは未設定なので、Userが削除されてもCartは残る

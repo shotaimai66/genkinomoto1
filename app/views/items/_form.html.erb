@@ -1,17 +1,16 @@
-
 <%= form_with(model: @item, local: true) do |f| %>
  <%#= render partial: 'shared/error_messages', locals: { object: @item } %>
-  <table class="table item-table">
+  <table class="table">
       <tr>
         <td rowspan="3" class="center">
           <div class="form-group">
-            <%= f.label :image %>
+            <%= f.label :image %><br>
             <%= f.file_field :image, id: :item_img %>
 
             <% if @item.image.present? %>
-              <%= image_tag @item.image.url, size: "300", class: "item-image-border", id: :img_prev %>
+              <%= image_tag @item.image.url, size: "300", class: "image-border", id: :img_prev %>
             <% else %>
-              <%= image_tag "/no_image2.png", size: "300", class: "item-image-border", id: :img_prev %>
+              <%= image_tag "/no_image2.png", size: "300", class: "image-border", id: :img_prev %>
             <% end %>
 
             <script type="text/javascript">
@@ -64,7 +63,7 @@
       </tr>
   </table>
   <div class="form-group">
-    <%= f.submit "商品登録", class: "btn btn-md btn-primary" %>
+    <%= f.submit "商品登録", class: "btn btn-sm btn-outline-dark" %>
     <%= link_to 'キャンセル', items_path, class: "link-gray" %>
   </div>
 

@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :guest, class_name: 'User'
-  validates :start_time, presence: true
-  # validates :end_time, presence: true
+  validates :start_time, presence: true, reservation: true
+  validates :end_time, reservation: true
   validates :course, presence: true
   validates :comment, length: { maximum: 200 }
   validate :day_after_today
@@ -16,25 +16,16 @@ class Reservation < ApplicationRecord
     errors.add(:start_time, 'は、10時以降の日時を入力して下さい。') if start_time.hour < 10
   end
 
-  enum course: {
-    course_default: 0, #未設定
-    course_foot_40: 1, #フットケア40分
-    course_foot_60: 2, #フットケア60分
-    course_massage_30: 3, #マッサージ30分
-    course_massage_60: 4, #マッサージ60分
-    course_massage_80: 5, #マッサージ80分
-    course_acupoint_30: 6, #足つぼ30分
-    course_acupoint_45: 7 #足つぼ45分
-  }
-
   enum status: {
     status_default: 0, #未設定
     on_request: 1, #申込中
     on_reserve: 2, #予約確定
+    completed: 3,#施術完了
   }
 
-  def apply!
-    end_time = start_time + end_time_calculate
+  #reservations_controller.rbのcreateアクションで使用
+  def apply!(menu_time)
+    end_time = start_time + menu_time
     self.assign_attributes(
       end_time: end_time,
       status: :on_request,
@@ -43,37 +34,17 @@ class Reservation < ApplicationRecord
     )
   end
 
-  def apply_reserve!
-    end_time = start_time + end_time_calculate
-    title_for_staff_comment = "予約確定 #{self.guest.email}様　#{self.course_i18n}"
+  #reservations_controller.rbのupdate_reserveアクションで使用
+  
+  def apply_reserve!(menu_time)
+    end_time = start_time + menu_time
+    title_for_staff_comment = "予約確定 #{self.guest.name}様　#{self.treatment_menu}"
     self.update(
       end_time: end_time,
       status: :on_reserve,
       title_for_guest: "予約確定",
       title_for_staff: title_for_staff_comment
     )
-  end
-
-  def end_time_calculate
-    if self.course_default?
-      60 * 60
-    elsif self.course_foot_40?
-      60 * 60
-    elsif self.course_foot_60?
-      60 * 80
-    elsif self.course_massage_30?
-      60 * 40
-    elsif self.course_massage_60?
-      60 * 80
-    elsif self.course_massage_80?
-      60 * 100
-    elsif self.course_acupoint_30?
-      60 * 40
-    elsif self.course_acupoint_45?
-      60 * 65
-    else
-      60 * 60
-    end
   end
 
   scope :from_today, -> () {
@@ -88,6 +59,18 @@ class Reservation < ApplicationRecord
   # #指定された日付のデータを抽出
   # scope :in_selected_day, -> (day) {
   #   where(arel_table[:treatment_day].eq(day))
+  # }
+
+  #施術メニューはMenuテーブルでの管理に変更
+  # enum course: {
+  #   course_default: 0, #未設定
+  #   course_foot_40: 1, #フットケア40分
+  #   course_foot_60: 2, #フットケア60分
+  #   course_massage_30: 3, #マッサージ30分
+  #   course_massage_60: 4, #マッサージ60分
+  #   course_massage_80: 5, #マッサージ80分
+  #   course_acupoint_30: 6, #足つぼ30分
+  #   course_acupoint_45: 7 #足つぼ45分
   # }
 
 end

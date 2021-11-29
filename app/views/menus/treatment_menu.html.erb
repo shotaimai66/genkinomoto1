@@ -1,0 +1,48 @@
+<%
+=begin%>
+ <%= link_to 'ホーム', root_url, class: "link-gray" %>
+
+<div class="container">
+  <h1 class="center">
+    施術メニュー一覧
+  </h1>
+  <% if staff_signed_in? %>
+    <div class="right menu-new-page-btn">
+      <p>スタッフ専用</p>
+      <%= link_to "施術メニュー新規登録", new_menu_path, class: "btn btn-md btn-info"%>
+    </div>
+  <% end %>
+  <%= paginate @menus %>
+  <table class="table">
+    <thead>
+      <tr class="center">
+        <th>施術メニュー</th>
+        <th>料金</th>
+        <th>施術時間</th>
+        <% if staff_signed_in? %>
+          <th>コース番号</th>
+          <th>編集／削除</th>
+        <% end %>
+      </tr>
+    </thead>
+    <% @menus.each do |menu| %>
+    <tbody>
+      <tr class="center">
+        <td><%= link_to menu.title, menu_path(menu) %></td>
+        <td><%= menu.charge %>円</td>
+        <td><%= menu.treatment_time %>分</td>
+        <% if staff_signed_in? %>
+          <td><%= menu.course_number %></td>
+          <td>
+            <%= link_to '編集', edit_menu_path(menu), class: 'btn btn-sm btn-primary' %>
+            <%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "#{menu.title}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <%= paginate @menus %>
+</div> 
+<%
+=end%>

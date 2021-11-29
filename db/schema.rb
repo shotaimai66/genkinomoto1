@@ -10,26 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_140356) do
+ActiveRecord::Schema.define(version: 2021_11_20_123508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "event_orders", force: :cascade do |t|
+    t.bigint "cart_id"
+    t.bigint "event_id"
+    t.integer "quantity"
+    t.datetime "paid_at"
+    t.integer "payment_id"
+    t.integer "adult_count"
+    t.integer "child_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_event_orders_on_cart_id"
+    t.index ["event_id"], name: "index_event_orders_on_event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "category"
+    t.integer "price"
+    t.integer "adult_price"
+    t.integer "child_price"
+    t.string "description"
+    t.string "location"
+    t.date "first_date"
+    t.date "last_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.time "start_time_alt"
+    t.time "end_time_alt"
+    t.integer "remaining_ticket_numbers"
+    t.boolean "status", default: false, null: false
+    t.integer "owner_id"
+    t.integer "store_id", default: 1
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "items", force: :cascade do |t|
-    t.integer "store_id"
+    t.integer "store_id", default: 1
     t.string "name"
     t.string "description"
     t.integer "price"
     t.integer "stock"
     t.datetime "purchasing_date"
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "charge"
+    t.integer "treatment_time"
+    t.integer "course_number", default: 0
+    t.integer "store_id", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -47,11 +95,13 @@ ActiveRecord::Schema.define(version: 2021_11_02_140356) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "item_id", null: false
-    t.bigint "cart_id", null: false
+    t.bigint "cart_id"
+    t.bigint "item_id"
     t.integer "quantity"
     t.datetime "paid_at"
     t.integer "payment_id"
+    t.integer "adult_count"
+    t.integer "child_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
@@ -59,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_140356) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.bigint "cart_id", null: false
+    t.bigint "cart_id"
     t.integer "subtotal"
     t.integer "tax"
     t.integer "shipping_fee"
@@ -70,7 +120,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_140356) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "store_id"
+    t.integer "store_id", default: 1
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "title_for_guest"
@@ -82,6 +132,10 @@ ActiveRecord::Schema.define(version: 2021_11_02_140356) do
     t.integer "guest_id"
     t.datetime "reservation_time"
     t.boolean "holiday_flag", default: false
+    t.boolean "cancel_flag", default: false
+    t.string "treatment_menu"
+    t.string "treatment_time_menu"
+    t.integer "charge_menu"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -111,7 +165,16 @@ ActiveRecord::Schema.define(version: 2021_11_02_140356) do
 
   create_table "stores", force: :cascade do |t|
     t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "line_id"
     t.string "address"
+    t.string "description"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.time "last_order_time"
+    t.string "non_business_day"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -145,6 +208,8 @@ ActiveRecord::Schema.define(version: 2021_11_02_140356) do
   end
 
   add_foreign_key "carts", "users"
+  add_foreign_key "event_orders", "carts"
+  add_foreign_key "event_orders", "events"
   add_foreign_key "notifications", "staffs"
   add_foreign_key "notifications", "stores"
   add_foreign_key "orders", "carts"
