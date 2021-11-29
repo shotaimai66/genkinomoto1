@@ -40,7 +40,8 @@
   </table>
   <%= paginate(@notifications) %>
   <div class="text-center">
-    <%= link_to "戻る", staffs_account_path %>
+    <%= link_to "新規作成", new_notification_path, class: "btn btn-primary" %>&nbsp;
+    <%= link_to "戻る", staffs_account_path, class: "btn btn-secondary" %>
   </div>
 
 </div>
