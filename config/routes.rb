@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'users/account', to: 'users#account' # users_account_path
   get 'users/index', to: 'users#index' # users_index_path
   get 'users/show', to: 'users#show' # users_show_path
+  get 'users/admin_edit', to: 'users#admin_edit'
+  patch 'users/admin_update', to: 'users#admin_update'
+  delete 'users/admin_destroy', to: 'users#admin_destroy'
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',

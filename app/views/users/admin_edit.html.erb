@@ -1,8 +1,16 @@
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞
+  <%= link_to 'スタッフページ', staffs_account_path, class: "link-gray" %> ＞
+  <%= link_to 'お客様一覧', users_index_path, class: "link-gray" %>
+  ＞ お客様情報の編集
+</p>
+
 <div class="container-login">
   <h1 class="center">お客様情報の編集</h1>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+  <%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_with(model: @user, url: users_admin_update_path(@user), local: true) do |f| %>
+    <%#= render "users/shared/error_messages", resource: resource %>
 
     <div class="field">
       <span class="required"><%= f.label :name %></span><br />
@@ -34,9 +42,7 @@
       <%= f.radio_button :sex, :no_select %>
     </div><br />
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+    
 
     <div class="field">
       <%= f.label :password %> <i>(変更する場合は入力してください)</i><br />
@@ -83,11 +89,3 @@
       <%= f.submit "更新", class: "btn btn-primary btn-block" %>
     </div>
   <% end %>
-
-  <hr class="devise-link my-5">
-  <div class="form-group">
-    <%= link_to "トップページ", root_path, class: 'btn btn-info btn-block mb-4' %>
-    <%= link_to "退会する", quit_users_path,class: "btn btn-danger btn-block"%>
-    <%#= link_to 'アカウント削除', registration_path(resource_name), data: {confirm: t('本当によろしいですか？')}, method: :delete, class: 'btn btn-danger btn-block' %>
-  </div>
-</div>
