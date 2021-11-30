@@ -1,12 +1,12 @@
 <p>
   <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞
-  <%= link_to 'スタッフページ', staffs_account_path, class: "link-gray" %>
-  ＞ お客様一覧
+  <%= link_to 'スタッフページ', staffs_account_path, class: "link-gray" %> ＞
+  <%= link_to 'お客様一覧', users_index_path, class: "link-gray" %> ＞
+  検索結果
 </p>
 
-
 <div class="container">
-  <h1 class="center">お客様一覧</h1>
+  <h1 class="center">お客様一覧 検索結果</h1>
     <div class="center">
       <%= search_form_for @q, url: users_search_path do |f| %>
         <%= f.search_field :name_cont, class: "search-container" %>
@@ -14,7 +14,6 @@
       <% end %>
     </div>
     <p></p>
-    <%= paginate @users %>
     <table class="table">
       <thead>
         <tr>
@@ -24,7 +23,7 @@
           <th></th>
         </tr>
       </thead>
-    <% @users.each do |user| %>
+    <% @results.each do |user| %>
       <tbody>
         <tr>
           <td><%= user.id %></td>
@@ -38,5 +37,4 @@
       </tbody>
     <% end %>
     </table>
-    <%= paginate @users %>
 </div>

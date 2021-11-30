@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :stores
   get 'users/account', to: 'users#account' # users_account_path
   get 'users/index', to: 'users#index' # users_index_path
+  get 'users/search', to: 'users#search'
   get 'users/show', to: 'users#show' # users_show_path
   get 'users/admin_edit', to: 'users#admin_edit'
   patch 'users/admin_update', to: 'users#admin_update'
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   end
   get 'staffs/account', to: 'staffs#account' # staffs_account_path
   get 'staffs/index', to: 'staffs#index' # staffs_index_path
+  get 'staffs/search', to: 'staffs#search'
   get 'staffs/show', to: 'staffs#show' # staffs_show_path
   get 'staffs/admin_edit', to: 'staffs#admin_edit'
   patch 'staffs/admin_update', to: 'staffs#admin_update'

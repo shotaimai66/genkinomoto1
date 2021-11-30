@@ -5,6 +5,7 @@ ja:
         name: "お名前"
         current_password: "現在のパスワード"
         email: "メールアドレス"
+        phone: "電話番号"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
@@ -24,6 +25,7 @@ ja:
       staff:
         current_password: "現在のパスワード"
         email: "メールアドレス"
+        phone: "電話番号"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"

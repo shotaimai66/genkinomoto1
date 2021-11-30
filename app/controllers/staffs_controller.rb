@@ -1,12 +1,19 @@
 class StaffsController < ApplicationController
   # スタッフのみのログインで以下のアクションが可能
   skip_before_action :authenticate_user!
+  before_action :set_q, only: [:index, :search]
 
   def account
+    store_id = current_staff.store_id
+    @store = Store.find(store_id)
   end
 
   def index
-    @staffs = Staff.all.order(id: "ASC")
+    @staffs = Staff.all.page(params[:page]).per(10).order(id: "ASC")
+  end
+
+  def search
+    @results = @q.result
   end
 
   def admin_edit
@@ -36,7 +43,10 @@ class StaffsController < ApplicationController
   
   private
     def staff_params
-      params.require(:staff).permit(:name, :email, :store_id)
+      params.require(:staff).permit(:name, :email, :phone, :store_id)
     end
-  
+
+    def set_q
+      @q = Staff.ransack(params[:q])
+    end
 end

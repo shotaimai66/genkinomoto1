@@ -66,12 +66,14 @@ Store.create!(
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password"
+  phone = "080-0000-0000"
   store_id = 1
     User.create!(
       name: name,
       email: email,
       password: password,
       password_confirmation: password,
+      phone: phone,
       store_id: store_id
     )
 end
@@ -80,12 +82,14 @@ end
   name  = Faker::Name.name
   email = "staff-#{n+1}@email.com"
   password = "password"
+  phone = "080-0000-0000"
   store_id = 1
   Staff.create!(
     name: name,
     email: email,
     password: password,
     password_confirmation: password,
+    phone: phone,
     store_id: store_id
   )
 end

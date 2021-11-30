@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.integer "authority"
     t.string "name"
     t.string "kana"
+    t.string "phone"
     t.integer "sex"
     t.datetime "birthday"
     t.string "address"
@@ -189,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", default: "", null: false
     t.string "kana"
+    t.string "phone"
     t.integer "sex"
     t.datetime "birthday"
     t.datetime "enter_date"

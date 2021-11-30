@@ -11,17 +11,22 @@
 
     <div class="field">
       <%= f.label :kana %><br />
-      <%= f.text_field :kana, autofocus: true, autocomplete: "kana", class: "form-control", placeholder: "やまだたろう" %>
+      <%= f.text_field :kana, autocomplete: "kana", class: "form-control", placeholder: "やまだたろう" %>
     </div>
 
     <div class="field">
       <span class="required"><%= f.label :email %></span><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "email@eamil.com" %>
+      <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "email@eamil.com" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, autocomplete: "phone", class: "form-control" %>
     </div>
 
     <div class="field">
       <%= f.label :birthday %><br />
-      <%= f.date_select :birthday, autofocus: true, autocomplete: "birthday", start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1), class: "form-control" %>
+      <%= f.date_select :birthday, autocomplete: "birthday", start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1), class: "form-control" %>
     </div>
 
     <div class="field">

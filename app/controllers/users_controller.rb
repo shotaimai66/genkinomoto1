@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
   # indexとshowはスタッフのみのログインで可能
-  skip_before_action :authenticate_user!, only: [:index, :show, :admin_edit, :admin_update, :admin_destroy]
+  skip_before_action :authenticate_user!, only: [:index, :search, :show, :admin_edit, :admin_update, :admin_destroy]
   skip_before_action :authenticate_staff!, only: [:account] # 抜けていたので追記しました
+  before_action :set_q, only: [:index, :search]
 
   def index
-    @users = User.all.order(id: "ASC")
+    @users = User.all.page(params[:page]).per(10).order(id: "ASC")
+  end
+
+  def search
+    @results = @q.result
   end
 
   def admin_edit
@@ -33,6 +38,10 @@ class UsersController < ApplicationController
   end
 
   def account
+    if current_user && !current_user.cart.present?
+      cart = current_user.build_cart
+      cart.save
+    end
     @users = User.where(id: current_user.id)
     # @reservations = Reservation.find_by(guest_id: current_user.id)
     @reservations = Reservation.all.includes(:guest)
@@ -49,12 +58,11 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_q
-      @q = User.ransack(params[:q])
-    end
-
-    def user_params
-      params.require(:user).permit(:name, :email, :kana, :sex, :birthday, :store_id, :postal_code, :prefecture_code, :city, :street, :other_address)
-    end
-
+  def user_params
+    params.require(:user).permit(:name, :email, :phone, :kana, :sex, :birthday, :store_id, :postal_code, :prefecture_code, :city, :street, :other_address)
+  end
+  
+  def set_q
+    @q = User.ransack(params[:q])
+  end
 end
