@@ -16,7 +16,7 @@
       <td><%= l @reservation.start_time, format: :dayonly %></td>
       <td><%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %></td>
       <td><%= @reservation.treatment_menu %></td>
-      <td><%= @menu_charge %></td>
+      <td><%= @reservation.charge_menu %>円</td>
       <td><%= @reservation.status_i18n %></td>
     </tr>
   </tbody>
