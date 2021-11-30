@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/abhinavmathur/quilljs-rails.git
+  revision: bd877441a4c48333104744e9b482c940ab9815e7
+  specs:
+    quilljs-rails (0.0.3)
+
+GIT
   remote: https://github.com/kaminari/kaminari
   revision: 6318b9a36a994f07be3e252b2161d220ff1da5ff
   specs:
@@ -81,7 +87,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.9.1)
+    bootsnap (1.9.3)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -135,7 +141,7 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     ffi (1.15.4)
-    globalid (0.5.2)
+    globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
     http-accept (1.7.0)
@@ -267,11 +273,11 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
-    spring (3.0.0)
+    spring (3.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.4.0)
+    sprockets-rails (3.4.1)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
@@ -326,6 +332,7 @@ DEPENDENCIES
   payjp
   pg (~> 1.1)
   puma (~> 5.0)
+  quilljs-rails!
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   ransack
