@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.boolean "display_flag", default: true
+    t.bigint "staff_id"
+    t.bigint "store_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_notifications_on_staff_id"
+    t.index ["store_id"], name: "index_notifications_on_store_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "item_id"
@@ -198,6 +210,8 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
   add_foreign_key "carts", "users"
   add_foreign_key "event_orders", "carts"
   add_foreign_key "event_orders", "events"
+  add_foreign_key "notifications", "staffs"
+  add_foreign_key "notifications", "stores"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "items"
   add_foreign_key "payments", "carts"

@@ -38,6 +38,8 @@ gem 'carrierwave'
 # 検索機能
 gem 'ransack'
 gem 'payjp'
+gem 'quilljs-rails', :git => 'git://github.com/abhinavmathur/quilljs-rails.git'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
