@@ -5,6 +5,10 @@
 
 <div class="container">
   <h1 class='center'>スタッフページ</h1>
+  <div class="right">
+     <%= link_to "#{current_staff.name} さんのプロフィール編集",edit_staff_registration_path, class: "btn btn-sm btn-outline-dark" %>
+  </div>
+  <p></p>
   <div class='row justify-content-between'>
     <div class='card col-sm-2'>
       <div class='card-body'>

@@ -8,9 +8,7 @@
 <div class="container-login">
   <h1 class="center">お客様情報の編集</h1>
 
-  <%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= form_with(model: @user, url: users_admin_update_path(@user), local: true) do |f| %>
-    <%#= render "users/shared/error_messages", resource: resource %>
 
     <div class="field">
       <span class="required"><%= f.label :name %></span><br />
@@ -42,20 +40,6 @@
       <%= f.radio_button :sex, :no_select %>
     </div><br />
 
-    
-
-    <div class="field">
-      <%= f.label :password %> <i>(変更する場合は入力してください)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "６文字以上入力してください" %>
-      <% if @minimum_password_length %>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %> <i>(変更する場合は入力してください)</i><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "６文字以上入力してください" %>
-    </div>
-
     <div class="field">
       <%= f.label :postal_code %><br>
       <%= f.text_field :postal_code, class: "form-control", placeholder: "ハイフンなし" %>
@@ -80,12 +64,7 @@
       <%= f.text_field :other_address, class: "form-control", placeholder: "必要な場合入力してください" %>
     </div>
 
-    <%# div class="field" %>
-      <%#= f.label :current_password %><%# br / %>
-      <%#= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "変更を完了させたい場合は入力してください" %>
-    <%# /div %>
-
     <div class="actions">
-      <%= f.submit "更新", class: "btn btn-primary btn-block" %>
+      <%= f.submit "更新", class: "btn btn-sm btn-outline-dark" %>
     </div>
   <% end %>

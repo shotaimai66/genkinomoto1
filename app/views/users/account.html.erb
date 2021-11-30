@@ -4,6 +4,11 @@
 </p>
 
 <div class="container">
+<h1 class="center">お客様ページ</h1>
+<div class="right">
+    <%= link_to "#{current_user.name} さまのプロフィール編集",edit_user_registration_path, class: "btn btn-sm btn-outline-dark"  %>
+</div>
+<p></p>
 <h2><%= current_user.name %>様のご予約は件ございます。</h2><br>
 
   <h3 class="text-center">-- 現在の予約状況 --</h3>
@@ -61,7 +66,5 @@
     </tbody>
   </table>
 
-<div class="round-square-top">
-    <%= link_to "ユーザー情報編集",edit_user_registration_path, class: "btn btn-primary"  %>
-</div>
+
 </div>

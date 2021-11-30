@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   get 'staffs/account', to: 'staffs#account' # staffs_account_path
   get 'staffs/index', to: 'staffs#index' # staffs_index_path
   get 'staffs/show', to: 'staffs#show' # staffs_show_path
+  get 'staffs/admin_edit', to: 'staffs#admin_edit'
+  patch 'staffs/admin_update', to: 'staffs#admin_update'
+  delete 'staffs/admin_destroy', to: 'staffs#admin_destroy'
   devise_for :staffs, controllers: {
     sessions:      'staffs/sessions',
     passwords:     'staffs/passwords',

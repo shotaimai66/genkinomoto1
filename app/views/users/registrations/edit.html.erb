@@ -74,10 +74,10 @@
       <%= f.text_field :other_address, class: "form-control", placeholder: "必要な場合入力してください" %>
     </div>
 
-    <%# div class="field" %>
-      <%#= f.label :current_password %><%# br / %>
-      <%#= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "変更を完了させたい場合は入力してください" %>
-    <%# /div %>
+    <div class="field">
+      <%= f.label :current_password %><br>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "変更を完了させたい場合は入力してください" %>
+    </div>
 
     <div class="actions">
       <%= f.submit "更新", class: "btn btn-primary btn-block" %>

@@ -42,9 +42,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
     # 「現在のパスワード」無しで更新できる
-    def update_resource(resource, params)
-      resource.update_without_password(params)
-    end
+    # def update_resource(resource, params)
+    #   resource.update_without_password(params)
+    # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

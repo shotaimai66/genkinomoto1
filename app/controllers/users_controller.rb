@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def admin_update
     @user = User.find(params[:format])
-    if @user.update(user_params)
+    if @user.update!(user_params)
       flash[:success] = "#{@user.name} さんの情報を更新しました。"
       redirect_to users_index_path(current_staff)
     else
