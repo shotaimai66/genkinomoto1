@@ -12,11 +12,18 @@
     </div>
   </div>
 
-  <div>
-    <%= link_to "編集", edit_notification_path(@notification), class: "btn btn-success" %>&nbsp;
-    <%= link_to "削除", notification_path(@notification), method: :delete, data:{ confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>&nbsp;
-  </div>
-  <div class="text-center">
-    <%= link_to "戻る", staffs_account_path %>
-  </div>
+  <% if current_staff %>
+    <div>
+      <%= link_to "編集", edit_notification_path(@notification), class: "btn btn-success" %>&nbsp;
+      <%= link_to "削除", notification_path(@notification), method: :delete, data:{ confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>&nbsp;
+    </div>
+    <div class="text-center">
+      <%= link_to "戻る", staffs_account_path %>
+    </div>
+  <% else %>
+    <div class="text-center">
+      <%= link_to "トップへ戻る", root_path %>
+    </div>
+  <% end %>
+
 </div>
