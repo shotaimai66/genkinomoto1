@@ -3,7 +3,15 @@ json.array! @reservations do |reservation|
   # reservation.cancel_flagがfalseの予約データのみイベントを作成
   if reservation.cancel_flag == false
     json.id reservation.id
-    json.title reservation.title_for_guest
+    if user_signed_in?
+      if current_user.id == reservation.guest_id
+        json.title reservation.title_for_guest
+      else
+        json.title '予約済み'
+      end
+    else
+      json.title '予約済み'
+    end
     json.start reservation.start_time
     json.end reservation.end_time
     # ログインしているユーザーの場合、自分の予約詳細に遷移できるURLを生成する

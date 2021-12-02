@@ -12,9 +12,18 @@ class ReservationValidator < ActiveModel::EachValidator
 
     # 重複する期間を検索(編集時は自期間を除いて検索)
     if record.id.present?
-      not_own_periods = Reservation.where('id NOT IN (?) AND start_time <= ? AND end_time >= ?', record.id, new_end_time, new_start_time)
+      if user_signed_in?
+        if current_user.id == reservation.guest_id
+          not_own_periods = Reservation.where('id NOT IN (?) AND start_time <= ? AND end_time >= ?', record.id, new_end_time, new_start_time)
+        end
+      end
     else
-      not_own_periods = Reservation.where('start_time <= ? AND end_time >= ?', new_end_time, new_start_time)
+      if user_signed_in?
+        if current_user.id == reservation.guest_id
+          not_own_periods = Reservation.where('start_time <= ? AND end_time >= ?', new_end_time, new_start_time)
+        end
+      end
+      
     end
     
 

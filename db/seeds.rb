@@ -108,6 +108,14 @@ Staff.create!(
   store_id: 1
 )
 
+Staff.create!(
+  name: "Sample Staff2",
+  email: "staff-2@email.com",
+  password: "password",
+  password_confirmation: "password",
+  store_id: 1
+)
+
 20.times do |n|
   title = "イベント-#{n+1} サンプルイベント"
   category = "屋外イベント"

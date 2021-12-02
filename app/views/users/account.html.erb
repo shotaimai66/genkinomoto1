@@ -4,8 +4,8 @@
 </p>
 
 <div class="container">
-  <% count_reservations = @reservations.where(cancel_flag: false).where.not(status: 3) %>
-  <h2><%= current_user.name %>様のご予約は<%= count_reservations.count %>件ございます。</h2><br>
+  <% current_reservations = @reservations.where(cancel_flag: false).where.not(status: 3) %>
+  <h2><%= current_user.name %>様のご予約は<%= current_reservations.count %>件ございます。</h2><br>
 
   <h3 class="text-center">-- 現在の予約状況 --</h3>
   <table class="table table-bordered table-condesend">
@@ -20,8 +20,7 @@
         <th>予約状況</th>
       </tr>
     </thead>
-    <% current_reservations = @reservations.where(cancel_flag: false).where.not(status: 3) %>
-    <% current_reservations.each do |reserve| %>
+    <% current_reservations.order(status: :desc).each do |reserve| %>
       <tbody>
         <tr>
           <td><%= reserve.id %></td>
@@ -53,7 +52,7 @@
       </tr>
     </thead>
     <% completed_reservations = @reservations.where(cancel_flag: false).where(status: 3) %>
-    <% completed_reservations.each do |reserve| %>
+    <% completed_reservations.order(status: :desc).each do |reserve| %>
       <tbody> 
         <tr>
           <td><%= reserve.id %></td>

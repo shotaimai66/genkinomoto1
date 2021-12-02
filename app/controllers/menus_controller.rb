@@ -1,12 +1,16 @@
 class MenusController < ApplicationController
   #スタッフは全てのアクションにアクセスできる
   skip_before_action :authenticate_user!
-  #ログイン済/未に関係無くゲストは{index,show}アクションのみアクセスできる
-  skip_before_action :authenticate_staff!, only: [:index, :show]
+  #ログイン済/未に関係無くゲストは{treatment_menu,index,show}アクションのみアクセスできる
+  skip_before_action :authenticate_staff!, only: [:treatment_menu, :index, :show]
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
-    
+
+  def treatment_menu
+    @menus = Menu.all
+  end
+
   def index
-    @menus = Menu.all.page(params[:page]).per(6)
+    @menus = Menu.page(params[:page]).per(10)
   end
 
   def show

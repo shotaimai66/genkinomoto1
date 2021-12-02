@@ -31,6 +31,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     menu = Menu.find_by(course_number: reservation_params[:course])
+    # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
     if menu.treatment_time <= 30
       menu_time = 60 * (menu.treatment_time + 10)
     else
@@ -94,7 +95,7 @@ class ReservationsController < ApplicationController
     end
 
     def set_reservations
-      @reservations = Reservation.all.includes(:guest)
+      @reservations = Reservation.includes(:guest)
     end
 
     def set_reservation
