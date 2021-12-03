@@ -72,9 +72,13 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
   end
 
   create_table "menus", force: :cascade do |t|
+    t.string "category"
+    t.integer "category_order"
+    t.string "category_title"
+    t.integer "title_order"
     t.string "title"
-    t.string "description"
     t.integer "charge"
+    t.string "description"
     t.integer "treatment_time"
     t.integer "course_number", default: 0
     t.integer "store_id", default: 1

@@ -6,116 +6,43 @@
     <div id="page_contents" class="menu">
       <div class="block01 clearfix">
         <h3>メニュー・料金</h3>
-        <p>表示の時間はいずれのコースも施術時間を表示しております。
-        <br>
+        <p>
+          表示の時間はいずれのコースも施術時間を表示しております。
+          <br>
           お着替え等の時間は含まれておりませんので、コース所要時間に10分ほどプラスしてお考え下さいませ。
         </p>
       </div>
-      <div class="block01 clearfix">
-        <h4 id="menu_01">　Foot Care　~フットケア~</h4>
-        <ul class="menu_box clearfix">
-          <li>
-            <div class="title">初回</div>
-            <p>フットケア　40分　<span class="float-right">4,200円</span></p>
-            <p>
-              <div class="course_box">
-                下記から1つお選びください。<br>
-                ・足のネイルケア・タコ、ウオノメ除去<br>
-                ・角質除去・座りダコ<br>
-              </div>
-            </p>
-            <hr width=90% size=3>
-            <p>フットケア　60分　<span class="float-right">6,300円</span></p>
-            <p>
-              <div class="course_box">
-                足全体のお手入れ
-              </div>
-            </p>
-          </li>
 
-          <li>
-            <div class="title">通常</div>
-            <p>ネイルケア 40分<span class="float-right">6,000円</span></p>
-            <p>
-              <div class="course_box">
-                （爪のカット・甘皮ケア・爪溝のゴミ除去・コーティング）
-              </div>
-            </p>
-            <hr width=90% size=3>
-            <p>フットケア 40分<span class="float-right">6,000円</span></p>
-            <p>
-              <div class="course_box">
-                （タコ、ウオノメ、角質除去・スクラブトリートメント・保湿ケア）
-              </div>
-            </p>
-            <hr width=90% size=3>
-            <p>スペシャルセット 60分<span class="float-right">9,000円</span></p>
-            <p>
-              <div class="course_box">
-              （ネイルケア＋フットケアのスペシャルセットケア）
-              </div>
-            </p>
-          </li>
-
-          <li>
-            <div class="title">巻き爪補正</div>
-            <p>取り付け<span class="float-right">3,000円/1本</span></p>
-            <p>
-              <div class="course_box">
-                ※ネイルケアまたはフットケアとセットでご予約ください。
-              </div>
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="block01 clearfix">
-        <h4 id="menu_01">　Body Care　~ボディケア~</h4>
-        <ul class="menu_box clearfix">
-          <li>
-            <div class="title">全身</div>
-            <p>全身　80分　<span class="float-right">8,360円</span></p>
-            <hr width=90% size=3>
-            <p>全身　50分　<span class="float-right">5,170円</span></p>
-            <p>
-              <div class="course_box">
-                ※首や肩や腰など気になる部分を中心に揉みほぐします。
-              </div>
-            </p>
-          </li>
-          <li>
-            <div class="title">足ツボ</div>
-            <p>足ツボ 45分<span class="float-right">4,800円</span><p>
-            <p>
-              <div class="course_box">
-                ※ふくらはぎや足裏の反射区をクリームを使ってしっかりと施術します。
-              </div>
-            </p>
-            <hr width=90% size=3>
-            <p>足ツボ 30分<span class="float-right">3,190円</span></p>
-            <p>
-              <div class="course_box">
-                ※ひざから下をクリームを使って施術します。
-              </div>
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="block01 clearfix">
-        <h4 id="menu_01">　Topping　~トッピング~</h4>
-        <ul class="menu_box clearfix">
-          <li>
-            <div class="title">全身</div>
-            <p>30分　<span class="float-right">3,190円</span></p>
-            <p>
-              <div class="course_box">
-                ※背中、肩など気になる部分を中心に圧してほぐします。
-              </div>
-            </p>
-          </li>
-        </ul>
-      </div>
+      <% @menus.select(:category, :category_order).distinct.order(category_order: :asc).each do |menu| %>
+        <div class="block01 clearfix">
+          <h4 id="menu_01">　<%= menu.category %></h4>
+          <ul class="menu_box clearfix">
+            <% @menus.where(category: menu.category).select(:category_title, :title_order).distinct.order(title_order: :asc).each do |title_menu| %>
+              <li>
+                <div class="title"><%= title_menu.category_title %></div>
+                <% @menus.where(category: menu.category).where(category_title: title_menu.category_title)
+                          .select(:title, :charge, :description, :course_number).distinct
+                          .order(course_number: :asc).each_with_index do |title, index|
+                %>
+                  <% unless index == 0 %>
+                    <hr width=90% size=3>
+                  <% end %>
+                  <p>
+                    <%= title.title %>　<span class="float-right"><%= title.charge.to_s(:delimited) %>円
+                    <% if title_menu.category_title ==  "巻き爪補正" %>
+                      /１本
+                    <% end %>
+                    </span>
+                  </p>
+                  <p>
+                    <div class="course_box"><%=safe_join(title.description.split("\n"),tag(:br))%></div>
+                  </p>
+              <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
     <div class="block01 clearfix">
       <p>※クレジットカードがご利用いただけます。</p>

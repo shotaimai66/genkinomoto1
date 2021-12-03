@@ -1,8 +1,8 @@
 class Reservation < ApplicationRecord
   belongs_to :guest, class_name: 'User'
   # reservation: trueを記述する事でreservation_validator.rbのバリデーションを有効にする
-  validates :start_time, presence: true, reservation: true
-  validates :end_time, reservation: true
+  # validates :start_time, presence: true, reservation: true
+  # validates :end_time, reservation: true
   validates :course, presence: true
   validates :comment, length: { maximum: 200 }
   validate :day_after_today

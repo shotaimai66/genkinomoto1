@@ -143,6 +143,12 @@ body {
   z-index: 99; //一番上にくる
 }
 
+.page-info {
+  font-size: 1em;
+  color: rgb(24, 24, 24);
+  margin-bottom: 20px;
+}
+
 .card {
   margin-bottom: 20px;
 }
@@ -419,7 +425,7 @@ h1 {
 }
 
 .menu-new-page-btn {
-  margin-bottom:  10px;
+  margin-bottom:  20px;
 }
 
 .store-card-container {
@@ -444,7 +450,7 @@ h1 {
   line-height: 1.2;
 }
 
-// ユーザー用施術一覧メニュー画面
+// ユーザー用施術一覧メニュー画面で使用(/treatment_menu)
   .clearfix::after {
     content: "";
     display: block;
