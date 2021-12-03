@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # indexとshowはスタッフのみのログインで可能
-  skip_before_action :authenticate_user!, only: [:index, :search, :show, :admin_edit, :admin_update, :admin_destroy]
+  skip_before_action :authenticate_user!, only: [:index, :search, :show, :admin_new, :admin_create, :admin_edit, :admin_update, :admin_destroy]
   skip_before_action :authenticate_staff!, only: [:account] # 抜けていたので追記しました
   before_action :set_q, only: [:index, :search]
 
@@ -10,6 +10,26 @@ class UsersController < ApplicationController
 
   def search
     @results = @q.result
+  end
+
+  def show
+    @user = User.find(params[:format])
+    @store = Store.find(@user.store_id)
+  end
+
+  def admin_new
+    @user = User.new
+  end
+
+  def admin_create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "#{@user.name} さんが新規登録されました"
+      redirect_to users_index_path(current_user)
+    else
+      flash[:danger] = "新規お客様の登録に問題がありました"
+      render :admin_new
+    end
   end
 
   def admin_edit
@@ -59,7 +79,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :phone, :kana, :sex, :birthday, :store_id, :postal_code, :prefecture_code, :city, :street, :other_address)
+    params.require(:user).permit(:name, :email, :phone, :kana, :sex, :birthday, :store_id, :postal_code, :prefecture_code, :city, :street, :other_address, :password, :password_confirmation)
   end
   
   def set_q

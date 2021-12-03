@@ -16,8 +16,30 @@ class StaffsController < ApplicationController
     @results = @q.result
   end
 
+  def show
+    @staff = Staff.find(params[:format])
+    store_id = @staff.store_id
+    @store = Store.find(store_id)
+  end
+
+  def admin_new
+    @staff = Staff.new
+  end
+
+  def admin_create
+    @staff = Staff.new(staff_params)
+    if @staff.save
+      flash[:success] = "#{@staff.name} さんが新規登録されました"
+      redirect_to staffs_index_path(current_staff)
+    else
+      flash[:danger] = "新規スタッフの登録に問題がありました"
+      render :admin_new
+    end
+  end
+
   def admin_edit
     @staff = Staff.find(params[:format])
+    @stores = Store.all
   end
 
   def admin_update
@@ -43,7 +65,7 @@ class StaffsController < ApplicationController
   
   private
     def staff_params
-      params.require(:staff).permit(:name, :email, :phone, :store_id)
+      params.require(:staff).permit(:name, :email, :phone, :store_id, :password, :password_confirmation)
     end
 
     def set_q

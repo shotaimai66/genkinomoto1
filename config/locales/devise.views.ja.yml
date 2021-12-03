@@ -6,6 +6,7 @@ ja:
         current_password: "現在のパスワード"
         email: "メールアドレス"
         phone: "電話番号"
+        store_id: "所属店舗"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
@@ -24,8 +25,10 @@ ja:
         exit_date: "退会日"
       staff:
         current_password: "現在のパスワード"
+        name: "お名前"
         email: "メールアドレス"
         phone: "電話番号"
+        store_id: "所属店舗"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"

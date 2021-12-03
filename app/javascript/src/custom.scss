@@ -32,14 +32,16 @@ li {
   font-size: 1rem;
 }
 
+// smartphone first
 body {
+  width: 100%;
   color: #000;
   background: #fff;
-  padding-top: 6rem;
   padding-bottom: 4rem;
-  // background-image: image-url('orange_bg1.png');
-  // background-color:rgba(255,255,255,0.4); //背景画像の色を薄くする場合① ①②の両方が必要
-  // background-blend-mode:lighten; //背景画像の色を薄くする場合② ①②の両方が必要
+  padding-top:11rem;
+  @media (min-width: 600px) { //600px以上の場合
+    padding-top: 6rem;
+  }
 }
 
 .center {
@@ -74,37 +76,94 @@ body {
   color: #fff;
 }
 
+/* header */
+
 .header {
   background-color: #fff;
   border-bottom: 5px solid gray;
   opacity: 0.85;
-  // height: 6em;
   top: 0em;
   width: 100%;
   position: fixed;
   z-index: 90;
 }
 
-.logo {
-  margin-left: 20px;
+// smartphone first
+#logo {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 600px) { //600px以上の場合
+    margin-left: 20px;
+  }
 }
 
-.header-menu {
-  list-style: none;
-  overflow: hidden;
-  margin: 0 0 0 auto;
-  width: 90%;
+// for dropdown buttons
+.dropdown-menu {
+  z-index: 99; //一番上にくる
 }
 
+// smartphone first
+.header-user-buttons {
+  z-index: 90;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 600px) { //600px以上の場合
+    top: 10px;
+    right: 20px;
+    position: fixed;
+  }
+  li {
+    float: left;
+  }
+}
 
-.header-menu li {
-  width: 25%;
-  height: 30px;
+// smartphone first
+ul.header-service-tabs {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   text-align: center;
-  background-color: #fff;
-  float: left;
-  border-right: 1px solid gray;
-  // position: relative;
+  margin-bottom: 0;
+  li {
+    width: 24%;
+    height: 50px;
+    margin-right: 1%;
+    font-size: 0.8rem;
+    text-align: center;
+    float: left;
+    display: block;
+    background-color: #2b7aaf;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  .link {
+    color: #fff;
+    text-decoration: none;
+  }
+  @media (min-width: 600px) { //600px以上の場合
+    margin-left: auto;
+    margin-right: auto;
+    
+    li {
+      width: 25%;
+      height: auto;
+      font-size: 1rem;
+      margin-right: 0;
+      background-color: #fff;
+      float: left;
+      border-right: 2px solid gray;
+      border-radius: 0;
+    }
+    .link {
+      color: #333333;
+      background-color: #fff;
+      text-decoration: none;
+    }
+  }
 }
 
 .nav {
@@ -112,27 +171,11 @@ body {
   color: #000;
 }
 
-.dropdown-menu {
-  z-index: 99; //一番上にくる
+.top-staff-button {
+  margin-bottom: 5px;
 }
 
-.header-customer {
-  text-align: right;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 90;
-}
-
-.header-staff {
-  text-align: left;
-  position: fixed;
-  left: 10px;
-  float: left;
-  vertical-align: middle;
-}
-
-
+/* footer */
 
 .footer {
   position: fixed;
@@ -375,9 +418,9 @@ h1 {
 }
 
 #design-hr {
-	height: 10px;
-	border: 0;
-	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
 }
 
 .split-content-right {

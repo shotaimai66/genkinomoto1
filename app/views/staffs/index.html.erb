@@ -4,7 +4,9 @@
   ＞ スタッフ一覧
 </p>
 <div class="container">
-  <h1 class="center">スタッフ一覧</h1>
+  <div class="right">
+    <%= link_to "スタッフ新規作成", staffs_admin_new_path, class: "link-black btn btn-sm btn-outline-dark" %>
+  </div>
   <div class="center">
     <%= search_form_for @q, url: staffs_search_path do |f| %>
       <%= f.search_field :name_cont, class: "search-container" %>
@@ -15,21 +17,25 @@
   <%= paginate @staffs %>
   <table class="table">
     <thead>
-      <tr>
-        <th>ID</th>
+      <tr class="center">
+        <th>従業員ID</th>
         <th>氏名</th>
-        <th>メール</th>
+        <th>電話番号</th>
+        <th>所属店舗</th>
         <th></th>
       </tr>
     <% @staffs.each do |staff| %>
     <tbody>
-      <tr>
-        <td><%= staff.id %></td>
-        <td><%= staff.name %></td>
-        <td><%= staff.email %></td>
+      <tr class="center">
+        <td><%= link_to staff.id, staffs_show_path(staff), class: "link-black" %></td>
+        <td><%= link_to staff.name, staffs_show_path(staff), class: "link-black" %></td>
+        <td><%= link_to staff.phone, staffs_show_path(staff), class: "link-black" %></td>
+        <td><%= link_to Store.find(staff.store_id).name, staffs_show_path(staff), class: "link-black" %></td>
         <td>
           <%= link_to '編集', staffs_admin_edit_path(staff), class: "btn btn-sm btn-outline-dark" %>
-          <% unless staff == current_staff %>
+          <% if staff == current_staff %>
+            <%= link_to '削除', "#", class: "btn btn-sm btn-outline-secondary" %>
+          <% else %>
             <%= link_to '削除', staffs_admin_destroy_path(staff), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
           <% end %>
         </td>
