@@ -126,9 +126,6 @@ ul.header-service-tabs {
   padding-right: 10px;
   margin-left: 10px;
   margin-right: 10px;
-.header-menu li {
-  width: 25%;
-  height: 30px;
   text-align: center;
   margin-bottom: 0;
   li {
@@ -200,6 +197,10 @@ ul.header-service-tabs {
 
 .card {
   margin-bottom: 20px;
+}
+
+.card-body {
+  background-color: lightgray;
 }
 
 h1 {
