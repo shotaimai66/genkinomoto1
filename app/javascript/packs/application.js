@@ -20,3 +20,7 @@ ActiveStorage.start()
 
 // モーダルが開かないので追記
 window.jQuery = window.$ = require('jquery')
+
+// 写真
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)
