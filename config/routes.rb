@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get 'static_pages/notification', to: 'static_pages#notification'
   resources :menus do
     collection do
       get :treatment_menu

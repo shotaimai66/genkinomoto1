@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="text-center">
-    <h1>お知らせ</h1>
+  <div class="notification-show-image bg-info d-flex align-items-center justify-content-center">
+    <span>お知らせ</span>
   </div>
 
   <div class="notification-wrrapper">  
     <div>
-      <h2><%= @notification.title %></h2><hr id="design-hr">
+      <h4 class="text-center"><%= @notification.title %></h4><hr id="design-hr">
     </div><br />
     <div>
       <p><%== @notification.body %></p>
@@ -13,16 +13,14 @@
   </div>
 
   <% if current_staff %>
-    <div>
+    <div class="text-center">
       <%= link_to "編集", edit_notification_path(@notification), class: "btn btn-success" %>&nbsp;
       <%= link_to "削除", notification_path(@notification), method: :delete, data:{ confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>&nbsp;
-    </div>
-    <div class="text-center">
-      <%= link_to "戻る", staffs_account_path %>
+      <%= link_to "スタッフトップへ", staffs_account_path, class:"btn btn-secondary" %>
     </div>
   <% else %>
     <div class="text-center">
-      <%= link_to "トップへ戻る", root_path %>
+      <%= link_to "お知らせ一覧へ", static_pages_notification_path, class: "btn btn-lg btn-outline-secondary mt-1" %>
     </div>
   <% end %>
 

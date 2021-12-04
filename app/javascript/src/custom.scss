@@ -164,6 +164,12 @@ h1 {
   padding: 20px;
   height: 200px;
   margin-bottom: 20px;
+  ul {
+    padding-left: 20px;
+  }
+  span{
+    padding-left: 20px;
+  }
 }
 
 .top-split-content1 {
@@ -368,18 +374,6 @@ h1 {
   float: left;
 }
 
-.notification-wrrapper {
-  background-color: #DEFFDE;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-#design-hr {
-	height: 10px;
-	border: 0;
-	box-shadow: 0 10px 10px -10px #8c8b8b inset;
-}
-
 .split-content-right {
   width: 40%;
   float: left;
@@ -445,4 +439,66 @@ h1 {
 .store-card-title {
   padding: 16px;
   line-height: 1.2;
+}
+
+.Editlink {
+  text-decoration: none;
+  color: #444 ;
+}
+
+// お知らせ notification
+.notification-image {
+  background-image: url("../images/notification-top.jpg");
+  max-width: 100%;
+  height: 450px;
+  background-size: cover;  
+  background-position: center center;
+  border-radius: 20px;
+  span {
+    color: whitesmoke;
+    font-size: 2.8rem;
+    text-align: center;
+    text-shadow: 1px 2px 3px #808080;
+  }
+}
+
+.notification-show-image {
+  background-image: url("../images/notification-show.jpg");
+  max-width: 100%;
+  height: 450px;
+  background-size: cover;  
+  background-position: center center;
+  border-radius: 20px;
+  span {
+    color: whitesmoke;
+    font-size: 2.8rem;
+    text-align: center;
+    text-shadow: 1px 2px 3px #808080;
+  }
+}
+
+.notification-body {
+  margin-top: 30px;
+  li {
+    padding-bottom: 20px;
+  }
+}
+
+.notification-wrrapper {
+  background-color: #FFFFFA;
+  margin-top: 30px;
+  padding: 20px 20px 50px 20px;
+  margin-bottom: 20px;
+  color: #444;
+  h4 {
+    color: #444;
+    padding-top: 50px;
+  }
+}
+
+#design-hr {
+  height: 1px;
+  background-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#ccc), to(transparent));
+  background-image: linear-gradient(to right, transparent, #ccc, transparent);
+  margin: 30px auto;
 }
