@@ -4,8 +4,32 @@
     <tr>
       <td>
         <div class="form-group">
-          <%= f.label :course_number %>
-          <%= f.number_field :course_number, class: "form-control" %>
+          <%= f.label :category %>
+          <%= f.text_field :category, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :category_order %>
+          <%= f.number_field :category_order, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :category_title %>
+          <%= f.text_field :category_title, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.label :title_order %>
+          <%= f.number_field :title_order, class: "form-control" %>
         </div>
       </td>
     </tr>
@@ -28,6 +52,14 @@
     <tr>
       <td>
         <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
           <%= f.label :treatment_time %>
           <%= f.number_field :treatment_time, class: "form-control" %>
         </div>
@@ -36,8 +68,8 @@
     <tr>
       <td>
         <div class="form-group">
-          <%= f.label :description %>
-          <%= f.text_area :description, class: "form-control" %>
+          <%= f.label :course_number %>
+          <%= f.number_field :course_number, class: "form-control" %>
         </div>
       </td>
     </tr>
