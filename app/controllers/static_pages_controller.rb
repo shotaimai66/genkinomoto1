@@ -13,5 +13,4 @@ class StaticPagesController < ApplicationController
   def notification
     @notifications = Notification.page(params[:page]).per(10).where(display_flag: true).order(created_at: "ASC")
   end
-
 end
