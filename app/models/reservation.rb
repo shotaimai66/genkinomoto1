@@ -1,7 +1,8 @@
 class Reservation < ApplicationRecord
   belongs_to :guest, class_name: 'User'
-  validates :start_time, presence: true, reservation: true
-  validates :end_time, reservation: true
+  # reservation: trueを記述する事でreservation_validator.rbのバリデーションを有効にする
+  # validates :start_time, presence: true, reservation: true
+  # validates :end_time, reservation: true
   validates :course, presence: true
   validates :comment, length: { maximum: 200 }
   validate :day_after_today
@@ -20,7 +21,7 @@ class Reservation < ApplicationRecord
     status_default: 0, #未設定
     on_request: 1, #申込中
     on_reserve: 2, #予約確定
-    completed: 3,#施術完了
+    completed: 3, #施術完了
   }
 
   #reservations_controller.rbのcreateアクションで使用

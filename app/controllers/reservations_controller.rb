@@ -6,6 +6,8 @@ class ReservationsController < ApplicationController
   before_action :set_reservations, only: [:index, :confirm_reservation]
   before_action :set_reservation, only: [:show, :edit, :update, :edit_reserve, :update_reserve, :destroy]
   before_action :set_menus, only: [:new, :edit_reserve]
+  # :end_timeが現在時刻を過ぎているデータは:statusをcompleted(施術完了)にする
+  before_action :reservation_completed, only: [:index]
 
   def index
   end
@@ -20,8 +22,6 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    menu = Menu.find_by(title: @reservation.treatment_menu)
-    @menu_charge = menu.charge
   end
 
   def new
@@ -31,6 +31,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     menu = Menu.find_by(course_number: reservation_params[:course])
+    # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
     if menu.treatment_time <= 30
       menu_time = 60 * (menu.treatment_time + 10)
     else
@@ -82,8 +83,8 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    # @reservation.destroy
-    @reservation.destroy
+    # cancel_flagをtrueにする事で論理削除実施 & ステータスを施術完了に切り替え
+    @reservation.update(cancel_flag: true, status: 3)
     redirect_to confirm_reservation_reservations_url, notice: "予約を削除しました。"
   end
 
@@ -94,7 +95,7 @@ class ReservationsController < ApplicationController
     end
 
     def set_reservations
-      @reservations = Reservation.all.includes(:guest)
+      @reservations = Reservation.includes(:guest)
     end
 
     def set_reservation
@@ -103,6 +104,13 @@ class ReservationsController < ApplicationController
 
     def set_menus
       @menus = Menu.all
+    end
+
+    def reservation_completed
+      reservations = Reservation.where('end_time < ?', Time.current)
+      reservations.each do |reservation|
+        reservation.update(status: 3) #ステータスを施術完了に切り替え
+      end
     end
 
 end

@@ -31,6 +31,10 @@ ja:
         location: 開催場所
         image: 画像
       menu:
+        category: カテゴリー
+        category_order: カテゴリー順番
+        category_title: カテゴリータイトル
+        title_order: カテゴリータイトル順番
         title: 施術メニュー
         description: 施術内容
         charge: 料金

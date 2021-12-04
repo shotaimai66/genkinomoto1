@@ -126,6 +126,9 @@ ul.header-service-tabs {
   padding-right: 10px;
   margin-left: 10px;
   margin-right: 10px;
+.header-menu li {
+  width: 25%;
+  height: 30px;
   text-align: center;
   margin-bottom: 0;
   li {
@@ -187,6 +190,12 @@ ul.header-service-tabs {
   background-color: #000;
   opacity: 0.8;
   z-index: 99; //一番上にくる
+}
+
+.page-info {
+  font-size: 1em;
+  color: rgb(24, 24, 24);
+  margin-bottom: 20px;
 }
 
 .card {
@@ -465,7 +474,7 @@ h1 {
 }
 
 .menu-new-page-btn {
-  margin-bottom:  10px;
+  margin-bottom:  20px;
 }
 
 .store-card-container {
@@ -525,3 +534,85 @@ h1 {
   top: 6rem; // position stickyに必要 スクロールのときに上で止まる位置
   position: sticky; // position stickyに必要
 }
+// ユーザー用施術一覧メニュー画面で使用(/treatment_menu)
+  .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  #wapper {
+    width:100%;
+    padding:0;
+    margin:0;
+    overflow:hidden;
+  }
+
+  #page_contents {
+    width: 96%;
+    max-width: 1200px;
+    margin: 80px auto;
+  }
+
+  #page_contents .block01 {
+    margin-bottom: 80px;
+  }
+
+  #page_contents h3 {
+    padding: 12px 10px;
+    background-color: #D3D1C5;
+    margin-bottom: 30px;
+    font-size: 120%;
+    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
+    color: #64554A;
+    border-radius: 3px;
+  }
+
+  #page_contents p {
+    color: #333;
+    font-size: 16px;
+    font-family: "游ゴシック体", "Yu Gothic", sans-serif;
+  }
+
+  #page_contents h4 {
+    padding: 12px 10px;
+    margin-bottom: 30px;
+    font-size: 120%;
+    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
+    color: #64554A;
+    border-bottom: #E9DFD8 2px solid;
+  }
+
+  .menu ul.menu_box {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu ul.menu_box .title {
+    padding: 10px;
+    background-image: url("/menu_bg.jpeg");
+    // background: #887E74;
+    overflow: hidden;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+
+  .menu ul.menu_box li {
+    width: 46%;
+    float: left;
+    margin: 2%;
+    background-color: #F4EFEC;
+  }
+
+  .menu ul.menu_box p {
+    margin: 15px;
+    line-height: 160%;
+  }
+
+  .menu .course_box {
+    margin: 15px;
+    padding: 10px;
+    background-color: #FFFFFF;
+  }
+// -----------------------

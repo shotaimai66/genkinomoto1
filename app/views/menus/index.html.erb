@@ -1,44 +1,37 @@
-<%= link_to 'ホーム', root_url, class: "link-gray" %>
+<div class="page-info">
+  <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞ 施術メニュー管理画面
+</div>
 
 <div class="container">
   <h1 class="center">
-    施術メニュー一覧
+    施術メニュー管理画面
   </h1>
-  <% if staff_signed_in? %>
-    <div class="right menu-new-page-btn">
-      <p>スタッフ専用</p>
-      <%= link_to "施術メニュー新規登録", new_menu_path, class: "btn btn-md btn-info"%>
-    </div>
-  <% end %>
-  <%= paginate @menus %>
+  <div class="right menu-new-page-btn">
+    <%= link_to "施術メニュー新規登録", new_menu_path, class: "btn btn-md btn-info"%>
+  </div>
   <table class="table">
     <thead>
       <tr class="center">
+        <th>コース番号</th>
         <th>施術メニュー</th>
         <th>料金</th>
         <th>施術時間</th>
-        <% if staff_signed_in? %>
-          <th>コース番号</th>
-          <th>編集／削除</th>
-        <% end %>
+        <th>編集／削除</th>
       </tr>
     </thead>
-    <% @menus.each do |menu| %>
+    <% @menus.order(course_number: :asc).each do |menu| %>
     <tbody>
       <tr class="center">
+        <td><%= menu.course_number %></td>
         <td><%= link_to menu.title, menu_path(menu) %></td>
-        <td><%= menu.charge %>円</td>
+        <td><%= menu.charge.to_s(:delimited) %>円</td>
         <td><%= menu.treatment_time %>分</td>
-        <% if staff_signed_in? %>
-          <td><%= menu.course_number %></td>
-          <td>
-            <%= link_to '編集', edit_menu_path(menu), class: 'btn btn-sm btn-primary' %>
-            <%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "#{menu.title}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
-          </td>
-        <% end %>
+        <td>
+          <%= link_to '編集', edit_menu_path(menu), class: 'btn btn-sm btn-primary' %>
+          <%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "#{menu.title}を削除してもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
+        </td>
       </tr>
     </tbody>
     <% end %>
   </table>
-  <%= paginate @menus %>
 </div>

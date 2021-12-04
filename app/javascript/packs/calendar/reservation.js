@@ -56,6 +56,9 @@ document.addEventListener('turbolinks:load', function() {
       if (info.event._def.title=='仮予約') {
         info.el.style.background='gray' ;
       }
+      if (info.event._def.title=='予約済み') {
+        info.el.style.background='darkgray' ;
+      }
     }
   });
   //カレンダー表示
