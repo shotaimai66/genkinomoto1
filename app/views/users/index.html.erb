@@ -22,6 +22,7 @@
       <tr>
         <th>ID</th>
         <th>氏名</th>
+        <th>電話番号</th>
         <th>メール</th>
         <th></th>
       </tr>
@@ -31,6 +32,7 @@
       <tr>
         <td><%= link_to user.id, users_show_path(user), class: "link-black" %></td>
         <td><%= link_to user.name, users_show_path(user), class: "link-black" %></td>
+        <td><%= link_to user.phone, users_show_path(user), class: "link-black" %></td>
         <td><%= link_to user.email, users_show_path(user), class: "link-black" %></td>
         <td>
           <%= link_to '編集', users_admin_edit_path(user), class: "btn btn-sm btn-outline-dark" %>
