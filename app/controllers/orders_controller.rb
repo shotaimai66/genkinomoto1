@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  #skip_before_action :authenticate_user!
   skip_before_action :authenticate_staff!
 
   # カートが無い場合はカートを作成

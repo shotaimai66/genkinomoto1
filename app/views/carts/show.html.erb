@@ -42,7 +42,7 @@
             <td>数量: <%= order.quantity %></td>
             <td><%= order.quantity*item.price %> 円(税別)</td>
             <td>
-              <%= link_to "削除", destroy_item_order_path(order), method: :delete, class: "btn btn-sm btn-secondary" %>
+              <%= link_to "削除", destroy_item_order_path(order), method: :delete, class: "btn btn-sm btn-outline-dark" %>
             </td>
           </tr>
           <% end %>

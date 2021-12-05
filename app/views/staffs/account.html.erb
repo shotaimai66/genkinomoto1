@@ -4,64 +4,98 @@
 </p>
 
 <div class="container">
-  <h1 class='center'>スタッフページ</h1>
-  <div class='row justify-content-between'>
-    <div class='card col-sm-2'>
-      <div class='card-body'>
-        <h5 class='card-title'>今月の予約数</h5>
-        <p class='card-text'>50件</p>
-      </div>
-    </div>
-    <div class='card col-sm-2'>
-      <div class='card-body'>
-        <h5 class='card-title'>今月の顧客</h5>
-        <p class='card-text'>40人</p>
-      </div>
-    </div>
-    <div class='card col-sm-2'>
-      <div class='card-body'>
-        <h5 class='card-title'>今月の問合せ</h5>
-        <p class='card-text'>5件</p>
-      </div>
-    </div>
-    <div class='card col-sm-2'>
-      <div class='card-body'>
-        <h5 class='card-title'>今月の売上</h5>
-        <p class='card-text'>500,000円</p>
-      </div>
-    </div>
-    <div class='card col-sm-2'>
-      <div class='card-body'>
-        <h5 class='card-title'>商品の売上</h5>
-        <p class='card-text'>100,000件</p>
-      </div>
-    </div>
+  <div>
+    <h1><%= l(Date.today, format: :long) %></h1>
   </div>
+  <div class="staff-account-wrapper">
 
-  <div class='row pt-4 justify-content-between'>
-    
-    <div class='card col-sm-5'>
-      <div class='card-body center'>
-        <%= link_to 'お客様一覧', users_index_path, class: "link-black" %>
+    <div class="staff-account-wrapper-left">
+      <div class='row justify-content-between'>
+        <div class='card col-sm-2'>
+          <div class='card-body'>
+            <p class='card-title'>今月の予約数</p>
+            <p class='card-text'>件</p>
+          </div>
+        </div>
+        <div class='card col-sm-2'>
+          <div class='card-body'>
+            <p class='card-title'>今月の顧客</p>
+            <p class='card-text'>人</p>
+          </div>
+        </div>
+        <div class='card col-sm-2'>
+          <div class='card-body'>
+            <p class='card-title'>月の問合せ</p>
+            <p class='card-text'>件</p>
+          </div>
+        </div>
+        <div class='card col-sm-2'>
+          <div class='card-body'>
+            <p class='card-title'>今月の売上</p>
+            <p class='card-text'>円</p>
+          </div>
+        </div>
+        <div class='card col-sm-2'>
+          <div class='card-body'>
+            <p class='card-title'>商品の売上</p>
+            <p class='card-text'>件</p>
+          </div>
+        </div>
+      </div>
+
+      <div class='row pt-4 justify-content-between'>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to 'お客様一覧', users_index_path, class: "link-black" %>
+          </div>
+        </div>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to 'スタッフ一覧', staffs_index_path, class: "link-black" %>
+          </div>
+        </div>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to 'ご予約カレンダー', confirm_reservation_reservations_path, 'data-turbolinks': false, class: "link-black" %>
+          </div>
+        </div>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to 'お知らせ記事一覧', notifications_path, 'data-turbolinks': false, class: "link-black" %>
+          </div>
+        </div>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to '施術メニュー一覧', menus_path, 'data-turbolinks': false, class: "link-black" %>
+          </div>
+        </div>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to '商品一覧', items_path, 'data-turbolinks': false, class: "link-black" %>
+          </div>
+        </div>
+        <div class='card border-secondary col-sm-5'>
+          <div class='card-body center'>
+            <%= link_to 'イベント一覧', events_path, 'data-turbolinks': false, class: "link-black" %>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class='card col-sm-5'>
-      <div class='card-body center'>
-        <%= link_to 'スタッフ一覧', staffs_index_path, class: "link-black" %>
-      </div>
-    </div>
-
-    <div class='card col-sm-5'>
-      <div class='card-body center'>
-        <%= link_to '予約内容確認', confirm_reservation_reservations_path, 'data-turbolinks': false, class: "link-black" %>
-      </div>
-    </div>
-
-    <div class='card col-sm-5'>
-      <div class='card-body center'>
-        <%= link_to 'お知らせ記事一覧', notifications_path, 'data-turbolinks': false, class: "link-black" %>
-      </div>
+    <div class="staff-account-wrapper-right">
+      <table class="table">
+        <thead class="table table-secondary center">
+          <tr><th colspan="2">スタッフ情報 <%= link_to "編集はこちら",edit_staff_registration_path, class: "btn btn-sm btn-outline-dark"  %></th></tr>
+        </thead>
+        <tbody class="table table-striped">
+          <tr><td>所属店舗</td><td><%= @store.name %></td></tr>
+          <tr><td>お名前</td><td><%= current_staff.name %></td></tr>
+          <tr><td>ふりがな</td><td><%= current_staff.kana %></td></tr>
+          <tr><td>メール</td><td><%= current_staff.email %></td></tr>
+          <tr><td>電話番号</td><td><%= current_staff.phone %></td></tr>
+          <tr><td>住所</td><td><%= current_staff.address %></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

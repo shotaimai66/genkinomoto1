@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get 'static_pages/notification', to: 'static_pages#notification'
   resources :menus do
     collection do
       get :treatment_menu #ユーザーメニュー一覧画面
@@ -16,9 +17,15 @@ Rails.application.routes.draw do
     end
   end
   resources :stores
-  get 'users/index', to: 'users#index' # users_index_path
-  get 'users/show', to: 'users#show' # users_show_path
-  get 'users/account', to: 'users#account' # users_account_path
+  get 'users/account', to: 'users#account'
+  get 'users/index', to: 'users#index'
+  get 'users/search', to: 'users#search'
+  get 'users/show', to: 'users#show'
+  get 'users/admin_new', to: 'users#admin_new'
+  post 'users/admin_create', to: 'users#admin_create'
+  get 'users/admin_edit', to: 'users#admin_edit'
+  patch 'users/admin_update', to: 'users#admin_update'
+  delete 'users/admin_destroy', to: 'users#admin_destroy'
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
@@ -33,9 +40,15 @@ Rails.application.routes.draw do
       end
     end
   end
-  get 'staffs/index', to: 'staffs#index' # staffs_index_path
-  get 'staffs/show', to: 'staffs#show' # staffs_show_path
-  get 'staffs/account', to: 'staffs#account' # staffs_account_path
+  get 'staffs/account', to: 'staffs#account'
+  get 'staffs/index', to: 'staffs#index'
+  get 'staffs/search', to: 'staffs#search'
+  get 'staffs/show', to: 'staffs#show'
+  get 'staffs/admin_new', to: 'staffs#admin_new'
+  post 'staffs/admin_create', to: 'staffs#admin_create'
+  get 'staffs/admin_edit', to: 'staffs#admin_edit'
+  patch 'staffs/admin_update', to: 'staffs#admin_update'
+  delete 'staffs/admin_destroy', to: 'staffs#admin_destroy'
   devise_for :staffs, controllers: {
     sessions:      'staffs/sessions',
     passwords:     'staffs/passwords',

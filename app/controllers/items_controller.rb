@@ -29,10 +29,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
-    if @item = Item.create(item_params)
+    @item = Item.new(item_params)
+    if @item.save
       flash[:success] = "#{@item.name} の登録に成功しました"
-    redirect_to items_path(current_user)
+      redirect_to items_path(current_user)
     else
       flash[:danger] = "新規商品の登録に問題がありました"
       render :new
