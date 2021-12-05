@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration[6.1]
       t.integer :tax
       t.integer :shipping_fee
       t.integer :total
-
+      t.time :checked_at # お客様の注文をスタッフが確認したかどうか
       t.timestamps
     end
   end
