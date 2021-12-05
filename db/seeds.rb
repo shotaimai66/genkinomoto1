@@ -302,7 +302,7 @@ Menu.create!(
   )
   item = Item.find(n+1)
   event = Event.find(n+1)
-  subtotal = item.price + event.price
+  subtotal = (item.price + event.price)*(n+1)
   if subtotal >= 5000 || subtotal == 0
     shipping_fee = 0
   else
