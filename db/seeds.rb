@@ -6,34 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-20.times do |n|
-  name = "商品#{n+1} サンプル ボディケア専用オイル 250ml 
-          ボディメンテ専用 ウェブ限定"
-  price = (n+1)*100
-  description = "これは 商品#{n+1} です。サンプル ボディケア専用オイル 250ml 
-                 ボディメンテ専用 ウェブ限定サンプル ボディケア専用オイル 250ml
-                 ボディメンテ専用 ウェブ限定サンプル ボディケア専用オイル 250ml
-                 ボディメンテ専用 ウェブ限定サンプル ボディケア専用オイル 250ml
-                 ボディメンテ専用 ウェブ限定サンプル ボディケア専用オイル 250ml
-                 ボディメンテ専用 ウェブ限定サンプル ボディケア専用オイル 250ml"
-  stock = (n+1)
-    Item.create!(
-      name: name,
-      price: price,
-      description: description,
-      stock: stock,
-      image: File.open("app/assets/images/item2.jpg")
-    )
-end
-
 Store.create!(
   name: "ゲンキノモト。厚木店",
   phone: "046-000-0001",
   email: "genkinomoto-atsugi@email.com",
   line_id: "genkinomoto_line_dummy",
   address: "神奈川県 厚木市 中央",
-  description: "ゲンキノモト。本店です。お客様のご来店を心よりお待ちしております。",
+  description: Faker::Lorem.sentences(number: 10),
   opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
@@ -47,7 +26,7 @@ Store.create!(
   phone: "046-000-0002",
   email: "genkinomoto-hiratsuka@email.com",
   line_id: "genkinomoto_line_dummy",
-  description: "ゲンキノモト。平塚店です。お客様のご来店を心よりお待ちしております。",
+  description: Faker::Lorem.sentences(number: 10),
   opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
@@ -61,7 +40,7 @@ Store.create!(
   phone: "046-000-0003",
   email: "genkinomoto-odawara@email.com",
   line_id: "genkinomoto_line_dummy",
-  description: "ゲンキノモト。小田原店です。お客様のご来店を心よりお待ちしております。",
+  description: Faker::Lorem.sentences(number: 10),
   opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
@@ -75,7 +54,7 @@ Store.create!(
   phone: "046-000-0004",
   email: "genkinomoto-event@email.com",
   line_id: "genkinomoto_line_dummy",
-  description: "ゲンキノモト。イベント開場です。お客様のご来店を心よりお待ちしております。",
+  description: Faker::Lorem.sentences(number: 10),
   opening_time: Time.current.beginning_of_day + 36000, # 10:00:00
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
@@ -83,44 +62,57 @@ Store.create!(
   image: File.open("app/assets/images/event_site1.jpg")
 )
 
+60.times do |n|
+  name  = Faker::Name.name
+  email = "sample-#{n+1}@email.com"
+  password = "password"
+  phone = "080-0000-0000"
+  store_id = 1
+    User.create!(
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: password,
+      phone: phone,
+      store_id: store_id
+    )
+end
 
-User.create!(
-  name: "Sample User1",
-  email: "sample-1@email.com",
-  password: "password",
-  password_confirmation: "password",
-  store_id: 1
-)
+10.times do |n|
+  name  = Faker::Name.name
+  email = "staff-#{n+1}@email.com"
+  password = "password"
+  phone = "080-0000-0000"
+  store_id = 1
+  Staff.create!(
+    name: name,
+    email: email,
+    password: password,
+    password_confirmation: password,
+    phone: phone,
+    store_id: store_id
+  )
+end
 
-User.create!(
-  name: "Sample User2",
-  email: "sample-2@email.com",
-  password: "password",
-  password_confirmation: "password",
-  store_id: 1
-)
-
-Staff.create!(
-  name: "Sample Staff1",
-  email: "staff-1@email.com",
-  password: "password",
-  password_confirmation: "password",
-  store_id: 1
-)
-
-Staff.create!(
-  name: "Sample Staff2",
-  email: "staff-2@email.com",
-  password: "password",
-  password_confirmation: "password",
-  store_id: 1
-)
+20.times do |n|
+  name = "商品#{n+1} サンプル ボディケア専用オイル 250ml"
+  price = (n+1)*100
+  description = Faker::Lorem.sentences(number: 10)
+  stock = (n+1)
+    Item.create!(
+      name: name,
+      price: price,
+      description: description,
+      stock: stock,
+      image: File.open("app/assets/images/item2.jpg")
+    )
+end
 
 20.times do |n|
   title = "イベント-#{n+1} サンプルイベント"
   category = "屋外イベント"
   price = (n+1)*1000
-  description = "これは イベント-#{n+1} です。これは イベント-#{n+1} です。これは イベント-#{n+1} です。これは イベント-#{n+1} です。これは イベント-#{n+1} です。"
+  description = Faker::Lorem.sentences(number: 10)
   remaining_ticket_numbers = (n+1)
   location = "神奈川県厚木市"
   first_date = Date.current + 28
