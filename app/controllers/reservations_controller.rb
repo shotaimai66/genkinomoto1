@@ -31,16 +31,18 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     menu = Menu.find_by(course_number: reservation_params[:course])
-    # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
-    if menu.treatment_time <= 30
-      menu_time = 60 * (menu.treatment_time + 10)
-    else
-      menu_time = 60 * (menu.treatment_time + 20)
+    if menu.present?
+      # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
+      if menu.treatment_time <= 30
+        menu_time = 60 * (menu.treatment_time + 10)
+      else
+        menu_time = 60 * (menu.treatment_time + 20)
+      end
+      @reservation.treatment_menu = menu.title
+      @reservation.treatment_time_menu = menu.treatment_time
+      @reservation.charge_menu = menu.charge
+      @reservation.apply!(menu_time)
     end
-    @reservation.treatment_menu = menu.title
-    @reservation.treatment_time_menu = menu.treatment_time
-    @reservation.charge_menu = menu.charge
-    @reservation.apply!(menu_time)
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
@@ -69,15 +71,17 @@ class ReservationsController < ApplicationController
   def update_reserve
     if @reservation.update(reservation_params)
       menu = Menu.find_by(course_number: reservation_params[:course])
-      if menu.treatment_time <= 30
-        menu_time = 60 * (menu.treatment_time + 10)
-      else
-        menu_time = 60 * (menu.treatment_time + 20)
+      if menu.present?
+        if menu.treatment_time <= 30
+          menu_time = 60 * (menu.treatment_time + 10)
+        else
+          menu_time = 60 * (menu.treatment_time + 20)
+        end
+        @reservation.treatment_menu = menu.title
+        @reservation.treatment_time_menu = menu.treatment_time
+        @reservation.charge_menu = menu.charge
+        @reservation.apply_reserve!(menu_time)
       end
-      @reservation.treatment_menu = menu.title
-      @reservation.treatment_time_menu = menu.treatment_time
-      @reservation.charge_menu = menu.charge
-      @reservation.apply_reserve!(menu_time)
       redirect_to confirm_reservation_reservations_url, notice: "予約を編集しました。"
     end
   end
