@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.datetime "enter_date"
     t.datetime "exit_date"
     t.boolean "flag", default: false, null: false
+    t.integer "cart_id"
     t.bigint "store_id", default: 1
     t.string "provider"
     t.string "uid"

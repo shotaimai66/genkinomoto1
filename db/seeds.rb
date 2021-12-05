@@ -62,21 +62,7 @@ Store.create!(
   image: File.open("app/assets/images/event_site1.jpg")
 )
 
-60.times do |n|
-  name  = Faker::Name.name
-  email = "sample-#{n+1}@email.com"
-  password = "password"
-  phone = "080-0000-0000"
-  store_id = 1
-    User.create!(
-      name: name,
-      email: email,
-      password: password,
-      password_confirmation: password,
-      phone: phone,
-      store_id: store_id
-    )
-end
+
 
 10.times do |n|
   name  = Faker::Name.name
@@ -279,3 +265,60 @@ Menu.create!(
   course_number: 11,
   store_id: 1
 )
+
+10.times do |n|
+  name  = Faker::Name.name
+  email = "sample-#{n+1}@email.com"
+  password = "password"
+  phone = "080-0000-000#{n+1}"
+  store_id = 1
+  cart_id = n+1
+  User.create!(
+    name: name,
+    email: email,
+    password: password,
+    password_confirmation: password,
+    phone: phone,
+    store_id: store_id,
+    cart_id: cart_id
+  )
+  Cart.create!(
+    user_id: n+1
+  )
+  paid_at = Time.current
+  Order.create!(
+    cart_id: n+1,
+    item_id: n+1,
+    quantity: n+1,
+    paid_at: paid_at,
+    payment_id: n+1
+  )
+  EventOrder.create!(
+    cart_id: n+1,
+    event_id: n+1,
+    quantity: n+1,
+    paid_at: paid_at,
+    payment_id: n+1
+  )
+  item = Item.find(n+1)
+  event = Event.find(n+1)
+  subtotal = item.price + event.price
+  if subtotal >= 5000 || subtotal == 0
+    shipping_fee = 0
+  else
+    shipping_fee = 500
+  end
+  tax = ((subtotal+shipping_fee)*0.10).round
+  total = subtotal+shipping_fee+tax
+  Payment.create!(
+    cart_id: n+1,
+    subtotal: subtotal,
+    tax: tax,
+    shipping_fee: shipping_fee,
+    total: total
+  )
+
+end
+
+
+
