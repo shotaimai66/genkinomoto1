@@ -1,12 +1,12 @@
 <p>
   <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞
-  <%= link_to 'スタッフページ', staffs_account_path, class: "link-gray" %>
-  ＞ スタッフ一覧
+  <%= link_to 'スタッフページ', staffs_account_path, class: "link-gray" %> ＞
+  <%= link_to 'スタッフ一覧', staffs_index_path, class: "link-gray" %> ＞
+  検索結果
 </p>
+
 <div class="container">
-  <div class="right">
-    <%= link_to "スタッフ新規作成", staffs_admin_new_path, class: "link-black btn btn-sm btn-outline-dark" %>
-  </div>
+  <h1 class="center">スタッフ一覧 検索結果</h1>
   <div class="center">
     <%= search_form_for @q, url: staffs_search_path do |f| %>
       <%= f.search_field :name_cont, class: "search-container" %>
@@ -14,28 +14,23 @@
     <% end %>
   </div>
   <p></p>
-  <%= paginate @staffs %>
   <table class="table">
     <thead>
-      <tr class="center">
-        <th>従業員ID</th>
+      <tr>
+        <th>ID</th>
         <th>氏名</th>
-        <th>電話番号</th>
-        <th>所属店舗</th>
+        <th>メール</th>
         <th></th>
       </tr>
-    <% @staffs.each do |staff| %>
+    <% @results.each do |staff| %>
     <tbody>
-      <tr class="center">
-        <td><%= link_to staff.id, staffs_show_path(staff), class: "link-black" %></td>
-        <td><%= link_to staff.name, staffs_show_path(staff), class: "link-black" %></td>
-        <td><%= link_to staff.phone, staffs_show_path(staff), class: "link-black" %></td>
-        <td><%= link_to Store.find(staff.store_id).name, staffs_show_path(staff), class: "link-black" %></td>
+      <tr>
+        <td><%= staff.id %></td>
+        <td><%= staff.name %></td>
+        <td><%= staff.email %></td>
         <td>
           <%= link_to '編集', staffs_admin_edit_path(staff), class: "btn btn-sm btn-outline-dark" %>
-          <% if staff == current_staff %>
-            <%= link_to '削除', "#", class: "btn btn-sm btn-outline-secondary" %>
-          <% else %>
+          <% unless staff == current_staff %>
             <%= link_to '削除', staffs_admin_destroy_path(staff), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-sm btn-outline-danger" %>
           <% end %>
         </td>
@@ -43,7 +38,6 @@
     </tbody>
     <% end %>
   </table>
-  <%= paginate @staffs %>
 </div>
 <hr>
 <div>

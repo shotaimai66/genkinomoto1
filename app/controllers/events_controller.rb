@@ -26,7 +26,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    if @event = Event.create(event_params)
+    @event = Event.new(event_params)
+    if @event.save
       flash[:success] = "#{@event.title}の登録に成功しました"
       redirect_to events_path(current_user)
     else
