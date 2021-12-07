@@ -5,9 +5,83 @@
   ご注文/発送状況詳細
 </p>
 
+<p></p>
+
 <div class="container">
-  <%= @payment.cart.user.name %>
+  <h1>注文内容 【 <%= @user.name %> 様 】</h1>
   <table class="table">
-    
+    <tr>
+      <td>注文日: <%= l @payment.created_at, format: :custom1 %></td>
+      <td>注文番号: <%= @payment.id %></td>
+    </tr>
+  </table>
+  <table class="table table-striped">
+    <tr>
+      <th>お届け先</th>
+      <th>支払い方法</th>
+      <th colspan="2">領収書/購入明細書</th>
+    </tr>
+    <tr>
+      <td>
+        <%= @user.name %> 様<br>
+        <%= @user.prefecture_code %>
+        <%= @user.city %>
+        <%= @user.street %>
+        <%= @user.other_address %>
+      </td>
+      <td>クレジットカード決済(PAY.JP)</td>
+      <td>
+        商品の小計:<br>
+        送料:<br>
+        消費税:<br>
+        ご請求額(合計):<br>
+      </td>
+      <td class="right">
+        <%= @payment.subtotal %> 円<br>
+        <%= @payment.shipping_fee %> 円<br>
+        <%= @payment.tax %> 円<br>
+        <%= @payment.total %> 円<br>
+      </td>
+    </tr>
+  </table>
+  <table class="table">
+    <% @orders.each do |order| %>
+      <tr>
+        <td rowspan="2">
+          <% item = Item.find(order.item_id) %>
+          <% if item.image? %>
+            <%= link_to image_tag(item.image.url, width: 100, class: "image-border"), item_path(item) %>
+          <% else %>
+            <%= link_to image_tag("/no_image2.png", width: 100, class: "image-border"), item_path(item) %>
+          <% end %>
+        </td>
+        <td colspan="3"><%= link_to item.name, item_path(item), class: "link-black" %></td>
+      </tr>
+      <tr>
+        <td><%= item.price %> 円(税抜)</td>
+        <td>数量: <%= order.quantity %></td>
+        <td><%= item.price*order.quantity %> 円(税抜)</td>
+      </tr>
+    <% end %>
+
+    <% @event_orders.each do |event_order| %>
+      <tr>
+        <td rowspan="2">
+          <% event = Event.find(event_order.event_id) %>
+          <% if event.image? %>
+            <%= link_to image_tag(event.image.url, width: 100, class: "image-border"), event_path(event) %>
+          <% else %>
+            <%= link_to image_tag("/no_image2.png", width: 100, class: "image-border"), event_path(event) %>
+          <% end %>
+        </td>
+        <td colspan="3"><%= link_to event.title, event_path(event), class: "link-black" %></td>
+      </tr>
+      <tr>
+        <td><%= event.price %> 円(税抜)</td>
+        <td>数量: <%= event_order.quantity %></td>
+        <td><%= event.price*event_order.quantity %> 円(税抜)</td>
+      </tr>
+    <% end %>
+
   </table>
 </div>
