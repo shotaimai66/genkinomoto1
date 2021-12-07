@@ -20,10 +20,10 @@
         <td><%= link_to Cart.find(payment.cart_id).user.name, purchase_record_path(payment), class: "link-black" %></td>
         <td><%= link_to l(payment.created_at, format: :custom1), purchase_record_path(payment), class: "link-black" %></td>
         <td><%= link_to payment.total, purchase_record_path(payment), class: "link-black" %> 円</td>
-        <% if !payment.all_shipped_at.present?  %>
-          <td><%= link_to '★未発送', purchase_record_path(payment), class: "link-red" %></td>
+        <% if payment.all_shipped_at.present?  %>
+          <td><%= link_to '全て発送済み', purchase_record_path(payment), class: "link-black" %></td>
         <% else %>
-          <td><%= link_to '発送済み', purchase_record_path(payment), class: "link-black" %></td>
+          <td><%= link_to '未発送あり', purchase_record_path(payment), class: "link-red" %></td>
         <% end %>
       </tr>
     <% end %>

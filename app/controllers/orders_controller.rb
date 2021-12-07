@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :authenticate_staff!
+  skip_before_action :authenticate_user!, only: [:ship_item_order, :cancel_ship_item_order]
 
   # カートが無い場合はカートを作成
   # User has_one Cart なので ".build_cart"を使う
@@ -22,6 +23,20 @@ class OrdersController < ApplicationController
     order.destroy
     flash[:success] = "#{order.item.name} がカートから削除されました。"
     redirect_to carts_path(current_user)
+  end
+
+  def ship_item_order
+    order = Order.find(params[:format])
+    order.shipped_at = Time.current
+    order.save
+    redirect_to purchase_record_path(order.payment_id)
+  end
+
+  def cancel_ship_item_order
+    order = Order.find(params[:format])
+    order.shipped_at = nil
+    order.save
+    redirect_to purchase_record_path(order.payment_id)
   end
 
   private
