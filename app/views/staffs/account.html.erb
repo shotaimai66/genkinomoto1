@@ -53,9 +53,9 @@
         <div class='card border-secondary col-sm-5'>
           <div class='card-body center'>
             <% if @unshipped_payments.present? %>
-              <%= link_to '★ご注文一覧/発送状況', purchase_records_path, class: "link-red" %>
+              <%= link_to 'ご注文一覧[未発送あり]', purchase_records_path, class: "link-red" %>
             <% else %>
-              <%= link_to 'ご注文一覧/発送状況', purchase_records_path, class: "link-black" %>
+              <%= link_to 'ご注文一覧[全て発送済み]', purchase_records_path, class: "link-black" %>
             <% end %>
           </div>
         </div>
