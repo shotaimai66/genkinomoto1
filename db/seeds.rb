@@ -266,13 +266,18 @@ Menu.create!(
   store_id: 1
 )
 
-2.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password"
   phone = "080-0000-000#{n+1}"
   store_id = 1
   cart_id = n+1
+  postal_code = 2430000
+  prefecture_code = "神奈川県"
+  city = "厚木市"
+  street = "戸室"
+  other_address = "1-1-1"
   User.create!(
     name: name,
     email: email,
@@ -280,25 +285,32 @@ Menu.create!(
     password_confirmation: password,
     phone: phone,
     store_id: store_id,
-    cart_id: cart_id
+    cart_id: cart_id,
+    postal_code: postal_code,
+    prefecture_code: prefecture_code,
+    city: city,
+    street: street,
+    other_address: other_address
   )
   Cart.create!(
     user_id: n+1
   )
-  paid_at = Time.current
+  time = Time.current
   Order.create!(
     cart_id: n+1,
     item_id: n+1,
     quantity: n+1,
-    paid_at: paid_at,
-    payment_id: n+1
+    paid_at: time,
+    payment_id: n+1,
+    shipped_at: time
   )
   EventOrder.create!(
     cart_id: n+1,
     event_id: n+1,
     quantity: n+1,
-    paid_at: paid_at,
-    payment_id: n+1
+    paid_at: time,
+    payment_id: n+1,
+    shipped_at: time
   )
   item = Item.find(n+1)
   event = Event.find(n+1)
@@ -315,7 +327,8 @@ Menu.create!(
     subtotal: subtotal,
     tax: tax,
     shipping_fee: shipping_fee,
-    total: total
+    total: total,
+    all_shipped_at: time
   )
 
 end

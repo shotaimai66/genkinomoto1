@@ -21,6 +21,5 @@ class PurchaseRecordsController < ApplicationController
       @payment.all_shipped_at = nil
       @payment.save
     end
-    
   end
 end
