@@ -6,6 +6,7 @@ class StaffsController < ApplicationController
   def account
     store_id = current_staff.store_id
     @store = Store.find(store_id)
+    @unshipped_payments = Payment.where(all_shipped_at: nil)
   end
 
   def index

@@ -1,0 +1,13 @@
+<p>
+  <%= link_to 'ホーム', root_url, class: "link-gray" %> ＞
+  <%= link_to 'スタッフページ', staffs_account_path, class: "link-gray" %> ＞
+  <%= link_to 'ご注文一覧/発送状況', purchase_records_path, class: "link-gray" %> ＞
+  ご注文/発送状況詳細
+</p>
+
+<div class="container">
+  <%= @payment.cart.user.name %>
+  <table class="table">
+    
+  </table>
+</div>

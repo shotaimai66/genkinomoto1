@@ -19,7 +19,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.integer :owner_id
       t.integer :store_id, default: 1
       t.string :image # image 必ず一番下にしないと画像が読めない
-      
       t.timestamps
     end
   end

@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.integer "shipping_fee"
     t.integer "total"
     t.time "checked_at"
+    t.time "all_shipped_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_payments_on_cart_id"

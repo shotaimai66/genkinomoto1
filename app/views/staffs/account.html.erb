@@ -47,12 +47,16 @@
 
         <div class='card border-secondary col-sm-5'>
           <div class='card-body center'>
-            <%= link_to '店舗施術 ご予約カレンダー', confirm_reservation_reservations_path, 'data-turbolinks': false, class: "link-black" %>
+            <%= link_to '施術ご予約カレンダー', confirm_reservation_reservations_path, 'data-turbolinks': false, class: "link-black" %>
           </div>
         </div>
         <div class='card border-secondary col-sm-5'>
           <div class='card-body center'>
-            <%= link_to '商品/イベント ご注文一覧', '#', class: "link-black" %>
+            <% if @unshipped_payments.present? %>
+              <%= link_to '★ご注文一覧/発送状況', purchase_records_path, class: "link-red" %>
+            <% else %>
+              <%= link_to 'ご注文一覧/発送状況', purchase_records_path, class: "link-black" %>
+            <% end %>
           </div>
         </div>
         <div class='card border-secondary col-sm-5'>

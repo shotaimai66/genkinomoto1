@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   post 'create_event_order', to: 'event_orders#create_event_order'
   delete 'destroy_event_order', to: 'event_orders#destroy_event_order'
   resources :payments, only: %i[index show]
+  resources :purchase_records, only: %i[index show]
   post 'pay', to: 'payments#pay'
   resources :notifications
 end
