@@ -270,7 +270,7 @@ Menu.create!(
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password"
-  phone = "080-0000-000#{n+1}"
+  phone = "080-0000-0000"
   store_id = 1
   cart_id = n+1
   postal_code = 2430000
