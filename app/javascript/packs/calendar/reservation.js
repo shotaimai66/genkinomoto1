@@ -6,7 +6,7 @@ import googleCalendarApi from '@fullcalendar/google-calendar';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 //<div id='calendar'></div>のidからオブジェクトを定義してカレンダーを作っていきます。
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener("turbolinks:load", function() {
   var calendarEl = document.getElementById('calendar');
 
   //カレンダーの中身を設定(月表示とか、クリックアクション起こしたいとか、googleCalendar使うととか)
@@ -56,8 +56,11 @@ document.addEventListener('turbolinks:load', function() {
       if (info.event._def.title=='仮予約') {
         info.el.style.background='gray' ;
       }
-      if (info.event._def.title=='予約済み') {
+      if (info.event._def.title=='×') {
         info.el.style.background='darkgray' ;
+      }
+      if (info.event._def.title=='施術完了') {
+        info.el.style.background='blue' ;
       }
     }
   });

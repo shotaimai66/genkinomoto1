@@ -29,7 +29,8 @@
                 <td><%= reserve.id %></td>
                 <td><%= reserve.treatment_menu %></td>
                 <td><%= l reserve.start_time, format: :dayonly %></td>
-                <td><%= l reserve.start_time, format: :timeonly %> - <%= l reserve.end_time, format: :timeonly %></td>
+                <!-- ログインしたユーザーが自分の予約を確認する時はインターバルを抜いた時間で終了時間を表示。 -->
+                <td><%= l reserve.start_time, format: :timeonly %> - <%= l (reserve.start_time + (reserve.treatment_time_menu * 60)), format: :timeonly %></td>
                 <td><%= reserve.charge_menu %>円</td>
                 <td><%= @staffs.name %></td>
                 <td><%= reserve.status_i18n %></td>
@@ -56,12 +57,13 @@
           </thead>
           <% completed_reservations = @reservations.where(cancel_flag: false).where(status: 3) %>
           <% completed_reservations.order(status: :desc).each do |reserve| %>
-            <tbody> 
+            <tbody>
               <tr>
                 <td><%= reserve.id %></td>
                 <td><%= reserve.treatment_menu %></td>
                 <td><%= l reserve.start_time, format: :dayonly %></td>
-                <td><%= l reserve.start_time, format: :timeonly %> - <%= l reserve.end_time, format: :timeonly %></td>
+                <!-- ログインしたユーザーが自分の予約を確認する時はインターバルを抜いた時間で終了時間を表示。 -->
+                <td><%= l reserve.start_time, format: :timeonly %> - <%= l (reserve.start_time + (reserve.treatment_time_menu * 60)), format: :timeonly %></td>
                 <td><%= reserve.charge_menu %>円</td>
                 <td><%= @staffs.name %></td>
               </tr>
