@@ -32,10 +32,12 @@
     <tr>
       <td>
         <%= current_user.name %> 様<br>
+        <%= current_user.postal_code %><br>
         <%= current_user.prefecture_code %>
         <%= current_user.city %>
-        <%= current_user.street %>
-        <%= current_user.other_address %>
+        <%= current_user.street %><br>
+        <%= current_user.other_address %><br>
+        <%= current_user.phone %>
       </td>
       <td>クレジットカード決済(PAY.JP)</td>
       <td>
