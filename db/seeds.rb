@@ -147,7 +147,6 @@ Menu.create!(
   treatment_time: 40,
   course_number: 1,
   store_id: 1
-  
 )
 
 Menu.create!(
@@ -207,7 +206,7 @@ Menu.create!(
   category_order: 1,
   category_title: "巻き爪補正",
   title_order: 3,
-  title: "取り付け",
+  title: "巻き爪補正 取り付け",
   charge: 3000,
   description: "※ネイルケアまたはフットケアとセットでご予約ください。",
   treatment_time: 0,
@@ -216,7 +215,7 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body　Care　~ボディケア~",
+  category: "Body Care　~ボディケア~",
   category_order: 2,
   category_title: "全身",
   title_order: 1,
@@ -229,7 +228,7 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body　Care　~ボディケア~",
+  category: "Body Care　~ボディケア~",
   category_order: 2,
   category_title: "全身",
   title_order: 1,
@@ -242,7 +241,7 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body　Care　~ボディケア~",
+  category: "Body Care　~ボディケア~",
   category_order: 2,
   category_title: "足ツボ",
   title_order: 2,
@@ -255,7 +254,7 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body　Care　~ボディケア~",
+  category: "Body Care　~ボディケア~",
   category_order: 2,
   category_title: "足ツボ",
   title_order: 2,
@@ -272,7 +271,7 @@ Menu.create!(
   category_order: 3,
   category_title: "全身",
   title_order: 1,
-  title: "30分",
+  title: "トッピング 全身30分",
   charge: 3190,
   description: "※背中、肩など気になる部分を中心に圧してほぐします。",
   treatment_time: 30,

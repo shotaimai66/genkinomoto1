@@ -3,11 +3,50 @@ class ReservationsController < ApplicationController
   skip_before_action :authenticate_user!
   #スタッフは全てのアクションにアクセスできる
   skip_before_action :authenticate_staff!, only: [:index, :show, :new, :create]
-  before_action :set_reservations, only: [:index, :confirm_reservation]
+  before_action :set_reservations, only: [:index, :confirm_reservation, :management_new]
   before_action :set_reservation, only: [:show, :edit, :update, :edit_reserve, :update_reserve, :destroy]
-  before_action :set_menus, only: [:new, :edit_reserve]
+  before_action :set_menus, only: [:new, :edit_reserve, :management_new]
+  before_action :set_users, only: :management_new
   # :end_timeが現在時刻を過ぎているデータは:statusをcompleted(施術完了)にする
-  before_action :reservation_completed, only: [:index]
+  before_action :reservation_completed, only: [:index, :confirm_reservation]
+  before_action :set_q, only: [:reservation_management, :search]
+  before_action :set_new, only: [:management_new, :new]
+
+  def reservation_management
+    @search_reservations = @q.result
+  end
+
+  def search
+    @search_reservations = @q.result
+  end
+
+  def management_new
+  end
+
+  def reservation_management_create
+    @reservation = Reservation.new(reservation_params)
+    menu = Menu.find_by(course_number: reservation_params[:course])
+    if menu.present?
+      # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
+      if menu.treatment_time <= 30
+        menu_time = 60 * (menu.treatment_time + 10)
+      else
+        menu_time = 60 * (menu.treatment_time + 20)
+      end
+      @reservation.treatment_menu = menu.title
+      @reservation.treatment_time_menu = menu.treatment_time
+      @reservation.charge_menu = menu.charge
+      @reservation.apply_management!(menu_time)
+    end
+    if @reservation.save
+      user = User.find(@reservation.guest_id)
+      #申込したゲストへのメール
+      # UserMailer.request_reservation(user, @reservation).deliver_now
+      #スタッフへのメール
+      # UserMailer.request_reservation_staff(user, @reservation).deliver_now
+      redirect_to reservation_management_reservations_url, notice: "お客様の仮予約が完了しました。承認されるまでお待ちください。"
+    end
+  end
 
   def index
   end
@@ -25,29 +64,30 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
     menu = Menu.find_by(course_number: reservation_params[:course])
-    # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
-    if menu.treatment_time <= 30
-      menu_time = 60 * (menu.treatment_time + 10)
-    else
-      menu_time = 60 * (menu.treatment_time + 20)
+    if menu.present?
+      # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
+      if menu.treatment_time <= 30
+        menu_time = 60 * (menu.treatment_time + 10)
+      else
+        menu_time = 60 * (menu.treatment_time + 20)
+      end
+      @reservation.treatment_menu = menu.title
+      @reservation.treatment_time_menu = menu.treatment_time
+      @reservation.charge_menu = menu.charge
+      @reservation.apply!(menu_time)
     end
-    @reservation.treatment_menu = menu.title
-    @reservation.treatment_time_menu = menu.treatment_time
-    @reservation.charge_menu = menu.charge
-    @reservation.apply!(menu_time)
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
       # UserMailer.request_reservation(user, @reservation).deliver_now
       #スタッフへのメール
       # UserMailer.request_reservation_staff(user, @reservation).deliver_now
-      redirect_to reservations_path, notice: "お客様の仮予約が完了しました。承認されるまでお待ちください。"
+      redirect_to reservations_url, notice: "お客様の仮予約が完了しました。承認されるまでお待ちください。"
     end
   end
 
@@ -69,29 +109,31 @@ class ReservationsController < ApplicationController
   def update_reserve
     if @reservation.update(reservation_params)
       menu = Menu.find_by(course_number: reservation_params[:course])
-      if menu.treatment_time <= 30
-        menu_time = 60 * (menu.treatment_time + 10)
-      else
-        menu_time = 60 * (menu.treatment_time + 20)
+      if menu.present?
+        if menu.treatment_time <= 30
+          menu_time = 60 * (menu.treatment_time + 10)
+        else
+          menu_time = 60 * (menu.treatment_time + 20)
+        end
+        @reservation.treatment_menu = menu.title
+        @reservation.treatment_time_menu = menu.treatment_time
+        @reservation.charge_menu = menu.charge
+        @reservation.apply_update!(menu_time)
       end
-      @reservation.treatment_menu = menu.title
-      @reservation.treatment_time_menu = menu.treatment_time
-      @reservation.charge_menu = menu.charge
-      @reservation.apply_reserve!(menu_time)
       redirect_to confirm_reservation_reservations_url, notice: "予約を編集しました。"
     end
   end
 
   def destroy
-    # cancel_flagをtrueにする事で論理削除実施 & ステータスを施術完了に切り替え
-    @reservation.update(cancel_flag: true, status: 3)
+    # cancel_flagを1にする事で論理削除実施 & ステータスを3(completed施術完了)に切り替え
+    @reservation.update(cancel_flag: 1, status: :completed)
     redirect_to confirm_reservation_reservations_url, notice: "予約を削除しました。"
   end
 
   private
 
     def reservation_params
-      params.require(:reservation).permit(:start_time, :course, :comment, :reservation_time, :guest_id)
+      params.require(:reservation).permit(:start_time, :course, :comment, :status, :cancel_flag, :reservation_time, :guest_id, :store_id)
     end
 
     def set_reservations
@@ -106,11 +148,26 @@ class ReservationsController < ApplicationController
       @menus = Menu.all
     end
 
+    
+    def set_users
+      @users = User.all
+    end
+
     def reservation_completed
-      reservations = Reservation.where('end_time < ?', Time.current)
+      now = Time.current
+      reservations = Reservation.where('end_time > ?', now.yesterday).where('end_time < ?', now)
       reservations.each do |reservation|
-        reservation.update(status: 3) #ステータスを施術完了に切り替え
+        # :day_after_todayのバリデーションに引っかかるので、バリデーションの方を削除
+        reservation.update(status: :completed) #ステータスを3(completed施術完了)に切り替え
       end
+    end
+
+    def set_q
+      @q = Reservation.includes(:guest).ransack(params[:q])
+    end
+
+    def set_new
+      @reservation = Reservation.new
     end
 
 end

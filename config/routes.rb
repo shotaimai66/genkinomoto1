@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   end
   resources :reservations do
     collection do
+      get :management_new
+      get :search
       get :confirm_reservation
-      get :staff_create_reservation
+      get :reservation_management
+      post :reservation_management_create
     end
     member do
       get :edit_reserve
