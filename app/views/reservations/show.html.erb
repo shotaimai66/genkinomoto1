@@ -31,7 +31,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= l @reservation.start_time, format: :timeonly %> - <%= l @reservation.end_time, format: :timeonly if @reservation.end_time.present? %></td>
+      <td><%= l @reservation.start_time, format: :timeonly %> - <%= l (@reservation.start_time + (@reservation.treatment_time_menu * 60)), format: :timeonly if @reservation.end_time.present? %></td>
     </tr>
   </tbody>
   <thead class="table-secondary">

@@ -9,11 +9,10 @@
     </div>
     <div class="modal-body">
       <div class="col-md-12">
-        <%= form_with(model: @reservation, url: reservations_path, method: :post) do |f| %>
+        <%= form_with(model: @reservation, url: reservation_management_create_reservations_path, method: :post) do |f| %>
           <div id="error"></div>
 
           <%= f.label :start_time, class: "col-form-label" %>
-          <!-- 初期値は明日の10:00 -->
           <%= f.datetime_field :start_time, value: Time.current.strftime('%Y-%m-%dT10:00:00'), class: "form-control" %>
 
           <%= f.label :course, class: "col-form-label" %>
@@ -22,12 +21,12 @@
           <%= f.label :comment, class: "col-form-label" %>
           <%= f.text_area :comment, class: "form-control" %>
 
-          <%= f.hidden_field :guest_id, :value => current_user.id %>
-          <%= f.hidden_field :reservation_time, :value => now %>
+          <%= f.label :guest_id, class: "col-form-label" %>
+          <%= f.select :guest_id, options_from_collection_for_select(@users, :id, :name), :include_blank => true, class: "form-select-area" %>
 
           <div class="center mt-3">
-            <%= f.submit "申込み", class: "btn btn-primary" %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">
+            <%= f.submit "予約作成", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
               キャンセル
             </button>
           </div>

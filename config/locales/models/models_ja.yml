@@ -47,13 +47,14 @@ ja:
         title_for_guest: ゲスト表示
         title_for_staff: スタッフ表示
         course: コース
-        status: 状況
+        status: 予約状態
         comment: コメント
-        holiday_flag: 休日フラグ
+        holiday_flag: 休み
         reservation_time: 予約時間
         treatment_menu: 施術メニュー
         treatment_time_menu: 施術時間
         charge_menu: 料金
+        guest_id: 予約ユーザー
       store:
         name: 店舗名
         address: 住所
