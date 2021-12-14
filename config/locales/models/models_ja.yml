@@ -23,6 +23,7 @@ ja:
         title: イベント名
         category: カテゴリー
         price: 価格
+        stock: チケット残数
         description: 詳細
         remaining_ticket_numbers: チケット残数
         first_date: 開催日
