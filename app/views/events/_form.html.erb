@@ -14,7 +14,7 @@
         </tr>
         <tr>
         <td><%= f.label :price %></td>
-        <td><%= f.number_field :price %> 円</td>
+        <td><%= f.number_field :price, min: 0 %> 円</td>
         </tr>
         <tr>
           <td><%= f.label :description %></td>
