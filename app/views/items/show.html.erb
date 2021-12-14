@@ -13,7 +13,7 @@
         <% end %>
       </td>
       <td colspan="2" class="center">
-        <% if user_signed_in? %>
+        <% if (@item.stock > 0) && user_signed_in? %>
           <%= form_with model: @order, url: create_item_order_path(@order), method: :post do |f| %>
             <%= f.label "数量:" %>
             <% range = (1..10) %>
@@ -23,8 +23,10 @@
             <% end %>
             <%= f.submit "カートに入れる", class: "btn btn-sm btn-warning" %>
           <% end %>
-        <% else %>
+        <% elsif (@item.stock > 0) && !user_signed_in? %>
           <%= link_to "ログインしてカートに入れる", new_user_session_path, class: "btn btn-sm btn-outline-dark" %>
+        <% else %>
+          <%= link_to "在庫がありません", '#', class: "btn btn-sm btn-outline-dark" %>
         <% end %>
       </td>
     </tr>
