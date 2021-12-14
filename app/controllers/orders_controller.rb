@@ -14,12 +14,20 @@ class OrdersController < ApplicationController
     order = cart.orders.build(order_params)
     order.item = Item.find(params[:item][:item_id])
     order.save
+    #カートに追加した数だけ在庫を減らす
+    item = order.item
+    item.stock -= order.quantity
+    item.save
+
     flash[:success] = "#{order.item.name} がカートに追加されました。"
     redirect_to carts_path(current_user)
   end
 
   def destroy_item_order
     order = Order.find(params[:format])
+    item = order.item
+    item.stock += order.quantity
+    item.save
     order.destroy
     flash[:success] = "#{order.item.name} がカートから削除されました。"
     redirect_to carts_path(current_user)

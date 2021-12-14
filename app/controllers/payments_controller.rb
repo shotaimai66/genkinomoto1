@@ -41,20 +41,12 @@ class PaymentsController < ApplicationController
       order.paid_at = Time.current
       order.payment_id = payment.id
       order.save
-      #購入した数だけ在庫を減らす
-      item = order.item
-      item.stock -= order.quantity
-      item.save
     end
 
     event_orders.each do |event_order|
       event_order.paid_at = Time.current
       event_order.payment_id = payment.id
       event_order.save
-      #購入した数だけ在庫を減らす
-      event = event_order.event
-      event.stock -= event_order.quantity
-      event.save
     end
     
     flash[:success] = "決済が完了しました。お買い上げ誠にありがとうございます。"

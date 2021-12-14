@@ -12,12 +12,20 @@ class EventOrdersController < ApplicationController
     event_order = cart.event_orders.build(event_order_params)
     event_order.event = Event.find(params[:event][:event_id])
     event_order.save
+    #購入した数だけ在庫を減らす
+    event = event_order.event
+    event.stock -= event_order.quantity
+    event.save
+
     flash[:success] = "#{event_order.event.title} がカートに追加されました。"
     redirect_to carts_path(current_user)
   end
 
   def destroy_event_order
     event_order = EventOrder.find(params[:format])
+    event = event_order.event
+    event.stock += event_order.quantity
+    event.save
     event_order.destroy
     flash[:success] = "#{event_order.event.title} がカートから削除されました。"
     redirect_to carts_path(current_user)
