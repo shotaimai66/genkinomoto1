@@ -1,6 +1,6 @@
 class EventOrdersController < ApplicationController
   skip_before_action :authenticate_staff!
-  skip_before_action :authenticate_user!, only: [:ship_event_order, :cancel_ship_event_order, :index, :show, :destroy]
+  skip_before_action :authenticate_user!, only: [:ship_event_order, :cancel_ship_event_order, :index, :destroy]
 
   def create_event_order
     if !current_user.cart.present?
@@ -47,9 +47,6 @@ class EventOrdersController < ApplicationController
 
   def index
     @event_orders = EventOrder.where(paid_at: nil).order(created_at: "DESC")
-  end
-
-  def show
   end
 
   def destroy

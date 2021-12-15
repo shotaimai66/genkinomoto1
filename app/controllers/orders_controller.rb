@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :authenticate_staff!, only: [:create_item_order, :destroy_item_order]
-  skip_before_action :authenticate_user!, only: [:ship_item_order, :cancel_ship_item_order, :index, :show, :destroy]
+  skip_before_action :authenticate_user!, only: [:ship_item_order, :cancel_ship_item_order, :index, :destroy]
 
   # カートが無い場合はカートを作成
   # User has_one Cart なので ".build_cart"を使う
@@ -50,9 +50,6 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(paid_at: nil).order(created_at: "DESC")
-  end
-
-  def show
   end
 
   def destroy
