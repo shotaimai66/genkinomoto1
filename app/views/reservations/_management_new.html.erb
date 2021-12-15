@@ -21,6 +21,9 @@
           <%= f.label :comment, class: "col-form-label" %>
           <%= f.text_area :comment, class: "form-control" %>
 
+          <%= f.label :staff_id, class: "col-form-label" %>
+          <%= f.select :staff_id, options_from_collection_for_select(@staffs, :id, :name, selected = @reservation.staff_id), :include_blank => true, class: "form-select-area" %>
+
           <%= f.label :guest_id, class: "col-form-label" %>
           <%= f.select :guest_id, options_from_collection_for_select(@users, :id, :name), :include_blank => true, class: "form-select-area" %>
 

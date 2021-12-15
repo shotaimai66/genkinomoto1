@@ -6,7 +6,7 @@
 </p>
 <div class="center my-3">
   <%= search_form_for @q, url: search_reservations_path do |f| %>
-    <%= f.search_field :guest_name_cont, class: "search-container" %>
+    <%= f.search_field :guest_name_cont, placeholder: "名前で検索", class: "search-container" %>
     <%= f.submit '予約検索', class: "btn btn-sm btn-outline-dark" %>
   <% end %>
 </div>
@@ -31,7 +31,7 @@
           <%= sort_link(@q, :status, "予約状態　↑↓") %>
         </div>
         <div>
-          <%= sort_link(@q, :cancel_flag, "キャンセルフラグ　↑↓") %>
+          <%= sort_link(@q, :cancel_flag, "キャンセル　↑↓") %>
         </div>
       </th>
       <th></th>
@@ -64,7 +64,12 @@
         <% end %>
         <td>
           <%= link_to '編集', edit_reserve_reservation_path(reservation), class: 'btn btn-sm btn-primary' %>
-          <%= link_to 'キャンセル', reservation_path(reservation), method: :delete, data: { confirm: "#{reservation.guest.name}様の#{reservation.treatment_menu}をキャンセルしてもよろしいでしょうか?" }, class: "btn btn-sm btn-danger" %>
+          <% if reservation.cancel_flag == 0 %>
+            <%= link_to 'キャンセル', reservation_path(reservation), method: :delete,
+                data: { confirm: "#{reservation.guest.name}様の#{reservation.treatment_menu}をキャンセルしてもよろしいでしょうか?" },
+                class: "btn btn-sm btn-danger"
+            %>
+          <% end %>
         </td>
         </tr>
       <% end %>
