@@ -58,12 +58,12 @@ body {
 
 .link-black {
   text-decoration: none;
-  color: #000;
+  color: black;
 }
 
 .link-gray {
   text-decoration: none;
-  color: #696969;
+  color: gray;
 }
 
 .link-red {
@@ -73,7 +73,12 @@ body {
 
 .link-white {
   text-decoration: none;
-  color: #fff;
+  color: white;
+}
+
+.link-blue {
+  text-decoration: none;
+  color: blue;
 }
 
 /* header */
@@ -756,3 +761,9 @@ td.fc-day-sun {
     }
   }
 // -----------------------
+
+.purchase-record-table {
+  span {
+    color: red;
+  }
+}
