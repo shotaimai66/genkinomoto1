@@ -50,6 +50,7 @@ ja:
         course: コース
         status: 予約状態
         comment: コメント
+        staff_id: スタッフ
         holiday_flag: 休み
         reservation_time: 予約時間
         treatment_menu: 施術メニュー

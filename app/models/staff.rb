@@ -1,5 +1,6 @@
 class Staff < ApplicationRecord
   has_many :notifications
+  has_many :reservations
   belongs_to :store, optional: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
