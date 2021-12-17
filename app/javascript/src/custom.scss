@@ -417,6 +417,16 @@ ul.top-staff-buttons {
   background-color: #fff;
 }
 
+#reservation_staff_id {
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
 .cart-content-wrapper {
   display: flex; // position stickyに必要
   align-items: baseline; // position stickyに必要
@@ -713,9 +723,47 @@ ul.top-staff-buttons {
   position: sticky; // position stickyに必要
 }
 
+td.fc-day-sat {
+  background-color:  #eaf4ff !important; //カレンダーの土曜日の背景の色を薄水色に変える
+}
+td.fc-day-sun {
+  background-color:  #ffeaea !important; //カレンダーの土曜日の背景の色を薄ピンク色に変える
+}
+
+// カレンダースマホ対応
+  .fc-col-header-cell-cushion {
+    @media (max-width: 600px) { //600px以下の場合
+      font-size: 0.5em;
+    }
+  }
+
+  .fc-timegrid-slot-label-cushion {
+    @media (max-width: 600px) { //600px以下の場合
+      font-size: 0.5em;
+    }
+  }
+
+  .fc-timegrid-axis-cushion {
+    @media (max-width: 600px) { //600px以下の場合
+      font-size: 0.5em;
+    }
+  }
+
+  .fc-event-time {
+    @media (max-width: 600px) { //600px以下の場合
+      font-size: 0.4em !important;
+    }
+  }
+
+  .fc-event-title {
+    @media (max-width: 600px) { //600px以下の場合
+      font-size: 0.5em;
+    }
+  }
+// -----------------------
+
 .purchase-record-table {
   span {
     color: red;
   }
 }
-

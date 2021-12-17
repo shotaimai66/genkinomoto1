@@ -14,23 +14,24 @@
         <%= f.datetime_field :start_time, class: "form-control" %>
 
         <%= f.label :course, class: "col-form-label" %>
-        <%= f.select :course, options_from_collection_for_select(@menus, :id, :title, selected = @reservation.course), class: "form-select-area" %>
+        <%= f.select :course, options_from_collection_for_select(@menus, :id, :title, selected = @reservation.course), :include_blank => true, class: "form-select-area" %>
+
+        <%= f.label :staff_id, class: "col-form-label" %>
+        <%= f.select :staff_id, options_from_collection_for_select(@staffs, :id, :name, selected = @reservation.staff_id), :include_blank => true, class: "form-select-area" %>
 
         <%= f.label :comment, class: "col-form-label" %>
         <%= f.text_area :comment, class: "form-control" %>
 
         <%= f.label :status, class: "col-form-label" %>
-        <%= f.select :status, Reservation.statuses.keys.to_a, class: "form-select-area" %>
+        <%= f.select :status, Reservation.statuses.keys.map {|k| [I18n.t("enums.reservation.status.#{k}"), k]}, class: "form-select-area" %>
 
-        <div class="text-center">キャンセル取消</div>
-        <p></p>
+        <div class="text-center my-4">キャンセル切替　：　チェックを入れるとキャンセルになります</div>
         <div class="text-center"><%= f.check_box :cancel_flag, { style: 'transform: scale(2);' } %></div>
 
         <%= f.hidden_field :guest_id, :value => @reservation.guest.id %>
 
-        <div class="center mt-3">
+        <div class="center mt-4">
           <%= f.submit "変更", class: "btn btn-primary" %>
-          <%= link_to "キャンセル", reservation_path(@reservation.id), data: { confirm: "#{@reservation.guest.name}様の#{@reservation.treatment_menu}をキャンセルしてもよろしいでしょうか?" }, method: :delete, class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>

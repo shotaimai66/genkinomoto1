@@ -17,6 +17,7 @@ json.array! @reservations do |reservation|
     else
       json.title "×"
     end
+    json.title2 reservation
     json.start reservation.start_time
     if user_signed_in?
       if current_user.id == reservation.guest_id
