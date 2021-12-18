@@ -70,14 +70,19 @@ Rails.application.routes.draw do
     end
   end
   resource :carts, only: %i[show]
+
+  resources :orders, only: %i[index destroy]
   post 'create_item_order', to: 'orders#create_item_order'
   delete 'destroy_item_order', to: 'orders#destroy_item_order'
   post 'ship_item_order', to: 'orders#ship_item_order'
   post 'cancel_ship_item_order', to: 'orders#cancel_ship_item_order'
+
+  resources :event_orders, only: %i[index destroy]
   post 'create_event_order', to: 'event_orders#create_event_order'
   delete 'destroy_event_order', to: 'event_orders#destroy_event_order'
   post 'ship_event_order', to: 'event_orders#ship_event_order'
   post 'cancel_ship_event_order', to: 'event_orders#cancel_ship_event_order'
+  
   resources :payments, only: %i[index show]
   resources :purchase_records, only: %i[index show]
   post 'pay', to: 'payments#pay'

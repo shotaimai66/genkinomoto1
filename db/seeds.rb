@@ -98,6 +98,7 @@ end
   title = "イベント-#{n+1} サンプルイベント"
   category = "屋外イベント"
   price = (n+1)*1000
+  stock = (n+1)
   description = Faker::Lorem.sentences(number: 10)
   remaining_ticket_numbers = (n+1)
   location = "神奈川県厚木市"
@@ -109,6 +110,7 @@ end
       title: title,
       category: category,
       price: price,
+      stock: stock,
       description: description,
       remaining_ticket_numbers: remaining_ticket_numbers,
       location: location,

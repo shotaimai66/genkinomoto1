@@ -4,6 +4,9 @@
   ＞ スタッフ一覧
 </p>
 <div class="container">
+  <div>
+    <h1><%= l(Date.today, format: :long) %></h1>
+  </div>
   <div class="right">
     <%= link_to "スタッフ新規作成", staffs_admin_new_path, class: "link-black btn btn-sm btn-outline-dark" %>
   </div>

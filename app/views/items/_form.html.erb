@@ -43,13 +43,13 @@
         <td>
           <div class="form-group">
             <%= f.label :price %>
-            <%= f.number_field :price, class: "form-control" %>
+            <%= f.number_field :price, min: 0, class: "form-control" %>
           </div>
         </td>
         <td>
           <div class="form-group">
             <%= f.label :stock %>
-            <%= f.number_field :stock, class: "form-control" %>
+            <%= f.number_field :stock, min: 0, max: 100, class: "form-control" %>
           </div>
         </td>
       </tr>

@@ -6,6 +6,9 @@
 
 
 <div class="container">
+  <div>
+    <h1><%= l(Date.today, format: :long) %></h1>
+  </div>
   <div class="right">
     <%= link_to "お客様新規作成", users_admin_new_path, class: "link-black btn btn-sm btn-outline-dark" %>
   </div>
