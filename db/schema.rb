@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.string "title"
     t.string "category"
     t.integer "price"
+    t.integer "stock"
     t.integer "adult_price"
     t.integer "child_price"
     t.string "description"

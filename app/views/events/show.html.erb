@@ -14,18 +14,29 @@
           <tr>
             <td class="event-show-price"><%= @event.price %> 円(税別)</td>
             <td class="center">
-              <% if user_signed_in? %>
+              <% if (@event.stock == 0) %>
+                <%= link_to "チケット完売", '#', class: "btn btn-sm btn-outline-dark" %>
+              <% elsif (@event.stock <= 5) && !user_signed_in? %>
+                <span class="font-red">チケット残りわずか</span><br>
+                <%= link_to "ログインしてカートに入れる", new_user_session_path, class: "btn btn-sm btn-outline-dark" %>
+              <% elsif (@event.stock > 5) && !user_signed_in? %>
+                チケット購入はこちら<br>
+                <%= link_to "ログインしてカートに入れる", new_user_session_path, class: "btn btn-sm btn-outline-dark" %>
+              <% elsif (@event.stock > 0) && user_signed_in? %>
+                <% if @event.stock <= 5 %>
+                  <span class="font-red">チケット残りわずか</span><br>
+                <% end %>
                 <%= form_with model: @event_order, url: create_event_order_path(@event_order), method: :post do |f| %>
                   <%= f.label "枚数:" %>
-                  <% range = (1..10) %>
+                  <% max = 10 %>
+                  <% max = @event.stock if (@event.stock < 10) %>
+                  <% range = (1..max) %>
                   <%= f.select :quantity, range %><br>
                   <%= f.fields_for @event do |e| %>
                     <%= e.hidden_field :event_id, value: @event.id %>
                   <% end %>
                   <%= f.submit "カートに入れる", class: "btn btn-sm btn-warning" %>
                 <% end %>
-              <% else %>
-                <%= link_to "ログインしてカートに入れる", new_user_session_path, class: "btn btn-sm btn-outline-dark" %>
               <% end %>
             </td>
           </tr>

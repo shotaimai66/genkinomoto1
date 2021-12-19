@@ -145,7 +145,7 @@ ul.header-service-tabs {
     text-align: center;
     float: left;
     display: block;
-    background-color: #145885;
+    background-color: #000080;
     padding: 5px 10px;
     border-radius: 5px;
   }
@@ -863,4 +863,8 @@ ul.top-staff-buttons {
   span {
     color: red;
   }
+}
+
+.font-red {
+  color: red;
 }

@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :category
       t.integer :price
+      t.integer :stock
       t.integer :adult_price
       t.integer :child_price
       t.string :description
