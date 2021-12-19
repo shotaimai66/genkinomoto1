@@ -121,11 +121,12 @@ end
 end
 
 Menu.create!(
-  category: "Foot Care　~フットケア~",
+  category: "Foot Care  ~フットケア~",
   category_order: 1,
   category_title: "初回",
   title_order: 1,
   title: "フットケア40分",
+  full_title: "初回 フットケア40分",
   charge: 4200,
   description: "下記から1つお選びください。
   ・足のネイルケア・タコ、ウオノメ除去
@@ -136,11 +137,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Foot Care　~フットケア~",
+  category: "Foot Care  ~フットケア~",
   category_order: 1,
   category_title: "初回",
   title_order: 1,
   title: "フットケア60分",
+  full_title: "初回 フットケア60分",
   charge: 6300,
   description: "足全体のお手入れ",
   treatment_time: 60,
@@ -149,11 +151,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Foot Care　~フットケア~",
+  category: "Foot Care  ~フットケア~",
   category_order: 1,
   category_title: "通常",
   title_order: 2,
   title: "ネイルケア 40分",
+  full_title: "通常 ネイルケア 40分",
   charge: 6000,
   description: "（爪のカット・甘皮ケア・爪溝のゴミ除去・コーティング）",
   treatment_time: 40,
@@ -162,11 +165,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Foot Care　~フットケア~",
+  category: "Foot Care  ~フットケア~",
   category_order: 1,
   category_title: "通常",
   title_order: 2,
   title: "フットケア 40分",
+  full_title: "通常 フットケア 40分",
   charge: 6000,
   description: "（タコ、ウオノメ、角質除去・スクラブトリートメント・保湿ケア）",
   treatment_time: 40,
@@ -175,11 +179,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Foot Care　~フットケア~",
+  category: "Foot Care  ~フットケア~",
   category_order: 1,
   category_title: "通常",
   title_order: 2,
   title: "スペシャルセット 60分",
+  full_title: "通常 スペシャルセット 60分",
   charge: 9000,
   description: "（ネイルケア＋フットケアのスペシャルセットケア）",
   treatment_time: 60,
@@ -188,11 +193,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Foot Care　~フットケア~",
+  category: "Foot Care  ~フットケア~",
   category_order: 1,
   category_title: "巻き爪補正",
   title_order: 3,
-  title: "巻き爪補正 取り付け",
+  title: "取り付け",
+  full_title: "巻き爪補正 取り付け",
   charge: 3000,
   description: "※ネイルケアまたはフットケアとセットでご予約ください。",
   treatment_time: 0,
@@ -201,11 +207,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body Care　~ボディケア~",
+  category: "Body Care  ~ボディケア~",
   category_order: 2,
   category_title: "全身",
   title_order: 1,
-  title: "全身　80分",
+  title: "全身 80分",
+  full_title: "ボディケア 全身 80分",
   charge: 8360,
   description: "※首や肩や腰など気になる部分を中心に揉みほぐします。",
   treatment_time: 80,
@@ -214,11 +221,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body Care　~ボディケア~",
+  category: "Body Care  ~ボディケア~",
   category_order: 2,
   category_title: "全身",
   title_order: 1,
-  title: "全身　50分",
+  title: "全身 50分",
+  full_title: "ボディケア 全身 50分",
   charge: 5170,
   description: "※首や肩や腰など気になる部分を中心に揉みほぐします。",
   treatment_time: 50,
@@ -227,11 +235,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body Care　~ボディケア~",
+  category: "Body Care  ~ボディケア~",
   category_order: 2,
   category_title: "足ツボ",
   title_order: 2,
-  title: "足ツボ　45分",
+  title: "足ツボ 45分",
+  full_title: "ボディケア 足ツボ 45分",
   charge: 4800,
   description: "※ふくらはぎや足裏の反射区をクリームを使ってしっかりと施術します。",
   treatment_time: 45,
@@ -240,11 +249,12 @@ Menu.create!(
 )
 
 Menu.create!(
-  category: "Body Care　~ボディケア~",
+  category: "Body Care  ~ボディケア~",
   category_order: 2,
   category_title: "足ツボ",
   title_order: 2,
-  title: "足ツボ　30分",
+  title: "足ツボ 30分",
+  full_title: "ボディケア 足ツボ 30分",
   charge: 3190,
   description: "※ひざから下をクリームを使って施術します。",
   treatment_time: 30,
@@ -257,7 +267,8 @@ Menu.create!(
   category_order: 3,
   category_title: "全身",
   title_order: 1,
-  title: "トッピング 全身30分",
+  title: "全身 30分",
+  full_title: "トッピング 全身 30分",
   charge: 3190,
   description: "※背中、肩など気になる部分を中心に圧してほぐします。",
   treatment_time: 30,

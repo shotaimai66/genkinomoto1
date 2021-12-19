@@ -11,7 +11,8 @@ class UserMailer < ApplicationMailer
   def request_reservation_staff(user, reservation)
     @user = user
     @reservation = reservation
-    mail(to: ENV["LOGIN_NAME"],
+    # mail(to: ENV["LOGIN_NAME"],
+    mail(to: "motorsports46animals@gmail.com",
          subject: "予約申込みメール")
   end
 

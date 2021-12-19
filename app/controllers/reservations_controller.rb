@@ -12,6 +12,7 @@ class ReservationsController < ApplicationController
   before_action :set_q, only: [:reservation_management, :search]
   before_action :set_new, only: [:management_new, :new]
   before_action :set_staffs, only: [:management_new, :edit_reserve]
+  before_action :two_hours_later, only: [:management_new, :new]
 
   def reservation_management
     @search_reservations = @q.result
@@ -28,13 +29,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     menu = Menu.find_by(course_number: reservation_params[:course])
     if menu.present?
-      # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
-      if menu.treatment_time <= 30
-        menu_time = 60 * (menu.treatment_time + 10)
-      else
-        menu_time = 60 * (menu.treatment_time + 20)
-      end
-      @reservation.treatment_menu = menu.title
+      menu_time = 60 * (menu.treatment_time + 10) # end_time登録の為に使用。インターバルタイムを10分追加した時間でend_timeを登録
+      @reservation.treatment_menu = menu.full_title
       @reservation.treatment_time_menu = menu.treatment_time
       @reservation.charge_menu = menu.charge
       @reservation.apply_management!(menu_time)
@@ -42,9 +38,9 @@ class ReservationsController < ApplicationController
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
-      # UserMailer.request_reservation(user, @reservation).deliver_now
+      UserMailer.request_reservation(user, @reservation).deliver_now
       #スタッフへのメール
-      # UserMailer.request_reservation_staff(user, @reservation).deliver_now
+      UserMailer.request_reservation_staff(user, @reservation).deliver_now
       redirect_to reservation_management_reservations_url, notice: "新規予約作成完了しました。"
     end
   end
@@ -71,13 +67,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     menu = Menu.find_by(course_number: reservation_params[:course])
     if menu.present?
-      # end_time登録の為に使用。30分以下は10分、31分以上の施術時間はインターバルタイムを20分追加した時間でend_timeを登録
-      if menu.treatment_time <= 30
-        menu_time = 60 * (menu.treatment_time + 10)
-      else
-        menu_time = 60 * (menu.treatment_time + 20)
-      end
-      @reservation.treatment_menu = menu.title
+      menu_time = 60 * (menu.treatment_time + 10) # end_time登録の為に使用。インターバルタイムを10分追加した時間でend_timeを登録
+      @reservation.treatment_menu = menu.full_title
       @reservation.treatment_time_menu = menu.treatment_time
       @reservation.charge_menu = menu.charge
       @reservation.apply!(menu_time)
@@ -85,9 +76,9 @@ class ReservationsController < ApplicationController
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
-      # UserMailer.request_reservation(user, @reservation).deliver_now
+      UserMailer.request_reservation(user, @reservation).deliver_now
       #スタッフへのメール
-      # UserMailer.request_reservation_staff(user, @reservation).deliver_now
+      UserMailer.request_reservation_staff(user, @reservation).deliver_now
       redirect_to reservations_url, notice: "お客様の仮予約が完了しました。承認されるまでお待ちください。"
     end
   end
@@ -100,7 +91,7 @@ class ReservationsController < ApplicationController
     @reservation.update(status: :on_reserve, title_for_guest: "予約確定", title_for_staff: title_for_staff_comment)
     user = User.find(@reservation.guest_id)
     #ゲストへの予約確定メール
-    # UserMailer.reservation_confirm(user, @reservation).deliver_now
+    UserMailer.reservation_confirm(user, @reservation).deliver_now
     redirect_to confirm_reservation_reservations_url, notice: "予約確定をしました。"
   end
 
@@ -111,12 +102,8 @@ class ReservationsController < ApplicationController
     if @reservation.update(reservation_params)
       menu = Menu.find_by(course_number: reservation_params[:course])
       if menu.present?
-        if menu.treatment_time <= 30
-          menu_time = 60 * (menu.treatment_time + 10)
-        else
-          menu_time = 60 * (menu.treatment_time + 20)
-        end
-        @reservation.treatment_menu = menu.title
+        menu_time = 60 * (menu.treatment_time + 10) # end_time登録の為に使用。インターバルタイムを10分追加した時間でend_timeを登録
+        @reservation.treatment_menu = menu.full_title
         @reservation.treatment_time_menu = menu.treatment_time
         @reservation.charge_menu = menu.charge
         @reservation.apply_update!(menu_time)
@@ -162,10 +149,9 @@ class ReservationsController < ApplicationController
     end
 
     def set_menus
-      @menus = Menu.all
+      @menus = Menu.all.order(course_number: :asc)
     end
 
-    
     def set_users
       @users = User.all
     end
@@ -190,5 +176,10 @@ class ReservationsController < ApplicationController
 
     def set_staffs
       @staffs = Staff.all
+    end
+
+    def two_hours_later
+      now = Time.current
+      @two_hours_later = now + 10800 # viewページ表示の都合上３時間分の秒数をプラス
     end
 end

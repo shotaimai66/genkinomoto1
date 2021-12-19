@@ -63,8 +63,8 @@ class UsersController < ApplicationController
       cart.save
     end
     @users = User.where(id: current_user.id)
-    # @reservations = Reservation.find_by(guest_id: current_user.id)
-    @reservations = Reservation.all.includes(:guest)
+    @reservations = Reservation.where(guest_id: current_user.id).where(cancel_flag: false).where.not(status: 3)
+    @completed_reservations= Reservation.where(guest_id: current_user.id).where(cancel_flag: false).where(status: 3)
     @staffs = Staff.all
   end
 

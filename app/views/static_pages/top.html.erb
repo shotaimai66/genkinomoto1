@@ -61,4 +61,8 @@
     <p>仮で作成しています。適宜変更をお願いします。</p>
   </div>
 
+  <% if user_signed_in? %>
+    <%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false,  class: "reserve_btn" %>
+  <% end %>
+
 </div>

@@ -1,10 +1,9 @@
 FactoryBot.define do
   factory :reservation do
-    start_time { Time.current }
-    end_time { Time.current + 360 }
-    course { 10 }
-    guest_id { "1" }
+    start_time { Time.current.tomorrow }
+    course { "10" }
     comment { "sample" }
-    store_id { "1" }
+    association :guest, factory: :user
+    association :staff, factory: :staff
   end
 end

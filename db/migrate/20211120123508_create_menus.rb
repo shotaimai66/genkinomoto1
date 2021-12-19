@@ -6,6 +6,7 @@ class CreateMenus < ActiveRecord::Migration[6.1]
       t.string :category_title
       t.integer :title_order
       t.string :title
+      t.string :full_title
       t.integer :charge
       t.string :description
       t.integer :treatment_time

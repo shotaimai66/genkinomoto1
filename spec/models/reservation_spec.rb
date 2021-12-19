@@ -2,12 +2,10 @@ require 'rails_helper'
 RSpec.describe Reservation, type: :model do
 
   before do
-    @user = FactoryBot.create(:user)
-    @reservation = @user.reservations.build
+    @reservation = create(:reservation)
   end
 
-  # factory_botが有効かどうかを検査。
-  it "has a valid factory of reservation" do
+  it "factory_botが有効かどうかを検査" do
     expect(@reservation).to be_valid
   end
 
@@ -50,11 +48,11 @@ RSpec.describe Reservation, type: :model do
 
     context 'in_working_timeカスタムバリデーションテスト' do
       it 'start_timeは10時以降の登録であること' do
-        @reservation.start_time = Time.current.tomorrow.beginning_of_day
+        @reservation.start_time = Time.current.since(3.days).beginning_of_day
         expect(@reservation).to be_invalid
       end
       it 'start_timeは19時以前の登録であること' do
-        @reservation.start_time = Time.current.tommorow.end_of_day
+        @reservation.start_time = Time.current.since(3.days).end_of_day
         expect(@reservation).to be_invalid
       end
       

@@ -56,7 +56,7 @@
   </thead>
   <tbody>
     <% if @search_reservations.present? %>
-      <% @search_reservations.order(start_time: :asc).each do |reservation| %>
+      <% @search_reservations.order(start_time: :desc).each do |reservation| %>
         <tr>
           <th scope="row"><%= reservation.id %></th>
           <td><%= reservation.guest.name %>様</td>
