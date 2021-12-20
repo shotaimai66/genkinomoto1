@@ -17,6 +17,7 @@ Store.create!(
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
   non_business_day: "水曜日",
+  working_staff: "1",
   image: File.open("app/assets/images/store1.jpg")
 )
 
@@ -31,6 +32,7 @@ Store.create!(
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
   non_business_day: "水曜日",
+  working_staff: "1",
   image: File.open("app/assets/images/store1.jpg")
 )
 
@@ -45,6 +47,7 @@ Store.create!(
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
   non_business_day: "水曜日",
+  working_staff: "1",
   image: File.open("app/assets/images/store1.jpg")
 )
 
@@ -59,6 +62,7 @@ Store.create!(
   closing_time: Time.current.beginning_of_day + 72000, # 20:00:00
   last_order_time: Time.current.beginning_of_day + 68400, # 20:00:00
   non_business_day: "水曜日",
+  working_staff: "1",
   image: File.open("app/assets/images/event_site1.jpg")
 )
 

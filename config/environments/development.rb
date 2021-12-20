@@ -46,9 +46,9 @@ Rails.application.configure do
     port:                  587,
     domain:               'smtp.gmail.com',
     # user_name:            ENV['LOGIN_NAME'],
-    user_name:            "motorsports46animals@gmail.com", #テスト用仮メールアドレス
+    user_name:            "motorsports46animals@gmail.com", #テスト用アドレスなので、本番では変更要(envファイルにて再設定してください）。
     # password:             ENV['LOGIN_PASSWORD'],
-    password:             "qtrgqwfgkbdkxdci", #テスト用仮アプリアプリケーション
+    password:             "qtrgqwfgkbdkxdci", #テスト用gmailアプリケーションパスワードなので、本番では変更要(envファイルにて再設定してください）。
     authentication:       'plain',
     enable_starttls_auto:  true
   }

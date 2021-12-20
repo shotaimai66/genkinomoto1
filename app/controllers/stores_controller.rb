@@ -3,7 +3,7 @@ class StoresController < ApplicationController
   skip_before_action :authenticate_staff!, only: [:index, :show]
 
   def index
-    @stores = Store.all
+    @stores = Store.all.order(id: :asc)
   end
 
   def show
@@ -50,6 +50,6 @@ class StoresController < ApplicationController
     
   private
     def store_params
-      params.require(:store).permit(:name, :phone, :email, :line_id, :address, :description, :opening_time, :closing_time, :last_order_time, :non_business_day, :image)
+      params.require(:store).permit(:name, :phone, :email, :line_id, :address, :description, :opening_time, :closing_time, :last_order_time, :non_business_day, :working_staff, :image)
     end
 end

@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @reservation = reservation
     # mail(to: ENV["LOGIN_NAME"],
-    mail(to: "motorsports46animals@gmail.com",
+    mail(to: "motorsports46animals@gmail.com",#テスト用アドレスなので、本番では変更要(envファイルにて再設定してください）。
          subject: "予約申込みメール")
   end
 

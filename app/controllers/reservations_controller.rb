@@ -5,13 +5,13 @@ class ReservationsController < ApplicationController
   skip_before_action :authenticate_staff!, only: [:index, :show, :new, :create]
   before_action :set_reservations, only: [:index, :confirm_reservation, :management_new]
   before_action :set_reservation, only: [:show, :edit, :update, :edit_reserve, :update_reserve, :destroy]
-  before_action :set_menus, only: [:new, :edit_reserve, :management_new]
+  before_action :set_menus, only: [:new, :edit_reserve, :update_reserve, :management_new]
   before_action :set_users, only: :management_new
   # :end_timeが現在時刻を過ぎているデータは:statusをcompleted(施術完了)にする
   before_action :reservation_completed, only: [:index, :confirm_reservation]
   before_action :set_q, only: [:reservation_management, :search]
   before_action :set_new, only: [:management_new, :new]
-  before_action :set_staffs, only: [:management_new, :edit_reserve]
+  before_action :set_staffs, only: [:management_new, :edit_reserve, :update_reserve]
   before_action :two_hours_later, only: [:management_new, :new]
 
   def reservation_management
@@ -76,9 +76,9 @@ class ReservationsController < ApplicationController
     if @reservation.save
       user = User.find(@reservation.guest_id)
       #申込したゲストへのメール
-      UserMailer.request_reservation(user, @reservation).deliver_now
+      # UserMailer.request_reservation(user, @reservation).deliver_now
       #スタッフへのメール
-      UserMailer.request_reservation_staff(user, @reservation).deliver_now
+      # UserMailer.request_reservation_staff(user, @reservation).deliver_now
       redirect_to reservations_url, notice: "お客様の仮予約が完了しました。承認されるまでお待ちください。"
     end
   end
@@ -87,7 +87,7 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    title_for_staff_comment = "予約確定 #{@reservation.guest.name}様 #{@reservation.treatment_menu}　#{@reservation.staff.name}"
+    title_for_staff_comment = "予約確定 #{@reservation.guest.name}様 #{@reservation.treatment_menu}  #{@reservation.staff.name}"
     @reservation.update(status: :on_reserve, title_for_guest: "予約確定", title_for_staff: title_for_staff_comment)
     user = User.find(@reservation.guest_id)
     #ゲストへの予約確定メール
@@ -117,7 +117,7 @@ class ReservationsController < ApplicationController
             title_for_staff: "仮予約"
           )
         elsif reservation_params[:status] == "on_reserve"
-          title_for_staff_comment = "予約確定 #{@reservation.guest.name}様　#{@reservation.treatment_menu}　#{@reservation.staff.name}"
+          title_for_staff_comment = "予約確定 #{@reservation.guest.name}様  #{@reservation.treatment_menu}  #{@reservation.staff.name}"
           @reservation.update(
             title_for_guest: "予約確定",
             title_for_staff: title_for_staff_comment
@@ -125,13 +125,15 @@ class ReservationsController < ApplicationController
         end
       end
       redirect_to confirm_reservation_reservations_url, notice: "予約を編集しました。"
+    else
+      redirect_to edit_reserve_reservation_url(@reservation), notice: "編集に失敗しました。"
     end
   end
 
   def destroy
     # cancel_flagを1にする事で論理削除実施 & ステータスを3(completed施術完了)に切り替え
     @reservation.update(cancel_flag: 1, status: :completed)
-    redirect_to confirm_reservation_reservations_url, notice: "予約をキャンセルしました。"
+    redirect_to reservation_management_reservations_url, notice: "予約をキャンセルしました。"
   end
 
   private

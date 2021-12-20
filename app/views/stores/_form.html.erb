@@ -37,6 +37,10 @@
           <td><%= f.time_select :last_order_time, {minute_step: 10} %></td>
         </tr>
         <tr>
+          <td><%= f.label :working_staff %></td>
+          <td><%= f.number_field :working_staff %></td>
+        </tr>
+        <tr>
           <td><%= f.label :non_business_day %></td>
           <td><%= f.text_field :non_business_day %></td>
         </tr>
@@ -48,33 +52,33 @@
     </div>
 
     <div class="split-content-right">
-     <table class="table">
-      <td>
-        <%= f.label :image %><br>
-        <%= f.file_field :image, id: :store_img %>
-        <% if @store.image.present? %>
-          <%= image_tag @store.image.url, width: "100%", class: "image-border", id: :store_img_prev %>
-        <% else %>
-          <%= image_tag "/no_image2.png", width: "100%", class: "image-border", id: :store_img_prev %>
-        <% end %>
-        <script type="text/javascript">
-          $(function() {
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-            $('#store_img_prev').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-                }
-            }
-            $("#store_img").change(function(){
-                readURL(this);
+      <table class="table">
+        <td>
+          <%= f.label :image %><br>
+          <%= f.file_field :image, id: :store_img %>
+          <% if @store.image.present? %>
+            <%= image_tag @store.image.url, width: "100%", class: "image-border", id: :store_img_prev %>
+          <% else %>
+            <%= image_tag "/no_image2.png", width: "100%", class: "image-border", id: :store_img_prev %>
+          <% end %>
+          <script type="text/javascript">
+            $(function() {
+              function readURL(input) {
+                  if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+              $('#store_img_prev').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+                  }
+              }
+              $("#store_img").change(function(){
+                  readURL(this);
+              });
             });
-          });
-        </script>
-      </td>
-     </table>
+          </script>
+        </td>
+      </table>
     </div>
   </div>
     <%= f.submit "登録", class: "btn btn-sm btn-outline-dark" %>

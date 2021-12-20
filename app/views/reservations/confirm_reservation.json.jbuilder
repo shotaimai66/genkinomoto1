@@ -9,8 +9,6 @@ json.array! @reservations do |reservation|
     end
     json.start reservation.start_time
     json.end reservation.end_time
-    if reservation.on_reserve? || reservation.completed?
-      json.url edit_reserve_reservation_url(reservation.id)
-    end
+    json.url edit_reserve_reservation_url(reservation.id)
   end
 end
