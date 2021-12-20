@@ -32,6 +32,10 @@ li {
   font-size: 1rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 // smartphone first
 body {
   width: 100%;
@@ -632,7 +636,7 @@ ul.top-staff-buttons {
     padding: 12px 10px;
     background-color: #D3D1C5;
     margin-bottom: 30px;
-    font-size: 120%;
+    font-size: 130%;
     font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
     color: #64554A;
     border-radius: 3px;
@@ -645,12 +649,15 @@ ul.top-staff-buttons {
   }
 
   #page_contents h4 {
-    padding: 12px 10px;
-    margin-bottom: 30px;
-    font-size: 120%;
+    padding: 0 0 10px 0;
+    margin: 0 2% 30px 2%;
+    font-size: 130%;
     font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
     color: #64554A;
     border-bottom: #E9DFD8 2px solid;
+    @media (max-width: 600px) { //600px以下の場合
+      margin: 0 0 30px 0;
+    }
   }
 
   .menu ul.menu_box {
@@ -673,6 +680,10 @@ ul.top-staff-buttons {
     float: left;
     margin: 2%;
     background-color: #F4EFEC;
+    @media (max-width: 600px) { //600px以下の場合
+      width: 100%;
+      margin: 0 0 2% 0;
+    }
   }
 
   .menu ul.menu_box p {
@@ -723,42 +734,128 @@ ul.top-staff-buttons {
   position: sticky; // position stickyに必要
 }
 
-td.fc-day-sat {
-  background-color:  #eaf4ff !important; //カレンダーの土曜日の背景の色を薄水色に変える
-}
-td.fc-day-sun {
-  background-color:  #ffeaea !important; //カレンダーの土曜日の背景の色を薄ピンク色に変える
-}
-
-// カレンダースマホ対応
-  .fc-col-header-cell-cushion {
+// 予約関連
+  .reserve_show_btn {
+    position: fixed;
+    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
+    margin-top: 10px;
+    left: 0px;
+    border-radius: 5px;
+    text-align: center;
+    top: 50%;
+    line-height: 18px;
+    z-index: 100;
+    width: 50px;
+    background: rgba(65, 150, 192, 0.75);
+    color: #fff;
+    padding: 30px 15px;
+    margin-top: -120px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
     @media (max-width: 600px) { //600px以下の場合
-      font-size: 0.5em;
+      position: fixed;
+      right: inherit;
+      top: inherit;
+      left: 2%;
+      border-radius: 5px;
+      width: 96%;
+      bottom: 6%;
+      padding: 10px 15px;
+      margin-top: 0;
+      z-index: 999;
     }
   }
 
-  .fc-timegrid-slot-label-cushion {
+  .reserve_show_btn:hover {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(13, 145, 211, 0.75);
+    box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.2);
+  }
+
+  .reserve_btn {
+    position: fixed;
+    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
+    margin-top: 10px;
+    right: 0px;
+    border-radius: 5px;
+    text-align: center;
+    top: 50%;
+    line-height: 18px;
+    z-index: 100;
+    width: 50px;
+    background: rgba(111,126,77,0.75);
+    color: #fff;
+    padding: 30px 15px;
+    margin-top: -120px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
     @media (max-width: 600px) { //600px以下の場合
-      font-size: 0.5em;
+      position: fixed;
+      right: inherit;
+      top: inherit;
+      left: 2%;
+      border-radius: 5px;
+      width: 96%;
+      bottom: 6%;
+      padding: 10px 15px;
+      margin-top: 0;
+      z-index: 999;
     }
   }
 
-  .fc-timegrid-axis-cushion {
-    @media (max-width: 600px) { //600px以下の場合
-      font-size: 0.5em;
-    }
+  .reserve_btn:hover {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(102, 128, 37, 0.75);
+    box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.2);
   }
 
-  .fc-event-time {
-    @media (max-width: 600px) { //600px以下の場合
-      font-size: 0.4em !important;
+  // カレンダースマホ対応
+    .fc-col-header-cell-cushion {
+      @media (max-width: 600px) { //600px以下の場合
+        font-size: 0.5em;
+      }
     }
-  }
 
-  .fc-event-title {
-    @media (max-width: 600px) { //600px以下の場合
-      font-size: 0.5em;
+    .fc-timegrid-slot-label-cushion {
+      @media (max-width: 600px) { //600px以下の場合
+        font-size: 0.5em;
+      }
     }
+
+    .fc-timegrid-axis-cushion {
+      @media (max-width: 600px) { //600px以下の場合
+        font-size: 0.5em;
+      }
+    }
+
+    .fc-event-time {
+      @media (max-width: 600px) { //600px以下の場合
+        font-size: 0.4em !important;
+      }
+    }
+
+    .fc-event-title {
+      @media (max-width: 600px) { //600px以下の場合
+        font-size: 0.5em;
+      }
+    }
+  // -----------------------
+
+  td.fc-day-sat {
+    background-color: #eaf4ff !important; //カレンダーの土曜日の背景の色を薄水色に変える
+  }
+  td.fc-day-sun {
+    background-color: #ffeaea !important; //カレンダーの土曜日の背景の色を薄ピンク色に変える
+  }
+  .datetime-select-form {
+    display: inline-block;
+    width: 25%;
   }
 // -----------------------
 

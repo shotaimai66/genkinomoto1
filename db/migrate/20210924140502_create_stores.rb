@@ -11,6 +11,7 @@ class CreateStores < ActiveRecord::Migration[6.1]
       t.time :closing_time
       t.time :last_order_time
       t.string :non_business_day
+      t.integer :working_staff
       t.string :image # image 必ず一番下にしないと画像が読めない
       t.timestamps
     end

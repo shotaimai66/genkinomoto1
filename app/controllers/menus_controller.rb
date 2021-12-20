@@ -51,7 +51,7 @@ class MenusController < ApplicationController
 
   private
     def menu_params
-      params.require(:menu).permit(:category, :category_order, :category_title, :title_order, :title, :charge, :description, :treatment_time, :course_number, :store_id)
+      params.require(:menu).permit(:category, :category_order, :category_title, :title_order, :title, :full_title, :charge, :description, :treatment_time, :course_number, :store_id)
     end
 
     def set_menus
@@ -61,7 +61,5 @@ class MenusController < ApplicationController
     def set_menu
       @menu = Menu.find(params[:id])
     end
-
-    
 
 end

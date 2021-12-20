@@ -12,12 +12,25 @@
         <%= form_with(model: @reservation, url: reservations_path, method: :post) do |f| %>
           <div id="error"></div>
 
-          <%= f.label :start_time, class: "col-form-label" %>
-          <!-- 初期値は明日の10:00 -->
-          <%= f.datetime_field :start_time, value: Time.current.tomorrow.strftime('%Y-%m-%dT10:00:00'), class: "form-control" %>
+          <h5>予約日</h5>
+          <!-- 初期値は当日の現在時刻から２時間後 -->
+          <!-- 時間の選択は10分単位 -->
+          <%= f.datetime_select :start_time,
+                                {
+                                use_month_numbers: true,
+                                datetime_separator: '日<h5 class="mt-3">施術開始時間</h5><div><font size="2rem" color="red">※現在より２時間後からご予約が可能です。</font><div>',
+                                minute_step: 10,
+                                default: @two_hours_later,
+                                start_year: now.year,
+                                end_year: now.next_year.year
+                                },
+                                class: "form-control datetime-select-form"
+          %>
 
-          <%= f.label :course, class: "col-form-label" %>
-          <%= f.select :course, options_from_collection_for_select(@menus, :id, :title), :include_blank => true, class: "form-select-area" %>
+          <div>
+            <%= f.label :course, class: "col-form-label" %>
+            <%= f.select :course, options_from_collection_for_select(@menus, :id, :full_title), :include_blank => true, class: "form-select-area" %>
+          </div>
 
           <%= f.label :comment, class: "col-form-label" %>
           <%= f.text_area :comment, class: "form-control" %>

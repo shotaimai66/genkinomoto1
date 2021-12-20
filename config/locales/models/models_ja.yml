@@ -47,9 +47,9 @@ ja:
         end_time: 終了時間
         title_for_guest: ゲスト表示
         title_for_staff: スタッフ表示
-        course: コース
+        course: 施術コース
         status: 予約状態
-        comment: コメント
+        comment: 備考
         staff_id: スタッフ
         holiday_flag: 休み
         reservation_time: 予約時間
@@ -68,4 +68,5 @@ ja:
         closing_time: 終業時間
         last_order_time: ラストオーダー
         non_business_day: 定休日
+        working_staff: 稼働スタッフ人数
         image: 画像

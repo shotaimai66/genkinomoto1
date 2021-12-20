@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.string "category_title"
     t.integer "title_order"
     t.string "title"
+    t.string "full_title"
     t.integer "charge"
     t.string "description"
     t.integer "treatment_time"
@@ -184,6 +185,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123508) do
     t.time "closing_time"
     t.time "last_order_time"
     t.string "non_business_day"
+    t.integer "working_staff"
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
