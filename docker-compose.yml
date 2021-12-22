@@ -14,7 +14,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - '.:/app'
+      - '.:/app' # Dockerfileに記述しているので不要???
       - 'bundle:/usr/local/bundle:cached'
       - 'node_modules:/app/node_modules'
       - '/app/vendor'
@@ -23,6 +23,7 @@ services:
       - '/app/.git'
     environment:
       - 'DATABASE_PASSWORD=postgres'
+      - 'RAILS_ENV: development' # 本番環境と開発環境を切り替えるために追記
     tty: true
     stdin_open: true
     depends_on:
