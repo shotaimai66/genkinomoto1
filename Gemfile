@@ -38,7 +38,8 @@ gem 'carrierwave'
 # 検索機能
 gem 'ransack'
 gem 'payjp'
-gem 'quilljs-rails', :git => 'git://github.com/abhinavmathur/quilljs-rails.git'
+#gem 'quilljs-rails', :git => 'git://github.com/abhinavmathur/quilljs-rails.git'
+gem 'quilljs-rails', :git => 'https://github.com/abhinavmathur/quilljs-rails.git' # エラーが出たのでhttpsに変更しました
 
 
 group :development, :test do
