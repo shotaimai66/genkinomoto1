@@ -23,7 +23,7 @@ services:
       - '/app/.git'
     environment:
       - 'DATABASE_PASSWORD=postgres'
-      - 'RAILS_ENV: development' # 本番環境と開発環境を切り替えるために追記
+      - 'RAILS_ENV: development' # ローカルサーバーで起動するため追記
     tty: true
     stdin_open: true
     depends_on:
