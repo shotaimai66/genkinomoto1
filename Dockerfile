@@ -8,7 +8,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   imagemagick \
   build-essential \
   libpq-dev \
-  postgresql-client
+  postgresql-client \
+  vim
 
 # 変更予定
 RUN apt-get update && apt-get install -y unzip && \
