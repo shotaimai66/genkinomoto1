@@ -15,6 +15,7 @@ h6 {
 
 h1 {
   font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
 p {
@@ -36,16 +37,13 @@ a {
   text-decoration: none;
 }
 
-// smartphone first
 body {
-  width: 100%;
   color: #000;
-  background: #fff;
-  padding-bottom: 4rem;
-  padding-top:11rem;
-  @media (min-width: 600px) { //600px以上の場合
-    padding-top: 6rem;
-  }
+  background: #ffffff;
+}
+
+#c-body {
+  min-height: 100vh;
 }
 
 .center {
@@ -85,117 +83,6 @@ body {
   color: blue;
 }
 
-/* header */
-
-.header {
-  background-color: #fff;
-  border-bottom: 5px solid gray;
-  opacity: 0.85;
-  top: 0em;
-  width: 100%;
-  position: fixed;
-  z-index: 90;
-}
-
-// smartphone first
-#logo {
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-  @media (min-width: 600px) { //600px以上の場合
-    margin-left: 20px;
-  }
-}
-
-// for dropdown buttons
-.dropdown-menu {
-  z-index: 99; //一番上にくる
-}
-
-// smartphone first
-.header-user-buttons {
-  z-index: 90;
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-  @media (min-width: 600px) { //600px以上の場合
-    top: 10px;
-    right: 20px;
-    position: fixed;
-  }
-  li {
-    float: left;
-  }
-}
-
-// smartphone first
-ul.header-service-tabs {
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-  margin-bottom: 0;
-  li {
-    width: 24%;
-    height: 50px;
-    margin-right: 1%;
-    font-size: 0.8rem;
-    text-align: center;
-    float: left;
-    display: block;
-    background-color: #000080;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  .link {
-    color: #fff;
-    text-decoration: none;
-  }
-  @media (min-width: 600px) { //600px以上の場合
-    margin-left: auto;
-    margin-right: auto;
-    
-    li {
-      width: 25%;
-      height: auto;
-      font-size: 1rem;
-      margin-right: 0;
-      background-color: #fff;
-      float: left;
-      border-right: 2px solid gray;
-      border-radius: 0;
-    }
-    .link {
-      color: #333333;
-      background-color: #fff;
-      text-decoration: none;
-    }
-  }
-}
-
-.nav {
-  margin-right: 20px;
-  color: #000;
-}
-
-
-
-/* footer */
-
-.footer {
-  position: fixed;
-  height: 2rem;
-  bottom: 0; /*下に固定*/
-  width: 100%;
-  font-size: 1em;
-  color: #fff;
-  background-color: #000;
-  opacity: 0.8;
-  z-index: 99; //一番上にくる
-}
-
 .page-info {
   font-size: 1em;
   color: rgb(24, 24, 24);
@@ -206,92 +93,23 @@ ul.header-service-tabs {
   margin-bottom: 20px;
 }
 
-.card-body {
-}
-
-h1 {
-  margin-bottom: 20px;
-}
-
-.top-main-image {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.f-container { 
-  display: flex;
-  justify-content: flex-end; 
-}
-
-ul.top-staff-buttons {
-  li {
-    float: left;
-    margin-left: 5px;
-  }
-}
-
-.top-content1 {
-  border: 1px solid gray;
-  padding: 20px;
-  height: 200px;
-  margin-bottom: 20px;
-  ul {
-    padding-left: 20px;
-  }
-  span{
-    padding-left: 20px;
-  }
-}
-
-.top-split-content1 {
-  width: 100%;
-  margin-bottom: 20px;
-  float: left;
-}
-
-.top-split-content1-left {
-  border: 1px solid gray;
-  padding: 20px;
-  height: 200px;
-  width: 49%;
-  margin-right: 2%;
-  float: left;
-}
-
-.top-split-content1-right {
-  border: 1px solid gray;
-  padding: 20px;
-  height: 200px;
-  width: 49%;
-  float: left;
-}
-
-.top-content2 {
-  border: 1px solid gray;
-  width: 100%;
-  height: 200px;
-  padding: 20px;
-  float: left;
-  margin-bottom: 6rem;
-}
-
 // devise設定
-
-.container-login {
-  @extend .container-fluid;
-  max-width: 576px;
-  .form-control {
-    margin-bottom: 20px;
+  .container-login {
+    @extend .container-fluid;
+    max-width: 576px;
+    .form-control {
+      margin-bottom: 20px;
+    }
   }
-}
 
-.mw-md {
-  max-width: 576px;
-}
+  .mw-md {
+    max-width: 576px;
+  }
 
-.mw-xl {
-  max-width: 1200px;
-}
+  .mw-xl {
+    max-width: 1200px;
+  }
+// ---------
 
 .round-square-top {
   width: 250px; /* 幅指定 */
@@ -389,46 +207,6 @@ ul.top-staff-buttons {
 
 .fc .fc-scrollgrid {
   background-color: white;
-}
-
-#reservation_course {
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 20px;
-  background-color: #fff;
-}
-
-#reservation_guest_id {
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 20px;
-  background-color: #fff;
-}
-
-#reservation_status {
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 20px;
-  background-color: #fff;
-}
-
-#reservation_staff_id {
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 20px;
-  background-color: #fff;
 }
 
 .cart-content-wrapper {
@@ -608,125 +386,35 @@ ul.top-staff-buttons {
 }
 // -----------------------
 
-// ユーザー用施術一覧メニュー画面で使用(/treatment_menu)
-  .clearfix::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-
-  #wapper {
-    width:100%;
-    padding:0;
-    margin:0;
-    overflow:hidden;
-  }
-
-  #page_contents {
-    width: 96%;
-    max-width: 1200px;
-    margin: 80px auto;
-  }
-
-  #page_contents .block01 {
-    margin-bottom: 80px;
-  }
-
-  #page_contents h3 {
-    padding: 12px 10px;
-    background-color: #D3D1C5;
-    margin-bottom: 30px;
-    font-size: 130%;
-    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
-    color: #64554A;
-    border-radius: 3px;
-  }
-
-  #page_contents p {
-    color: #333;
-    font-size: 16px;
-    font-family: "游ゴシック体", "Yu Gothic", sans-serif;
-  }
-
-  #page_contents h4 {
-    padding: 0 0 10px 0;
-    margin: 0 2% 30px 2%;
-    font-size: 130%;
-    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
-    color: #64554A;
-    border-bottom: #E9DFD8 2px solid;
-    @media (max-width: 600px) { //600px以下の場合
-      margin: 0 0 30px 0;
-    }
-  }
-
-  .menu ul.menu_box {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .menu ul.menu_box .title {
-    padding: 10px;
-    background-image: url("/menu_bg.jpeg");
-    // background: #887E74;
-    overflow: hidden;
-    font-weight: bold;
-    color: #FFFFFF;
-  }
-
-  .menu ul.menu_box li {
-    width: 46%;
-    float: left;
-    margin: 2%;
-    background-color: #F4EFEC;
-    @media (max-width: 600px) { //600px以下の場合
-      width: 100%;
-      margin: 0 0 2% 0;
-    }
-  }
-
-  .menu ul.menu_box p {
-    margin: 15px;
-    line-height: 160%;
-  }
-
-  .menu .course_box {
-    margin: 15px;
-    padding: 10px;
-    background-color: #FFFFFF;
-  }
-// -----------------------
-
 .user-account-wrapper {
   display: flex; // position stickyに必要
   align-items: baseline; // position stickyに必要
   width: 100%;
 }
-
+  
 .user-account-wrapper-left {
   width: 65%;
   margin-right: 5%;
 }
-
+  
 .user-account-wrapper-right {
   width: 30%;
   align-self: baseline; // position stickyに必要
   top: 6rem; // position stickyに必要 スクロールのときに上で止まる位置
   position: sticky; // position stickyに必要
 }
-
+  
 .staff-account-wrapper {
   width: 100%;
   display: flex; // position stickyに必要
   align-items: baseline; // position stickyに必要
 }
-
+  
 .staff-account-wrapper-left {
   width: 65%;
   margin-right: 5%;
 }
-
+  
 .staff-account-wrapper-right {
   width: 30%;
   align-self: baseline; // position stickyに必要
@@ -734,137 +422,12 @@ ul.top-staff-buttons {
   position: sticky; // position stickyに必要
 }
 
-// 予約関連
-  .reserve_show_btn {
-    position: fixed;
-    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
-    margin-top: 10px;
-    left: 0px;
-    border-radius: 5px;
-    text-align: center;
-    top: 50%;
-    line-height: 18px;
-    z-index: 100;
-    width: 50px;
-    background: rgba(65, 150, 192, 0.75);
-    color: #fff;
-    padding: 30px 15px;
-    margin-top: -120px;
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    @media (max-width: 600px) { //600px以下の場合
-      position: fixed;
-      right: inherit;
-      top: inherit;
-      left: 2%;
-      border-radius: 5px;
-      width: 96%;
-      bottom: 6%;
-      padding: 10px 15px;
-      margin-top: 0;
-      z-index: 999;
-    }
-  }
-
-  .reserve_show_btn:hover {
-    color: #fff;
-    text-decoration: none;
-    background: rgba(13, 145, 211, 0.75);
-    box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.2);
-  }
-
-  .reserve_btn {
-    position: fixed;
-    font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
-    margin-top: 10px;
-    right: 0px;
-    border-radius: 5px;
-    text-align: center;
-    top: 50%;
-    line-height: 18px;
-    z-index: 100;
-    width: 50px;
-    background: rgba(111,126,77,0.75);
-    color: #fff;
-    padding: 30px 15px;
-    margin-top: -120px;
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    @media (max-width: 600px) { //600px以下の場合
-      position: fixed;
-      right: inherit;
-      top: inherit;
-      left: 2%;
-      border-radius: 5px;
-      width: 96%;
-      bottom: 6%;
-      padding: 10px 15px;
-      margin-top: 0;
-      z-index: 999;
-    }
-  }
-
-  .reserve_btn:hover {
-    color: #fff;
-    text-decoration: none;
-    background: rgba(102, 128, 37, 0.75);
-    box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.2);
-  }
-
-  // カレンダースマホ対応
-    .fc-col-header-cell-cushion {
-      @media (max-width: 600px) { //600px以下の場合
-        font-size: 0.5em;
-      }
-    }
-
-    .fc-timegrid-slot-label-cushion {
-      @media (max-width: 600px) { //600px以下の場合
-        font-size: 0.5em;
-      }
-    }
-
-    .fc-timegrid-axis-cushion {
-      @media (max-width: 600px) { //600px以下の場合
-        font-size: 0.5em;
-      }
-    }
-
-    .fc-event-time {
-      @media (max-width: 600px) { //600px以下の場合
-        font-size: 0.4em !important;
-      }
-    }
-
-    .fc-event-title {
-      @media (max-width: 600px) { //600px以下の場合
-        font-size: 0.5em;
-      }
-    }
-  // -----------------------
-
-  td.fc-day-sat {
-    background-color: #eaf4ff !important; //カレンダーの土曜日の背景の色を薄水色に変える
-  }
-  td.fc-day-sun {
-    background-color: #ffeaea !important; //カレンダーの土曜日の背景の色を薄ピンク色に変える
-  }
-  .datetime-select-form {
-    display: inline-block;
-    width: 25%;
-  }
-// -----------------------
-
 .purchase-record-table {
   span {
     color: red;
   }
 }
-
+    
 .font-red {
   color: red;
 }

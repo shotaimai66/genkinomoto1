@@ -3,7 +3,10 @@
   予約画面
 </p>
 
-<h1 class="test">予約画面</h1>
+<% unless user_signed_in? %>
+  <font size="2rem" color="red">※WEB予約をご利用になる際はログインが必要になります。</font>
+  <%= link_to 'アカウントを登録する', new_user_registration_path, class: "btn btn-sm btn-outline-info" %>
+<% end %>
 
 <div id="calendar"></div>
 
