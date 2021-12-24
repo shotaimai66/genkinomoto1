@@ -36,6 +36,7 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
+# アプリケーションコードのコピー
 COPY . /app
 
 #今井さんからのアドバイスでコメントアウト
@@ -43,7 +44,14 @@ COPY . /app
 # RUN chmod 744 /start.sh
 # CMD ["sh", "/start.sh"]
 
+# アセットのプリコンパイル
+RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
+ && yarn cache clean \
+ && rm -rf node_modules tmp/cache
+
 # 今井さんからのアドバイスで本番環境用に追加
+# ランタイム設定
+ENV RAILS_SERVE_STATIC_FILES="true"
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
