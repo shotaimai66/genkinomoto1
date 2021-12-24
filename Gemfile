@@ -60,4 +60,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+group :production do
+  gem 'rails_12factor' # herokuで詳細なログを出す
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
