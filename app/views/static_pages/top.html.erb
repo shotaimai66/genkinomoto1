@@ -29,16 +29,17 @@
   <h1>サロン紹介</h1>
   <div class="row">
     <div class="col-12 col-md-7">
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-12 col-sm-8 col-md-12">
           <div><%= link_to image_tag("/salon.jpg", width: '100%'), reservations_path, 'data-turbolinks': false %></div>
         </div>
         <div class="col-12 mt-4">
-          <p>巻き爪、タコ、ウオノメのケアを中心としたボディケアサロンです。<br>
+          <p>
+            巻き爪、タコ、ウオノメのケアを中心としたボディケアサロンです。<br>
               巻き爪ケアは痛みが少なく短い爪でも補正ができ、ご好評をいただいています！<br>
               皆様のご来店をお待ちしています。
           </p>
-          <div class="dl-wrap">
+          <div>
             <dl>
               <div>
                 <dt>住所</dt>
@@ -77,4 +78,5 @@
   </div>
 </div>
 
-<%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false,  class: "reserve_btn" %>
+<%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false, class: "reserve-btn" %>
+<%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false, class: "phone-reserve-btn", id: "phone-reservation-btn" %>

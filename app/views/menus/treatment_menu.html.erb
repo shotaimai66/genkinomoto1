@@ -1,13 +1,9 @@
-<div class="top-main-image">
-  <%= image_tag("/body_care1.jpg", width: '100%') %>
-</div>
 <div id="wapper">
   <div id="page_contents" class="menu">
     <div class="block01 clearfix">
       <h3>メニュー・料金</h3>
     </div>
     
-
     <% @menus.select(:category, :category_order).distinct.order(category_order: :asc).each do |menu| %>
       <div class="block01 clearfix">
         <h4 id="menu_01"><%= menu.category %></h4>
@@ -23,7 +19,7 @@
                   <hr width=90% size=3>
                 <% end %>
                 <p>
-                  <%= title.title %>　<span class="float-right"><%= title.charge.to_s(:delimited) %>円
+                  <%= title.title %>  <span class="float-right"><%= title.charge.to_s(:delimited) %>円
                   <% if title_menu.category_title == "巻き爪補正" %>
                     /１本
                   <% end %>
@@ -47,7 +43,7 @@
       </p>
     </div>
   </div>
-  <% if user_signed_in? %>
-    <%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false,  class: "reserve_btn" %>
-  <% end %>
+  
+  <%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false, class: "reserve-btn" %>
+  <%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false, class: "phone-reserve-btn", id: "phone-reservation-btn" %>
 </div>

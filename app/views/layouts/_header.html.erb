@@ -103,15 +103,14 @@
 
         </div>
 
-        <div class="list-link">
-          <div><%= link_to '店舗のご案内', stores_path, class: "link-black" %></div>
-          <div><%= link_to 'メニューと料金', treatment_menu_menus_path, class: "link-black" %></div>
-          <div><%= link_to '商品情報', items_path, class: "link-black" %></div>
-          <div><%= link_to 'イベント情報', events_path, class: "link-black" %></div>
-        </div>
+        <ul class="phone-list-link">
+          <li><%= link_to '店舗のご案内', stores_path, class: "link-black" %></li>
+          <li><%= link_to 'メニューと料金', treatment_menu_menus_path, class: "link-black" %></li>
+          <li><%= link_to '商品情報', items_path, class: "link-black" %></li>
+          <li><%= link_to 'イベント情報', events_path, class: "link-black" %></li>
+        </ul>
 
-
-        <div class="staff-btn-wrap">
+        <div class="phone-staff-btn">
           <div class="btn-group staff-button">
             <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

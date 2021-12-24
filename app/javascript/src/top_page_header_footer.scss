@@ -5,7 +5,6 @@
     フッター
     ドロップボタンメニュー
     トップへ戻るボタン
-    スマートフォン用リンク一覧（画面下固定）：デフォルト非表示
     ハンバーガーメニュー
     トップページスライダー画像
 =============*/
@@ -22,9 +21,6 @@
 
   .header-logo img {
     padding: 5px;
-    @media (max-width: 600px) {
-      padding: 10px 0;
-    }
   }
 
   // ヘッダーメニュー
@@ -41,14 +37,6 @@
       @media (max-width: 600px) {
         font-size: 0.5em;
       }
-    }
-    .link-lightgray {
-      text-decoration: none;
-      color: rgb(237, 237, 237);
-    }
-    .link-lightgray:hover {
-      text-decoration: none;
-      color: white;
     }
 
     .user-payment-info {
@@ -105,14 +93,13 @@
       }
     }
     p {
+      margin-bottom: 2rem;
       @media (max-width: 600px) {
         font-size: 0.6em;
       }
     }
-    .dl-wrap {
-      margin: 10px 0;
-    }
     dl div{
+      text-align: center;
       border-bottom:dashed 1px #333333;
       margin: 10px 0;
       @media (max-width: 600px) {
@@ -139,7 +126,7 @@
 
   #footer .copy-rights {
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     @media (max-width: 600px) {
       font-size: 0.5rem;
     }
@@ -160,54 +147,41 @@
     display: none;
     @media (max-width: 600px) {
       display: block;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #333;
+      padding-bottom: 25px;
+      border-bottom: 1px solid gray !important;
+      text-align: center;
     }
   }
 
-  .staff-btn-wrap {
-    left: 10px;
-    margin: 10px 0;
-    padding: 10px 0;
-    border-top: 1px solid #333;
+  .phone-staff-btn {
+    text-align: center;
+    padding: 25px 0;
   }
 
   .staff-btn {
-
+    padding: 0 0 10px 10px;
     @media (max-width: 600px) {
       display: none;
     }
   }
 
-  .list-link {
+  .phone-list-link {
+    font-family: "游ゴシック体", "Yu Gothic", sans-serif;
     margin: 10px;
     padding: 10px;
   }
-//----------------------
 
-// スマートフォン用リンク一覧（画面下固定）
-  .smart-phone-index {
-    display: none;
-    // @media (max-width: 600px) {
-    //   position: fixed;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   text-align: center;
-    //   background: rgba(82, 238, 255, 0.75);
-    //   font-size: 0.5rem;
-    //   color: #5e5e5e;
-    //   font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
-    //   height: 80px;
-    //   width: 100%;
-    //   right: inherit;
-    //   top: inherit;
-    //   bottom: 0;
-    //   margin: 0;
-    //   z-index: 2;
-    // }
+  .phone-list-link li {
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid gray !important;
   }
-//---------------------------------
+
+  .phone-list-link li a {
+    color: rgb(50, 50, 50) !important;
+  }
+
+//----------------------
 
 // トップへ戻るボタン
   /*リンクの形状*/
@@ -282,6 +256,7 @@
       display: flex;
     }
   }
+  
   /*============
   nav
   =============*/
@@ -291,7 +266,7 @@
     bottom: 0;
     left: -300px;
     width: 300px;
-    background: #ffffff;
+    background: #fff;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -399,17 +374,6 @@
     z-index: 52;
     cursor: pointer;
   }
-  /*============
-  main
-  =============*/
-  main {
-    padding: 50px;
-  }
-  main h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    text-align: center;
-  }
 //-----------------------
 
 // Slider
@@ -423,7 +387,6 @@
         margin: 0;
       }
     }
-
     .slider-main{
       position: relative;
     }
@@ -594,56 +557,3 @@
     }
   //-------------------------
 //-------------------------
-
-
-
-
-
-// ul.header-service-tabs {
-//   padding-left: 10px;
-//   padding-right: 10px;
-//   margin-left: 10px;
-//   margin-right: 10px;
-//   text-align: center;
-//   margin-bottom: 0;
-//   li {
-//     height: 50px;
-//     margin-right: 1%;
-//     font-size: 0.8rem;
-//     text-align: center;
-//     float: left;
-//     display: block;
-//     background-color: #000080;
-//     padding: 5px 10px;
-//     border-radius: 5px;
-//   }
-//   .link {
-//     color: #fff;
-//     text-decoration: none;
-//   }
-//   @media (mmaxin-width: 600px) { //600px以上の場合
-//     margin-left: auto;
-//     margin-right: auto;
-
-//     li {
-//       height: auto;
-//       font-size: 1rem;
-//       margin-right: 0;
-//       background-color: #fff;
-//       float: left;
-//       border-right: 2px solid gray;
-//       border-radius: 0;
-//     }
-//     .link {
-//       color: #333333;
-//       background-color: #fff;
-//       text-decoration: none;
-//     }
-//   }
-// }
-
-// .nav {
-//   margin-right: 20px;
-//   color: #000;
-// }
-
