@@ -47,7 +47,9 @@ COPY . /app
 # アセットのプリコンパイル
 RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
  && yarn cache clean \
- && rm -rf node_modules tmp/cache
+ && rm -rf node_modules tmp/cache \
+ && rails webpacker:install \
+ && rails webpacker:compile
 
 # 今井さんからのアドバイスで本番環境用に追加
 # ランタイム設定
