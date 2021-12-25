@@ -36,9 +36,6 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
-# アプリケーションコードのコピー
-COPY . /app
-
 #今井さんからのアドバイスでコメントアウト
 # COPY start.sh /start.sh
 # RUN chmod 744 /start.sh
@@ -50,6 +47,9 @@ RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
  && rm -rf node_modules tmp/cache \
  && rails webpacker:install \
  && rails webpacker:compile
+
+# アプリケーションコードのコピー 位置を変更
+COPY . /app
 
 # 今井さんからのアドバイスで本番環境用に追加
 # ランタイム設定
