@@ -8,13 +8,15 @@ volumes:
 services:
   web:
     build: .
+    # 開発環境用の設定: bundle exec rails s -p 3000 -b '0.0.0.0'
+    # 本番環境を再現する場合: bundle exec rails s -e production -p 3000 -b '0.0.0.0'
     command: >
       bash -c "rm -f tmp/pids/server.pid &&
-               bundle exec rails s -p 3000 -b '0.0.0.0'"
+               bundle exec rails s -e production -p 3000 -b '0.0.0.0'"
     ports:
       - '3000:3000'
     volumes:
-      - '.:/app' # Dockerfileに記述しているので不要???
+      - '.:/app'
       - 'bundle:/usr/local/bundle:cached'
       - 'node_modules:/app/node_modules'
       - '/app/vendor'
@@ -23,7 +25,9 @@ services:
       - '/app/.git'
     environment:
       - 'DATABASE_PASSWORD=postgres'
-      - 'RAILS_ENV: development' # ローカルサーバーで起動するため追記
+        # 開発環境用の設定: 'RAILS_ENV: development'
+        # 本番環境を再現する場合: 'RAILS_ENV: production'
+      - 'RAILS_ENV: production'
     tty: true
     stdin_open: true
     depends_on:
