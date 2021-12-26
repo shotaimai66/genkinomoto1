@@ -1,68 +1,82 @@
-<div class="container">
-  <div class="top-main-image">
-    <%= image_tag("/body_care1.jpg", width: '100%') %>
+<div class="slider-wrap">
+  <div class="slider-main">
+    <div><%= link_to image_tag("/slide_01pc.jpeg"), reservations_path, 'data-turbolinks': false %></div>
+    <div><%= link_to image_tag("/slide_02pc.jpeg"), reservations_path, 'data-turbolinks': false %></div>
+    <div><%= link_to image_tag("/slide_03pc.jpeg"), reservations_path, 'data-turbolinks': false %></div>
   </div>
+</div>
 
-  <ul class="top-staff-buttons f-container">
-    <% if staff_signed_in? %>
-      <li><%= link_to 'スタッフ専用ページ', staffs_account_path, class: "btn btn-sm btn-outline-dark" %></li>
-    <% end %>
-    <li class="btn-group staff-button">
-      <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <% if staff_signed_in? %>
-          ● <%= current_staff.name %> さん
-        <% else %>
-          ○ スタッフ専用
-        <% end %>
-      </button>
-      <div class="dropdown-menu">
-        <% if staff_signed_in? %>
-          <%= link_to 'スタッフ専用ページ', staffs_account_path, class: 'dropdown-item link-black' %>
-          <%= link_to '申請予約承認', confirm_reservation_reservations_path, 'data-turbolinks': false, class: 'dropdown-item link-black' %>
-          <%= link_to '予約管理', reservation_management_reservations_path, 'data-turbolinks': false, class: 'dropdown-item link-black' %>
-          <%= link_to '施術メニュー管理', menus_path, class: 'dropdown-item link-black' %>
-          <div class="dropdown-divider"></div>
-          <%= link_to 'ログアウト', destroy_staff_session_path, method: :delete, class: 'dropdown-item link-black' %>
-        <% else %>
-          <%= link_to 'ログイン', new_staff_session_path, class: 'dropdown-item link-black' %>
+<div class="top-notification">
+  <h1><span class="badge badge-pill badge-danger">New</span> ゲンキノモト。からのお知らせ</h1>
+  <div class="top-notification-body">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-12">
+        <% @notifications.first(3).each do |n| %>
+          <ul>
+            <li><%= n.created_at.strftime("%Y.%m.%d") %><span><%= link_to truncate(n.title, length: 30), notification_path(n), class: "Editlink" %></span></li>
+          </ul>
         <% end %>
       </div>
-    </li>
-  </ul>
-
-  <div class="top-content1">
-    <h1>[NEW] ゲンキノモト。からのお知らせ</h1>
-    <div>
-      <% @notifications.first(3).each do |n| %>
-        <ul>
-          <li><%= n.created_at.strftime("%Y.%m.%d") %><span><%= link_to truncate(n.title, length: 30), notification_path(n), class: "Editlink" %></span></li>
-        </ul>
-      <% end %>
-    </div>
-    <div class="text-right">
-      <%= link_to ">> and more...", static_pages_notification_path, class: "Editlink" %>
     </div>
   </div>
-
-  <div class="top-split-content1">
-    <div class="top-split-content1-left">
-      <h1>ご予約 <%= link_to "ご予約はこちらから", reservations_path, 'data-turbolinks': false, class: "btn btn-sm btn-outline-dark" %></h1>
-      <p>仮で作成しています。適宜変更をお願いします。</p>
-    </div>
-    <div class="top-split-content1-right">
-      <h1>[NEW] 商品ピックアップ情報</h1>
-      <p>仮で作成しています。適宜変更をお願いします。</p>
-    </div>
+  <div class="text-right">
+    <%= link_to ">> and more...", static_pages_notification_path, class: "Editlink" %>
   </div>
-
-  <div class="top-content2">
-    <h1>[NEW] イベント情報</h1>
-    <p>仮で作成しています。適宜変更をお願いします。</p>
-  </div>
-
-  <% if user_signed_in? %>
-    <%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false,  class: "reserve_btn" %>
-  <% end %>
-
 </div>
+
+
+<div class="top-salon-introduction">
+  <h1>サロン紹介</h1>
+  <div class="row">
+    <div class="col-12 col-md-7">
+      <div class="row mb-5">
+        <div class="col-12 col-sm-8 col-md-12">
+          <div><%= link_to image_tag("/salon.jpg", width: '100%'), reservations_path, 'data-turbolinks': false %></div>
+        </div>
+        <div class="col-12 mt-4">
+          <p>
+            巻き爪、タコ、ウオノメのケアを中心としたボディケアサロンです。<br>
+              巻き爪ケアは痛みが少なく短い爪でも補正ができ、ご好評をいただいています！<br>
+              皆様のご来店をお待ちしています。
+          </p>
+          <div>
+            <dl>
+              <div>
+                <dt>住所</dt>
+                <dd>
+                  〒254-0034 神奈川県平塚市宝町9-14 平塚スポーツケアセンター2階
+                </dd>
+              </div>
+              <div>
+                <dt>営業時間</dt>
+                <dd>
+                  11:00〜20:00(18:00最終受付)
+                </dd>
+              </div>
+              <div>
+                <dt>定休日</dt>
+                <dd>
+                  日曜日
+                </dd>
+              </div>
+              <div>
+                <dt>TEL</dt>
+                <dd>
+                  0463-27-2008
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-5">
+      <div><%= link_to image_tag("/map-sample.png", width: '100%'), reservations_path, 'data-turbolinks': false %></div>
+      仮で画像を差し込んでいます<br>
+      本番ではここにGoogleMapを埋め込んでください。
+    </div>
+  </div>
+</div>
+
+<%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false, class: "reserve-btn" %>
+<%= link_to "ご予約はこちら", reservations_path, 'data-turbolinks': false, class: "phone-reserve-btn", id: "phone-reservation-btn" %>
