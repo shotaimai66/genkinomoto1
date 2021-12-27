@@ -26,8 +26,8 @@ services:
     environment:
       - 'DATABASE_PASSWORD=postgres'
         # 開発環境用の設定: 'RAILS_ENV: development'
-        # 本番環境を再現する場合: 'RAILS_ENV: production'
-      - 'RAILS_ENV: production'
+        # 本番環境を開発環境で再現する場合: 'RAILS_ENV: production'
+      - 'RAILS_ENV: development'
     tty: true
     stdin_open: true
     depends_on:
