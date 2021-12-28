@@ -206,6 +206,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
       dayonly: "%m月%d日(%a)"
+      day: "%m/%d(%a)"
       timeonly: "%H:%M"
       custom1: "%Y/%m/%d(%a) %H:%M"
     pm: 午後
