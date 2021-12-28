@@ -28,4 +28,4 @@ production:
   username: <%= ENV['APP_DATABASE_USERNAME'] %>
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
   host: <%= ENV['APP_DATABASE_HOST'] %>
-  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>  #for devise / credentials.yml.enc で確認できる
+  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>  #for devise / credentials.yml.enc で確認できる
